@@ -64,13 +64,23 @@ const EXPERIMENTS: Experiment[] = [
       "Too heavy for mobile networks in 2024; archived until web-native edge vector serialization matures.",
     naiveObservation: "failed. that was the useful part.",
   },
+  {
+    code: "EXP 06",
+    question: "Can an interface listen before you touch?",
+    status: "PROTOTYPE",
+    hypothesis:
+      "Can micro-hesitation velocity vectors predict intent before physical click input, pre-rendering downstream states with zero perceived latency?",
+    finding:
+      "Perceived latency dropped to 0ms. But mouse acceleration curves must be individualized to prevent false triggering.",
+    naiveObservation: "felt like telepathy when we dialed the threshold in.",
+  },
 ];
 
 export function Lab() {
   return (
     <section
       id="lab"
-      className="relative py-36 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Studio Lab Background Watermark: Stippled Atomic Schematic Coordinate Orbit with restrained parallax */}
       <ParallaxLayer offset={18} direction="up" className="absolute -top-12 -left-24 w-[520px] h-[520px] pointer-events-none select-none opacity-[0.07] mix-blend-multiply rotate-12 overflow-hidden z-0">
@@ -82,9 +92,9 @@ export function Lab() {
       </ParallaxLayer>
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-paper-border pb-8 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
             07 // Research Room
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
@@ -99,7 +109,7 @@ export function Lab() {
       </div>
 
       {/* Naïve Diagram Signature Banner (The tension between high tech and primitive human sketch) */}
-      <div className="mb-16 p-8 sm:p-12 rounded-3xl bg-paper-card border border-paper-border relative overflow-hidden">
+      <div className="mb-8 sm:mb-10 p-6 sm:p-10 rounded-3xl bg-paper-card border border-paper-border relative overflow-hidden">
         {/* Subtle Blue Painted Checker Texture Wash on Right Side */}
         <div className="absolute top-0 right-0 w-44 h-full pointer-events-none select-none opacity-[0.12] mix-blend-multiply overflow-hidden">
           <img
