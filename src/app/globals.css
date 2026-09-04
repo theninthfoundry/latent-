@@ -49,6 +49,19 @@
   }
 }
 
+/* Enforce native browser pointer across the studio */
+html, body {
+  cursor: default !important;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"], select {
+  cursor: pointer !important;
+}
+
+input[type="text"], input[type="email"], textarea {
+  cursor: text !important;
+}
+
 /* Editorial hairline rule */
 .editorial-rule {
   height: 1px;
