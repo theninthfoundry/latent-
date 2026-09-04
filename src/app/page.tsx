@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Skiper8 } from "@/components/skiper-ui/skiper8";
 import { Navbar } from "@/components/latent/navbar";
 import { Hero } from "@/components/latent/hero";
@@ -18,14 +18,23 @@ import { Footer } from "@/components/latent/footer";
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  useEffect(() => {
+    // Explicitly enforce native browser pointer on client mount
+    if (typeof document !== "undefined") {
+      document.body.classList.remove("has-custom-cursor");
+      document.body.style.cursor = "default";
+    }
+  }, []);
+
   return (
     <>
       {/* Skiper8 Words Preloader: Animated multilingual text reveal + curved SVG wave exit */}
       <Skiper8 onComplete={() => setIsLoaded(true)} duration={2200} />
 
-      <main className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
+      <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
         {/* Navigation Masthead */}
         <Navbar />
+
 
         {/* 01 — Hero: Reveals as the curved wave sweeps upwards */}
         <Hero isReady={isLoaded} />
