@@ -41,42 +41,20 @@ export function Hero({ isReady = true }: { isReady?: boolean }) {
           </div>
         </div>
 
-        {/* Monumental Typography: Apple Line-Mask Choreographed Reveal */}
+        {/* Monumental Typography: Spatial Lift & Settle */}
         <div className="w-full my-auto flex-1 flex flex-col justify-center">
-          <div className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.75rem] xl:text-[8.1rem] font-light tracking-tighter text-ink leading-[0.88] uppercase select-none">
-            {/* Line 1 */}
-            <div className="overflow-hidden">
-              <motion.div
-                initial={{ y: "115%", opacity: 0 }}
-                animate={isReady ? { y: "0%", opacity: 1 } : { y: "115%", opacity: 0 }}
-                transition={{ duration: 0.95, ease: spatialEase, delay: 0.08 }}
-              >
-                We make
-              </motion.div>
-            </div>
-
-            {/* Line 2 */}
-            <div className="overflow-hidden">
-              <motion.div
-                initial={{ y: "115%", opacity: 0 }}
-                animate={isReady ? { y: "0%", opacity: 1 } : { y: "115%", opacity: 0 }}
-                transition={{ duration: 0.95, ease: spatialEase, delay: 0.16 }}
-              >
-                new things
-              </motion.div>
-            </div>
-
-            {/* Line 3 & 4 */}
-            <div className="overflow-hidden">
-              <motion.div
-                initial={{ y: "115%", opacity: 0 }}
-                animate={isReady ? { y: "0%", opacity: 1 } : { y: "115%", opacity: 0 }}
-                transition={{ duration: 0.95, ease: spatialEase, delay: 0.24 }}
-              >
-                feel <span className="italic font-normal tracking-tight">inevitable.</span>
-              </motion.div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.95, ease: spatialEase, delay: 0.1 }}
+          >
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.75rem] xl:text-[8.1rem] font-light tracking-tighter text-ink leading-[0.88] uppercase select-none">
+              We make <br />
+              new things <br />
+              feel <br />
+              <span className="italic font-normal tracking-tight">inevitable.</span>
+            </h1>
+          </motion.div>
 
           {/* Refined Lower Grid: Lifted 10% higher up */}
           <motion.div
