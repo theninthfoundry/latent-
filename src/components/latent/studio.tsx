@@ -48,13 +48,13 @@ export function Studio() {
   return (
     <section
       id="studio"
-      className="relative py-32 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border"
+      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border"
     >
       {/* Chapter 1: The Studio Constellation */}
-      <div className="mb-32">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-paper-border pb-8">
+      <div className="mb-12 sm:mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
               09 // The Collective
             </span>
             <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
@@ -91,7 +91,7 @@ export function Studio() {
       </div>
 
       {/* Chapter 2: Difficult Questions (Qualification) */}
-      <div className="relative mb-32 pt-20 border-t border-paper-border overflow-hidden">
+      <div className="relative mb-12 sm:mb-14 pt-8 sm:pt-10 border-t border-paper-border overflow-hidden">
         {/* Halftone Stars Background Watermark with restrained parallax */}
         <ParallaxLayer offset={16} direction="up" className="absolute top-12 -right-16 w-80 h-80 pointer-events-none select-none opacity-[0.08] mix-blend-multiply overflow-hidden rotate-45 z-0">
           <img
@@ -103,7 +103,7 @@ export function Studio() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
           <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
               10 // Fit
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-light text-ink leading-tight">
@@ -134,10 +134,10 @@ export function Studio() {
       </div>
 
       {/* Chapter 3: Where We Enter (Engagement Models) */}
-      <div className="pt-20 border-t border-paper-border">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-paper-border pb-8">
+      <div className="pt-8 sm:pt-10 border-t border-paper-border">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
               11 // Engagement
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-light text-ink">
