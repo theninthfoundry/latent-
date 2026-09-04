@@ -62,7 +62,7 @@ export function Method() {
   return (
     <section
       id="method"
-      className="relative pt-16 sm:pt-20 pb-28 sm:pb-36 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Architectural Surface: Cropped Blue Painted Checker Wall with restrained Parallax */}
       <div className="absolute top-0 right-0 w-full md:w-[42%] h-full pointer-events-none select-none overflow-hidden opacity-[0.16] mix-blend-multiply z-0">
@@ -79,12 +79,12 @@ export function Method() {
       </div>
 
       {/* Editorial Spread Top Header */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 sm:mb-16 border-b border-paper-border pb-8 items-baseline relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 items-baseline relative z-10">
         <div className="md:col-span-2 font-mono text-xs uppercase tracking-widest text-ink-muted">
           Vol. 07 / Studio Folio
         </div>
         <div className="md:col-span-7">
-          <h2 className="font-serif text-xs uppercase tracking-widest text-ink-muted mb-2">
+          <h2 className="font-serif text-xs uppercase tracking-widest text-ink-muted mb-1.5">
             The Lifecycle of an Idea
           </h2>
           <div className="font-serif text-3xl sm:text-5xl font-light tracking-tight text-ink">
@@ -97,9 +97,9 @@ export function Method() {
       </div>
 
       {/* The Editorial Publication Spread */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative z-10">
         {/* Left Column: Numbered Stages */}
-        <div className="lg:col-span-7 space-y-10 sm:space-y-14">
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6">
           {METHOD_STEPS.map((step, idx) => (
             <motion.div
               key={step.num}
@@ -107,7 +107,7 @@ export function Method() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, ease: spatialEase, delay: idx * 0.04 }}
-              className="grid grid-cols-12 gap-4 items-baseline border-b border-paper-border/60 pb-7 group cursor-default"
+              className="grid grid-cols-12 gap-4 items-baseline border-b border-paper-border/60 pb-5 group cursor-default"
             >
               {/* Number */}
               <div className="col-span-2 font-mono text-sm sm:text-base text-ink-muted group-hover:text-ink font-medium tracking-tight transition-colors">
@@ -116,10 +116,10 @@ export function Method() {
 
               {/* Title & Thesis */}
               <div className="col-span-10 space-y-1">
-                <h3 className="font-serif text-2xl sm:text-4xl font-light text-ink tracking-tight group-hover:italic group-hover:translate-x-1 transition-all duration-300">
+                <h3 className="font-serif text-2xl sm:text-3xl font-light text-ink tracking-tight group-hover:italic group-hover:translate-x-1 transition-all duration-300">
                   {step.name}
                 </h3>
-                <p className="font-sans text-sm sm:text-base text-ink-light font-light leading-relaxed">
+                <p className="font-sans text-sm text-ink-light font-light leading-relaxed">
                   {step.thesis}
                 </p>
                 <div className="lg:hidden pt-2 font-mono text-[11px] text-ink-muted">
@@ -130,15 +130,15 @@ export function Method() {
           ))}
         </div>
 
-        {/* Right Column: Editorial Marginalia, Footnotes & Naïve Moment */}
-        <div className="lg:col-span-5 flex flex-col justify-between space-y-12 lg:pl-8 lg:border-l border-paper-border">
+        {/* Right Column: Editorial Marginalia, Pipeline Status & Naïve Moment */}
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-8 lg:pl-8 lg:border-l border-paper-border">
           {/* Marginalia Disciplines Stream */}
-          <div className="space-y-8">
+          <div className="space-y-5">
             <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block border-b border-paper-border pb-2">
               Cross-Disciplinary Substrate
             </span>
 
-            <div className="space-y-6 font-mono text-xs text-ink-muted leading-relaxed">
+            <div className="space-y-4 font-mono text-xs text-ink-muted leading-relaxed">
               {METHOD_STEPS.map((step) => (
                 <div key={step.num} className="flex items-baseline gap-3">
                   <span className="text-ink font-semibold">{step.num}</span>
@@ -146,6 +146,20 @@ export function Method() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Studio Practice Cadence: Fills mid-column void with rich studio context */}
+          <div className="p-5 rounded-2xl bg-paper-card border border-paper-border font-mono text-xs space-y-2.5">
+            <div className="flex justify-between items-center text-ink-muted text-[10px] uppercase tracking-wider pb-2 border-b border-paper-border">
+              <span>Pipeline Architecture</span>
+              <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Active Spiral
+              </span>
+            </div>
+            <p className="font-sans text-xs text-ink-light font-light leading-relaxed">
+              Every phase executes concurrently in tight 2-week continuous delivery cycles. Design, code, and intelligence evolve in unison rather than sequential department handoffs.
+            </p>
           </div>
 
           {/* Naive Sketch Reflection in Marginalia */}
