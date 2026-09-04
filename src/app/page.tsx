@@ -33,8 +33,7 @@ export default function Home() {
 
       <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
         {/* Navigation Masthead */}
-        <Navbar />
-
+        <Navbar isReady={isLoaded} />
 
         {/* 01 — Hero: Reveals as the curved wave sweeps upwards */}
         <Hero isReady={isLoaded} />
