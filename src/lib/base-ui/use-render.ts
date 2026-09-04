@@ -20,7 +20,7 @@ export function useRender({
       className: [props.className, (render.props as any)?.className]
         .filter(Boolean)
         .join(" "),
-    });
+    } as any);
   }
 
   return React.createElement(defaultTagName, props);
