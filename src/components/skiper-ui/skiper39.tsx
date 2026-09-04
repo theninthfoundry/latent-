@@ -271,14 +271,33 @@ export const CrowdCanvas = ({
       initCrowd();
     };
 
+    let isIntersecting = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isIntersecting = entry.isIntersecting;
+          if (isIntersecting && !animationKilled) {
+            gsap.ticker.add(render);
+          } else {
+            gsap.ticker.remove(render);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
     const init = () => {
       if (animationKilled) return;
       createPeeps();
       resize();
-      gsap.ticker.add(render);
+      observer.observe(canvas);
     };
 
     img.onload = init;
+    img.onerror = () => {
+      // Silently fail without throwing unhandled exceptions if remote asset fails
+    };
     img.src = config.src;
 
     const handleResize = () => resize();
@@ -286,6 +305,7 @@ export const CrowdCanvas = ({
 
     return () => {
       animationKilled = true;
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
       gsap.ticker.remove(render);
       crowd.forEach((peep) => {
