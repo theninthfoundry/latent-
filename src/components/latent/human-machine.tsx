@@ -80,20 +80,51 @@ export function HumanMachine() {
     };
 
   return (
-    <section className="relative py-32 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
-      {/* Atomic / Flower Halftone Diagram (Recurring Studio Synthesis Schema with restrained parallax) */}
-      <ParallaxLayer offset={20} direction="down" className="absolute top-1/2 -right-20 -translate-y-1/2 w-[520px] h-[520px] pointer-events-none select-none opacity-[0.09] mix-blend-multiply overflow-hidden z-0">
-        <img
-          src="/artifacts/atomic-diagram.png"
-          alt=""
-          className="w-full h-full object-contain animate-[spin_160s_linear_infinite]"
-        />
-      </ParallaxLayer>
+    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
+      {/* Monumental Atomic / Flower Halftone Diagram: Noticeable, expansive, living studio synthesis schema */}
+      <div className="absolute top-1/2 -translate-y-1/2 -right-10 sm:-right-16 lg:right-[-30px] xl:right-6 w-[680px] h-[680px] sm:w-[820px] sm:h-[820px] lg:w-[940px] lg:h-[940px] pointer-events-none select-none mix-blend-multiply z-0 flex items-center justify-center">
+        <motion.div
+          key={pairKey}
+          initial={{ scale: 0.94 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full h-full relative flex items-center justify-center"
+        >
+          {/* Continuous graceful rotation */}
+          <motion.div
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 32, // Silky, clearly noticeable rotation
+            }}
+            className="w-full h-full relative"
+          >
+            {/* Main Atomic Schematic Artwork with organic pulse and crisp opacity */}
+            <motion.img
+              src="/artifacts/atomic-diagram.png"
+              alt=""
+              animate={{
+                opacity: [0.24, 0.32, 0.24],
+                scale: [1, 1.04, 1],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 6,
+                ease: "easeInOut",
+              }}
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
 
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-paper-border pb-8 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
             06 // Synthesis
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
