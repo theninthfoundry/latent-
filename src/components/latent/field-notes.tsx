@@ -43,11 +43,11 @@ const NOTES: Note[] = [
 
 export function FieldNotes() {
   return (
-    <section className="relative py-32 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border">
+    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-paper-border pb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
             08 // Marginalia
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
