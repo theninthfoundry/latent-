@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { spatialEase, cinematicEase } from "@/lib/motion/easings";
 import { DURATION } from "@/lib/motion/tokens";
 
@@ -10,12 +10,12 @@ interface TextRevealProps {
   className?: string;
   delay?: number;
   duration?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: "div" | "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "section" | "article";
 }
 
 /**
  * TextReveal: Apple-style typographic line mask reveal.
- * Hides initial overflow, lifts text gently upwards into view.
+ * Parent container is observed by useInView; inner span lifts upwards with spatialEase.
  */
 export function TextReveal({
   children,
@@ -25,20 +25,20 @@ export function TextReveal({
   as: Component = "div",
 }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
 
   if (shouldReduceMotion) {
-    // @ts-expect-error dynamic component
     return <Component className={className}>{children}</Component>;
   }
 
   return (
-    // @ts-expect-error dynamic component
-    <Component className={`overflow-hidden ${className}`}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Component ref={containerRef as any} className={`overflow-hidden ${className}`}>
       <motion.span
         className="block will-change-transform"
-        initial={{ y: "110%", opacity: 0 }}
-        whileInView={{ y: "0%", opacity: 1 }}
-        viewport={{ once: true, amount: "some" }}
+        initial={{ y: "105%", opacity: 0 }}
+        animate={isInView ? { y: "0%", opacity: 1 } : { y: "105%", opacity: 0 }}
         transition={{
           duration,
           delay,
@@ -68,40 +68,43 @@ export function ImageReveal({
   duration = DURATION.cinematic,
 }: ImageRevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
   }
 
   return (
-    <motion.div
-      className={`overflow-hidden will-change-transform ${className}`}
-      initial={{
-        clipPath: "inset(8% 0% 8% 0%)",
-        opacity: 0,
-        scale: 1.04,
-      }}
-      whileInView={{
-        clipPath: "inset(0% 0% 0% 0%)",
-        opacity: 1,
-        scale: 1,
-      }}
-      viewport={{ once: true, amount: "some" }}
-      transition={{
-        duration,
-        delay,
-        ease: cinematicEase,
-      }}
-    >
-      {children}
-    </motion.div>
+    <div ref={containerRef} className={`overflow-hidden ${className}`}>
+      <motion.div
+        className="w-full h-full will-change-transform"
+        initial={{
+          clipPath: "inset(8% 0% 8% 0%)",
+          opacity: 0,
+          scale: 1.04,
+        }}
+        animate={
+          isInView
+            ? { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, scale: 1 }
+            : { clipPath: "inset(8% 0% 8% 0%)", opacity: 0, scale: 1.04 }
+        }
+        transition={{
+          duration,
+          delay,
+          ease: cinematicEase,
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
 
 interface ParallaxLayerProps {
   children: React.ReactNode;
   className?: string;
-  offset?: number; // Maximum pixel displacement (e.g. 15 or 25)
+  offset?: number;
   direction?: "up" | "down";
 }
 
@@ -130,8 +133,11 @@ export function ParallaxLayer({
     return <div className={className}>{children}</div>;
   }
 
+  const isAbsolute = className.includes("absolute");
+  const positionClass = isAbsolute ? "" : "relative";
+
   return (
-    <div ref={ref} className={`relative ${className}`}>
+    <div ref={ref} className={`${positionClass} ${className}`}>
       <motion.div style={{ y }} className="w-full h-full will-change-transform">
         {children}
       </motion.div>
