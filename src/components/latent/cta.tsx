@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { HandDrawnArrow } from "./naive-elements";
 import { SplitCTAButton } from "./split-cta-button";
-import { TextReveal, ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { spatialEase } from "@/lib/motion/easings";
 
 export function FinalCTA() {
   return (
@@ -30,13 +32,17 @@ export function FinalCTA() {
 
       {/* Perfectly Contained Single-View Core */}
       <div className="my-auto py-6 sm:py-8 w-full space-y-8 sm:space-y-10 flex-1 flex flex-col justify-center relative z-10">
-        <div className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[5.75rem] xl:text-[6.5rem] font-light text-ink tracking-tight leading-[0.92] uppercase select-none max-w-5xl">
-          <TextReveal delay={0}>What are you</TextReveal>
-          <TextReveal delay={0.07}>trying to make</TextReveal>
-          <TextReveal delay={0.14}>
-            <span className="italic font-normal">exist?</span>
-          </TextReveal>
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: "some" }}
+          transition={{ duration: 0.8, ease: spatialEase }}
+          className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[5.75rem] xl:text-[6.5rem] font-light text-ink tracking-tight leading-[0.92] uppercase select-none max-w-5xl"
+        >
+          What are you <br />
+          trying to make <br />
+          <span className="italic font-normal">exist?</span>
+        </motion.h2>
 
         {/* Action Row: Note on left, Start a Project on the RIGHT */}
         <div className="pt-6 border-t border-paper-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-6 w-full shrink-0">
