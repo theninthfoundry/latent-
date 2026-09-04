@@ -40,9 +40,8 @@ const CASES: ProjectCase[] = [
     finalUI: "/otaru-archive.png",
     specs: ["WebGL point-cloud", "Audio spatialization", "Next.js App Router", "IndexedDB"],
     deskArtifacts: {
-      photo:
-        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop",
-      photoCaption: "Artifact A // Vintage sashiko repair weave inspection",
+      photo: "/artifacts/dithered-clouds.png",
+      photoCaption: "Artifact A // Atmospheric cloud formation study",
       sketchNote:
         "“People don’t want another checkout funnel. They want to hold the fabric up to the window.”",
       diagram:
@@ -147,7 +146,7 @@ export function Work() {
   return (
     <section
       id="work"
-      className="relative py-36 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Background Artifact 01: Halftone Stars drifting behind header */}
       <ParallaxLayer
@@ -176,9 +175,9 @@ export function Work() {
       </ParallaxLayer>
 
       {/* Editorial Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-paper-border pb-8 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
             04 // The Workshop &amp; Archive
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
@@ -192,7 +191,7 @@ export function Work() {
       </div>
 
       {/* Project Workbench Selector */}
-      <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-16 font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-8 sm:mb-10 font-mono text-xs">
         {CASES.map((c) => {
           const isSelected = activeCase.id === c.id;
           return (
@@ -221,7 +220,7 @@ export function Work() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-12"
+          className="space-y-10"
         >
           {/* Top Workbench Row: Large Final UI + Case Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
