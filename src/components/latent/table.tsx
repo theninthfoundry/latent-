@@ -230,7 +230,7 @@ export function TheTable() {
   const [activeMaterial, setActiveMaterial] = useState(MATERIALS[0]);
 
   return (
-    <section className="relative py-32 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
+    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
       {/* Studio Table Material Watermark 01: Blue Checker Swatch on Desk with restrained parallax */}
       <ParallaxLayer offset={16} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.10] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
         <img
@@ -250,9 +250,9 @@ export function TheTable() {
       </ParallaxLayer>
 
       {/* Editorial Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-paper-border pb-8 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
             05 // Materials
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
@@ -266,7 +266,7 @@ export function TheTable() {
       </div>
 
       {/* Materials Selector Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 mb-12">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 mb-8 sm:mb-10">
         {MATERIALS.map((mat) => {
           const isSelected = activeMaterial.id === mat.id;
           return (
