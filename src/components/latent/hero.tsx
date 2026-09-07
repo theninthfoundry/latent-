@@ -40,11 +40,11 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
         >
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-ink animate-pulse" />
-            <span>Vol. 01 // Digital Studio &bull; Research</span>
+            <span>§ 01 // Digital Laboratory &bull; Research</span>
           </div>
           <div className="hidden sm:flex items-center gap-4">
             <span>Design &bull; Systems &bull; Artifacts</span>
-            <span>LATENT &bull; 2026</span>
+            <span>LATENT LABS &bull; 2026</span>
           </div>
         </motion.div>
 
@@ -113,7 +113,7 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
                 className="w-6 h-6 text-ink-muted shrink-0 mt-0.5"
               />
               <p className="font-sans text-xs sm:text-sm md:text-base text-ink font-light max-w-lg leading-relaxed">
-                A design and technology studio for ideas that haven’t found their
+                A design and research laboratory for ideas that haven’t found their
                 final form yet. We find what is latent and turn it into something real.
               </p>
             </div>
@@ -125,7 +125,7 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
                 size="hero"
               />
               <a
-                href="#method"
+                href="/studio#method"
                 className="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink transition-colors underline underline-offset-4 decoration-paper-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
                 Method →

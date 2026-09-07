@@ -1,5 +1,5 @@
 /**
- * LATENT Studio Motion Design System Tokens
+ * LATENT Labs Motion Design System Tokens
  * 
  * Strict Motion Hierarchy:
  * 1. Structure -> 2. Spatial movement -> 3. Typography -> 4. Opacity -> 5. Scale -> 6. Blur -> 7. Parallax

@@ -1,16 +1,17 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { ReactLenis, useLenis } from "lenis/react";
-import type Lenis from "lenis";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface SmoothScrollContextValue {
-  lenis: Lenis | undefined;
+  lenis: Lenis | null;
   reducedMotion: boolean;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextValue>({
-  lenis: undefined,
+  lenis: null,
   reducedMotion: false,
 });
 
@@ -18,70 +19,61 @@ export function useSmoothScroll() {
   return useContext(SmoothScrollContext);
 }
 
-export { useLenis };
-
-interface SmoothScrollProviderProps {
-  children: React.ReactNode;
-}
-
-export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+  const lenisRef = useRef<Lenis | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Detect prefers-reduced-motion
+    // Register ScrollTrigger plugin on client
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Check prefers-reduced-motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mediaQuery.matches);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      setReducedMotion(e.matches);
+    if (mediaQuery.matches) {
+      return;
+    }
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.1,
+      infinite: false,
+    });
+    lenisRef.current = lenis;
+
+    // Sync Lenis scroll events with GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Drive Lenis RAF from GSAP ticker for synchronous updates
+    const updateTicker = (time: number) => {
+      lenis.raf(time * 1000);
     };
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(updateTicker);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
   }, []);
 
-  // If user requests reduced motion, bypass Lenis smoothing completely
-  if (reducedMotion) {
-    return (
-      <SmoothScrollContext.Provider value={{ lenis: undefined, reducedMotion: true }}>
-        {children}
-      </SmoothScrollContext.Provider>
-    );
-  }
-
   return (
-    <ReactLenis
-      root
-      options={{
-        duration: 1.15,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Controlled Apple-like deceleration curve
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 0.92, // Weighted physical feel
-        touchMultiplier: 1.1,
-        infinite: false,
-        autoResize: true,
+    <SmoothScrollContext.Provider
+      value={{
+        lenis: lenisRef.current,
+        reducedMotion,
       }}
     >
-      <SmoothScrollInternalWrapper reducedMotion={reducedMotion}>
-        {children}
-      </SmoothScrollInternalWrapper>
-    </ReactLenis>
-  );
-}
-
-function SmoothScrollInternalWrapper({
-  children,
-  reducedMotion,
-}: {
-  children: React.ReactNode;
-  reducedMotion: boolean;
-}) {
-  const lenis = useLenis();
-
-  return (
-    <SmoothScrollContext.Provider value={{ lenis, reducedMotion }}>
       {children}
     </SmoothScrollContext.Provider>
   );

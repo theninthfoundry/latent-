@@ -179,7 +179,7 @@ export function Method() {
               idea across seven states of matter until it exists.&rdquo;
             </p>
             <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest mt-4 block">
-              LATENT Studio Handbook / p. 09
+              LATENT Labs Handbook / p. 09
             </span>
           </motion.div>
         </div>

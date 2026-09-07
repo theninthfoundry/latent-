@@ -30,7 +30,7 @@ interface ProjectCase {
 const CASES: ProjectCase[] = [
   {
     id: "otaru",
-    code: "CASE 01",
+    code: "§ 01",
     title: "OTARU",
     client: "Otaru Textile Archive, Tokyo",
     tagline: "The mountain remembers.",
@@ -56,7 +56,7 @@ const CASES: ProjectCase[] = [
   },
   {
     id: "solomon",
-    code: "CASE 02",
+    code: "§ 02",
     title: "SOLOMON",
     client: "Cognitive Research Labs",
     tagline: "An AI that remembers.",
@@ -84,7 +84,7 @@ const CASES: ProjectCase[] = [
   },
   {
     id: "satquery",
-    code: "CASE 03",
+    code: "§ 03",
     title: "SATQUERY",
     client: "Planetary Observation Network",
     tagline: "A machine that sees the Earth.",
@@ -112,7 +112,7 @@ const CASES: ProjectCase[] = [
   },
   {
     id: "devstate",
-    code: "CASE 04",
+    code: "§ 04",
     title: "DEVSTATE",
     client: "Cryptographic Engineering Foundation",
     tagline: "A computer that stays private.",
@@ -143,10 +143,23 @@ const CASES: ProjectCase[] = [
 export function Work() {
   const [activeCase, setActiveCase] = useState<ProjectCase>(CASES[0]);
 
+  React.useEffect(() => {
+    const handleHash = () => {
+      if (typeof window !== "undefined" && window.location.hash) {
+        const id = window.location.hash.replace("#", "");
+        const matched = CASES.find((c) => c.id === id);
+        if (matched) setActiveCase(matched);
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
   return (
     <section
       id="work"
-      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto overflow-hidden"
     >
       {/* Background Artifact 01: Halftone Stars drifting behind header */}
       <ParallaxLayer
@@ -161,7 +174,7 @@ export function Work() {
         />
       </ParallaxLayer>
 
-      {/* Background Artifact 02: Large Indigo Textile Tapestry Bleed (Asymmetrical Studio Reference) */}
+      {/* Background Artifact 02: Large Indigo Textile Tapestry Bleed */}
       <ParallaxLayer
         offset={18}
         direction="down"
@@ -175,10 +188,10 @@ export function Work() {
       </ParallaxLayer>
 
       {/* Editorial Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-            04 // The Workshop &amp; Archive
+            § 01 // The Workshop &amp; Archive
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
             Things we make.
@@ -191,13 +204,18 @@ export function Work() {
       </div>
 
       {/* Project Workbench Selector */}
-      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-8 sm:mb-10 font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-12 font-mono text-xs">
         {CASES.map((c) => {
           const isSelected = activeCase.id === c.id;
           return (
             <button
               key={c.id}
-              onClick={() => setActiveCase(c)}
+              onClick={() => {
+                setActiveCase(c);
+                if (typeof window !== "undefined") {
+                  window.history.replaceState(null, "", `#${c.id}`);
+                }
+              }}
               className={`px-4 py-2.5 rounded-full border transition-all duration-200 flex items-center gap-2.5 ${
                 isSelected
                   ? "bg-ink text-paper border-ink shadow-sm"

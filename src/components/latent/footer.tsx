@@ -28,14 +28,14 @@ export function Footer() {
               LATENT
             </Link>
             <p className="font-sans text-sm text-ink-muted max-w-sm font-light leading-relaxed">
-              A design and technology studio for what comes next. We uncover what
+              A design, research, and technology laboratory for what comes next. We uncover what
               is latent inside ambitious ideas and turn it into real, inevitable
               digital artifacts.
             </p>
             <div className="font-mono text-[10px] text-ink-muted uppercase tracking-widest pt-1 flex items-center gap-3">
-              <span>Studio — 01</span>
+              <span>Labs — 01</span>
               <span>&bull;</span>
-              <span>Design &amp; Technology Practice</span>
+              <span>Design &amp; Technology Laboratory</span>
             </div>
           </div>
 
@@ -46,24 +46,24 @@ export function Footer() {
             </span>
             <ul className="space-y-2 text-ink">
               <li>
-                <a href="#studio" className="hover:text-ink-muted transition-colors">
+                <Link href="/studio" className="hover:text-ink-muted transition-colors">
                   The Studio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#method" className="hover:text-ink-muted transition-colors">
+                <Link href="/studio#method" className="hover:text-ink-muted transition-colors">
                   The Method (07 Stages)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#work" className="hover:text-ink-muted transition-colors">
+                <Link href="/work" className="hover:text-ink-muted transition-colors">
                   Selected Archive
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#lab" className="hover:text-ink-muted transition-colors">
+                <Link href="/lab" className="hover:text-ink-muted transition-colors">
                   The Lab &amp; Experiments
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-ink transition-colors font-medium">
@@ -92,14 +92,6 @@ export function Footer() {
 
             <div className="flex items-center gap-6 pt-2 text-ink-muted">
               <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-ink transition-colors"
-              >
-                Twitter / X ↗
-              </a>
-              <a
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
@@ -108,12 +100,18 @@ export function Footer() {
                 GitHub ↗
               </a>
               <a
-                href="https://linkedin.com"
+                href="mailto:inquiries@latent.studio?subject=CV%20Request"
+                className="hover:text-ink transition-colors"
+              >
+                Resume / CV ↗
+              </a>
+              <a
+                href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-ink transition-colors"
               >
-                LinkedIn ↗
+                Twitter / X ↗
               </a>
             </div>
           </div>
@@ -150,7 +148,7 @@ export function Footer() {
         {/* Colophon & Legal Bar */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-ink-muted">
           <div className="flex items-center gap-4">
-            <span>&copy; {new Date().getFullYear()} LATENT Studio Inc. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} LATENT Labs Inc. All rights reserved.</span>
             <span>&bull;</span>
             <Link href="/terms" className="hover:text-ink transition-colors underline underline-offset-4 decoration-paper-border">
               Terms &amp; Conditions ↗

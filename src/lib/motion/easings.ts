@@ -1,5 +1,5 @@
 /**
- * LATENT Studio Apple-Inspired Cubic-Bezier Curves & Physics
+ * LATENT Labs Apple-Inspired Cubic-Bezier Curves & Physics
  */
 
 // Apple-inspired smooth deceleration: swift initial movement, prolonged natural settling

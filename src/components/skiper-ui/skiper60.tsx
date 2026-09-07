@@ -366,8 +366,8 @@ export const TERMS_SECTIONS: SectionItem[] = [
       <div className="space-y-4 text-sm sm:text-base text-ink-light font-light leading-relaxed">
         <p>Questions about these Terms can be sent to:</p>
         <div className="font-mono text-xs bg-paper-card p-4 rounded-xl border border-paper-border space-y-1">
-          <div className="font-semibold text-ink">legal@latent.studio</div>
-          <div>LATENT Studio Inc.</div>
+          <div className="font-semibold text-ink">legal@latent.labs</div>
+          <div>LATENT Labs Inc.</div>
           <div>Bahnhofstrasse 44, 8001 Zürich, Switzerland</div>
         </div>
       </div>
@@ -547,12 +547,12 @@ export function Skiper60({
 
             {/* Sidebar Footer Link */}
             <div className="pt-4 border-t border-paper-border flex items-center justify-between font-mono text-[11px] text-ink-muted">
-              <span>LATENT Studio Inc.</span>
+              <span>LATENT Labs Inc.</span>
               <a
-                href="mailto:legal@latent.studio"
+                href="mailto:legal@latent.labs"
                 className="hover:text-ink underline transition-colors"
               >
-                legal@latent.studio
+                legal@latent.labs
               </a>
             </div>
           </div>

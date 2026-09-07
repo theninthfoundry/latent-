@@ -95,7 +95,7 @@ export function Lab() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-            07 // Research Room
+            § 01 // Research Room
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
             The Lab.

@@ -80,7 +80,7 @@ export function HumanMachine() {
     };
 
   return (
-    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
+    <section id="human-machine" className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden scroll-mt-24">
       {/* Monumental Atomic / Flower Halftone Diagram: Noticeable, expansive, living studio synthesis schema */}
       <div className="absolute top-1/2 -translate-y-1/2 -right-10 sm:-right-16 lg:right-[-30px] xl:right-6 w-[680px] h-[680px] sm:w-[820px] sm:h-[820px] lg:w-[940px] lg:h-[940px] pointer-events-none select-none mix-blend-multiply z-0 flex items-center justify-center">
         <motion.div
@@ -125,7 +125,7 @@ export function HumanMachine() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-            06 // Synthesis
+            § 04 // Synthesis
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
             Human × Machine.

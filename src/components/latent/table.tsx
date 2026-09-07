@@ -21,7 +21,7 @@ const MATERIALS: Material[] = [
     subtitle: "The latent premise",
     type: "Handwritten Ephemera",
     note: "“If it doesn’t create a small ache in the chest, throw it away.”",
-    artifactTitle: "Studio Notebook Entry — July 14",
+    artifactTitle: "Labs Notebook Entry — July 14",
     renderArtifact: () => (
       <div className="relative p-8 rounded-2xl bg-[#FFFDF9] border border-paper-border shadow-sm">
         <div className="washi-tape -top-3 left-10" />
@@ -29,7 +29,7 @@ const MATERIALS: Material[] = [
           What if the website isn’t a store at all, but a spatial warehouse where
           the lights only turn on when you step into a room?
         </p>
-        <div className="mt-6 pt-4 border-t border-dashed border-paper-border font-mono text-[11px] text-ink-muted">
+        <div className="mt-6 pt-4 border-dashed border-t border-paper-border font-mono text-[11px] text-ink-muted">
           Pencil 2B on Japanese cotton paper
         </div>
       </div>
@@ -51,7 +51,7 @@ const MATERIALS: Material[] = [
         />
         <div className="p-4 bg-paper-card border-t border-paper-border font-mono text-[11px] text-ink-muted flex justify-between">
           <span>50mm f/1.4 • Kodak Portra 400 Tone</span>
-          <span>Tokyo Studio Archive</span>
+          <span>Tokyo Lab Archive</span>
         </div>
       </div>
     ),
@@ -253,7 +253,7 @@ export function TheTable() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-            05 // Materials
+            § 03 // Materials
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
             The Studio Table.

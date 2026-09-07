@@ -55,7 +55,7 @@ export function Studio() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-              09 // The Collective
+              § 05 // The Collective
             </span>
             <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
               Small by design. <br />
@@ -104,7 +104,7 @@ export function Studio() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
           <div className="lg:col-span-5">
             <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-              10 // Fit
+              § 06 // Fit
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-light text-ink leading-tight">
               We like difficult questions.
@@ -138,7 +138,7 @@ export function Studio() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-              11 // Engagement
+              § 07 // Engagement
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-light text-ink">
               Where we enter.

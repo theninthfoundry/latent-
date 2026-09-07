@@ -6,6 +6,8 @@ import {
   Caveat,
 } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { GrainOverlay } from "@/components/motion/grain-overlay";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -36,26 +38,27 @@ const caveat = Caveat({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latent.studio";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latent.labs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "LATENT — A Studio for What Comes Next",
+    default: "LATENT — A Laboratory for What Comes Next",
     template: "%s | LATENT",
   },
   description:
-    "LATENT is an autonomous design and technology studio creating products, brands, AI systems, and tactile digital experiences for ambitious ideas.",
+    "LATENT is an autonomous design, research, and technology laboratory creating products, brands, AI systems, and tactile digital experiences for ambitious ideas.",
   keywords: [
-    "digital studio",
+    "digital laboratory",
     "design and technology",
     "autonomous AI systems",
     "product engineering",
     "brand worlds",
     "interaction design",
     "creative technology",
+    "r&d lab",
   ],
-  authors: [{ name: "LATENT Studio" }],
+  authors: [{ name: "LATENT Labs" }],
   creator: "LATENT",
   publisher: "LATENT",
   robots: {
@@ -63,16 +66,16 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "LATENT — A Studio for What Comes Next",
+    title: "LATENT — A Laboratory for What Comes Next",
     description: "We make new things feel inevitable.",
     url: siteUrl,
-    siteName: "LATENT Digital Studio",
+    siteName: "LATENT Labs",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "LATENT — A Studio for What Comes Next",
+    title: "LATENT — A Laboratory for What Comes Next",
     description: "We make new things feel inevitable.",
   },
   alternates: {
@@ -83,7 +86,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "LATENT Digital Studio",
+  name: "LATENT Labs",
   url: siteUrl,
   description: "Autonomous creative engineering, AI architecture, and tactile digital systems.",
   foundingDate: "2026",
@@ -117,6 +120,8 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <ScrollProgress />
+        <GrainOverlay />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
