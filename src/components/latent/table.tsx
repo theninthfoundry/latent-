@@ -230,7 +230,7 @@ export function TheTable() {
   const [activeMaterial, setActiveMaterial] = useState(MATERIALS[0]);
 
   return (
-    <section id="table" className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden [perspective:1000px] scroll-mt-24">
+    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
       {/* Studio Table Material Watermark 01: Blue Checker Swatch on Desk with restrained parallax */}
       <ParallaxLayer offset={16} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.10] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
         <img

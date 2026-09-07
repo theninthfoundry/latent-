@@ -4,13 +4,11 @@ import React, { useState, useEffect } from "react";
 import { Skiper8 } from "@/components/skiper-ui/skiper8";
 import { Navbar } from "@/components/latent/navbar";
 import { Hero } from "@/components/latent/hero";
-import { PinnedThesis } from "@/components/latent/pinned-thesis";
+import { ThesisTeaser } from "@/components/latent/thesis-teaser";
 import { TheTable } from "@/components/latent/table";
-import { HorizontalWork } from "@/components/latent/horizontal-work";
+import { Work } from "@/components/latent/work";
 import { FinalCTA } from "@/components/latent/cta";
 import { Footer } from "@/components/latent/footer";
-import { LusionCanvas } from "@/components/motion/lusion-canvas";
-import { VelocitySkew } from "@/components/motion/velocity-skew";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,35 +26,27 @@ export default function Home() {
       {/* Skiper8 Words Preloader: Animated multilingual text reveal + curved SVG wave exit */}
       <Skiper8 onComplete={() => setIsLoaded(true)} duration={2200} />
 
-      {/* Lusion-Inspired Fluid-Ink Physics Background Canvas */}
-      <LusionCanvas />
-
-      <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans overflow-x-clip">
+      <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
         {/* Navigation Masthead */}
         <Navbar isReady={isLoaded} />
 
-        {/* 01 — Hero with 3D Perspective Scroll Drift */}
+        {/* 01 — Hero */}
         <Hero isReady={isLoaded} />
 
-        {/* Velocity Skew Container adds physical mass & spring inertia to vertical sections */}
-        <VelocitySkew maxSkew={1.2}>
-          {/* 02 — Pinned Scrubbed Thesis Slide (Word-by-word illumination + opposing coordinate ribbons) */}
-          <PinnedThesis />
+        {/* 02 — Next Slide: Thesis */}
+        <ThesisTeaser />
 
-          {/* 03 — The Studio Table (Interactive Materials & Substrates) */}
-          <TheTable />
-        </VelocitySkew>
+        {/* 03 — The Studio Table (Interactive Materials & Substrates) */}
+        <TheTable />
 
-        {/* 04 — Pinned Horizontal 3D Work Gallery (360vh scroll-glide + case drawer inspector) */}
-        <HorizontalWork />
+        {/* 04 — Projects & Work (Full Interactive Technical Archive) */}
+        <Work />
 
-        <VelocitySkew maxSkew={1.2}>
-          {/* 05 — Final Closing CTA */}
-          <FinalCTA />
+        {/* 05 — Final Closing CTA */}
+        <FinalCTA />
 
-          {/* 06 — Architectural Footer & Colophon */}
-          <Footer />
-        </VelocitySkew>
+        {/* 06 — Architectural Footer & Colophon */}
+        <Footer />
       </main>
     </>
   );

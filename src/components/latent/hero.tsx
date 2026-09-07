@@ -18,25 +18,18 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
     offset: ["start start", "end start"],
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.85], [1, 0.96]);
-  const heroY = useTransform(scrollYProgress, [0, 0.85], [0, 50]);
-  const heroRotateX = useTransform(scrollYProgress, [0, 0.85], [0, 10]);
-
-  // Lusion-grade opposing line horizontal drift on scroll
-  const line1X = useTransform(scrollYProgress, [0, 0.85], [0, -45]);
-  const line2X = useTransform(scrollYProgress, [0, 0.85], [0, 55]);
-  const line3X = useTransform(scrollYProgress, [0, 0.85], [0, -35]);
-  const line4X = useTransform(scrollYProgress, [0, 0.85], [0, 65]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.35]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.985]);
+  const heroY = useTransform(scrollYProgress, [0, 0.8], [0, 24]);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[88vh] lg:h-[94vh] flex flex-col justify-between pt-20 sm:pt-22 pb-6 sm:pb-8 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto overflow-hidden [perspective:1200px]"
+      className="relative min-h-[88vh] lg:h-[92vh] flex flex-col justify-between pt-20 sm:pt-22 pb-6 sm:pb-8 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto overflow-hidden [perspective:1000px]"
     >
       <motion.div
-        style={shouldReduceMotion ? {} : { opacity: heroOpacity, scale: heroScale, y: heroY, rotateX: heroRotateX }}
-        className="w-full h-full flex flex-col justify-between flex-1 will-change-transform origin-center"
+        style={shouldReduceMotion ? {} : { opacity: heroOpacity, scale: heroScale, y: heroY }}
+        className="w-full h-full flex flex-col justify-between flex-1 will-change-transform"
       >
         {/* Discreet Studio Coordinates & Index Tag: Slides down softly */}
         <motion.div
@@ -59,7 +52,7 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
         <div className="w-full my-auto flex-1 flex flex-col justify-center">
           <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.75rem] xl:text-[8.1rem] font-light tracking-tighter text-ink leading-[0.88] uppercase select-none [perspective:1000px]">
             {/* Line 01 */}
-            <motion.span style={shouldReduceMotion ? {} : { x: line1X }} className="block overflow-hidden py-1 will-change-transform">
+            <span className="block overflow-hidden py-1">
               <motion.span
                 className="block will-change-transform"
                 initial={shouldReduceMotion ? { opacity: 0 } : { y: "115%", opacity: 0, rotateX: 14 }}
@@ -68,10 +61,10 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
               >
                 We make
               </motion.span>
-            </motion.span>
+            </span>
 
             {/* Line 02 */}
-            <motion.span style={shouldReduceMotion ? {} : { x: line2X }} className="block overflow-hidden py-1 will-change-transform">
+            <span className="block overflow-hidden py-1">
               <motion.span
                 className="block will-change-transform"
                 initial={shouldReduceMotion ? { opacity: 0 } : { y: "115%", opacity: 0, rotateX: 14 }}
@@ -80,10 +73,10 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
               >
                 new things
               </motion.span>
-            </motion.span>
+            </span>
 
             {/* Line 03 */}
-            <motion.span style={shouldReduceMotion ? {} : { x: line3X }} className="block overflow-hidden py-1 will-change-transform">
+            <span className="block overflow-hidden py-1">
               <motion.span
                 className="block will-change-transform"
                 initial={shouldReduceMotion ? { opacity: 0 } : { y: "115%", opacity: 0, rotateX: 14 }}
@@ -92,10 +85,10 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
               >
                 feel
               </motion.span>
-            </motion.span>
+            </span>
 
             {/* Line 04: The italicized editorial anchor */}
-            <motion.span style={shouldReduceMotion ? {} : { x: line4X }} className="block overflow-hidden py-1 will-change-transform">
+            <span className="block overflow-hidden py-1">
               <motion.span
                 className="block italic font-normal tracking-tight will-change-transform"
                 initial={shouldReduceMotion ? { opacity: 0 } : { y: "115%", opacity: 0, rotateX: 14 }}
@@ -104,7 +97,7 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
               >
                 inevitable.
               </motion.span>
-            </motion.span>
+            </span>
           </h1>
 
           {/* Refined Lower Grid: Emerges in rhythm right after the headline settles */}
