@@ -49,14 +49,14 @@ export function FinalCTA() {
           <div className="flex items-center gap-3 text-ink-muted">
             <HandDrawnArrow direction="down-right" className="w-5 h-5 shrink-0" />
             <span className="font-mono text-xs text-ink-muted max-w-xs font-light leading-relaxed">
-              No sales funnels. No account managers. You speak directly with the studio.
+              No sales funnels. No account managers. You speak directly with the lab.
             </span>
           </div>
 
           <div className="flex sm:justify-end">
             <SplitCTAButton
               label="Start a Project"
-              href="mailto:inquiries@latent.studio"
+              href="mailto:inquiries@latent.labs"
               size="lg"
             />
           </div>
@@ -65,7 +65,7 @@ export function FinalCTA() {
 
       {/* Bottom Anchor */}
       <div className="font-mono text-[10px] text-ink-muted uppercase tracking-widest flex justify-between pt-3 border-t border-paper-border shrink-0 relative z-10">
-        <span>LATENT Digital Studio</span>
+        <span>LATENT Labs</span>
         <span>End of Transmission &bull; 2026</span>
       </div>
     </section>
