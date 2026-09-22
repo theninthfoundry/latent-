@@ -34,12 +34,12 @@ export function ThesisTeaser() {
           <blockquote className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-ink leading-[1.05] tracking-tight">
             Some ideas need a website. <br />
             Some need a{" "}
-            <span className="italic font-normal underline decoration-paper-border underline-offset-8">
+            <span className="italic font-normal text-atelier-indigo underline decoration-atelier-brass/60 underline-offset-8">
               world.
             </span>{" "}
             <br />
             <span className="text-ink-muted font-normal text-3xl sm:text-5xl md:text-6xl lg:text-7xl block mt-4 sm:mt-6">
-              We work somewhere between the two.
+              We work <span className="font-serif italic text-accent-clay font-normal">somewhere between the two</span>.
             </span>
           </blockquote>
         </Reveal>
@@ -47,13 +47,19 @@ export function ThesisTeaser() {
         {/* Trimmed Single Elaboration Sentence */}
         <Reveal delay={0.15}>
           <div className="pt-8 border-t border-paper-border/70 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
-            <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-2xl leading-relaxed">
-              Most digital projects stop at utility or decoration. We design the
-              entire container: the visual language, the underlying system, the
-              way it responds, and the cultural aura it projects.
-            </p>
-            <div className="font-mono text-xs text-ink-muted shrink-0">
-              [ Ref. Labs Manifesto &bull; p. 04 ]
+            <div className="space-y-2">
+              <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-2xl leading-relaxed">
+                Most digital projects stop at utility or surface decoration. We design the
+                entire container: the <span className="font-serif italic text-atelier-indigo">visual language</span>, the underlying system, the
+                way it responds, and the cultural aura it projects into the world.
+              </p>
+              <div className="font-hand text-lg text-accent-clay">
+                ← Digital architecture treated with the permanence of stone and textile.
+              </div>
+            </div>
+            <div className="font-mono text-xs text-ink-muted shrink-0 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />
+              <span>Ref. Labs Manifesto &bull; p. 04</span>
             </div>
           </div>
         </Reveal>
