@@ -90,14 +90,19 @@ export function Navbar({ isReady = true }: { isReady?: boolean }) {
             );
           })}
 
-          {/* Emergency Intake Trigger: LATENT / FIX */}
+          {/* Emergency Intake Trigger: LATENT / FIX (Handcrafted Brass & Terracotta Talisman) */}
           <button
             onClick={() => setFixModalOpen(true)}
-            className="px-2.5 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-800 hover:bg-red-500 hover:text-white transition-all flex items-center gap-1.5 text-[10px] tracking-widest uppercase font-mono"
+            className="group relative px-3 py-1 rounded-full bg-paper border border-atelier-brass/70 hover:border-atelier-brass text-ink hover:text-atelier-indigo transition-all duration-300 flex items-center gap-2 text-[10px] tracking-widest uppercase font-mono shadow-[0_1px_3px_rgba(23,21,15,0.05)] hover:shadow-[0_2px_8px_rgba(182,160,106,0.25)] hover:-translate-y-0.5"
             title="Emergency Repair Intake: fix@latent.studio"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-            <span>Fix</span>
+            {/* Glowing Terracotta Jewel Indicator */}
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-clay opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-clay shadow-[0_0_6px_rgba(162,87,56,0.6)]" />
+            </span>
+            <span className="font-medium tracking-wider">Fix</span>
+            <span className="text-[9px] text-atelier-brass opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">✦</span>
           </button>
 
           {/* Persistent GitHub & CV links */}
