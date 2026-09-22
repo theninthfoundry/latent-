@@ -110,26 +110,41 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
             <div className="md:col-span-7 flex items-start gap-4 text-ink-muted">
               <HandDrawnArrow
                 direction="down-right"
-                className="w-6 h-6 text-ink-muted shrink-0 mt-0.5"
+                className="w-6 h-6 text-accent-clay shrink-0 mt-0.5"
               />
-              <p className="font-sans text-xs sm:text-sm md:text-base text-ink font-light max-w-lg leading-relaxed">
-                A design and research laboratory for ideas that haven’t found their
-                final form yet. We find what is latent and turn it into something real.
-              </p>
+              <div className="space-y-1">
+                <p className="font-sans text-xs sm:text-sm md:text-base text-ink font-light max-w-lg leading-relaxed">
+                  A design and research laboratory for ideas that haven’t found their{" "}
+                  <span className="font-serif italic text-accent-clay font-normal">final form</span> yet.
+                  We find what is{" "}
+                  <span className="font-serif italic text-atelier-indigo font-normal underline decoration-atelier-brass/60 underline-offset-4">
+                    latent
+                  </span>{" "}
+                  and turn it into something real.
+                </p>
+                <div className="font-hand text-base sm:text-lg text-accent-clay flex items-center gap-1.5 pt-0.5">
+                  <span>← No generic templates. We build from first principles.</span>
+                </div>
+              </div>
             </div>
 
-            <div className="md:col-span-5 flex items-center md:justify-end gap-5">
-              <SplitCTAButton
-                label="Start a project"
-                href="#contact"
-                size="hero"
-              />
-              <a
-                href="/studio#method"
-                className="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink transition-colors underline underline-offset-4 decoration-paper-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
-              >
-                Method →
-              </a>
+            <div className="md:col-span-5 flex flex-col items-start md:items-end gap-2">
+              <div className="flex items-center gap-5">
+                <SplitCTAButton
+                  label="Start a project"
+                  href="#contact"
+                  size="hero"
+                />
+                <a
+                  href="/studio#method"
+                  className="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink transition-colors underline underline-offset-4 decoration-paper-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
+                >
+                  Method →
+                </a>
+              </div>
+              <span className="font-mono text-[10px] text-atelier-brass tracking-wider uppercase">
+                ✦ 2 slots open for 2026 commissions
+              </span>
             </div>
           </motion.div>
         </div>
