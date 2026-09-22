@@ -39,12 +39,12 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
           className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-muted border-b border-paper-border/60 pb-2.5 mb-4 sm:mb-5 shrink-0"
         >
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-ink animate-pulse" />
-            <span>§ 01 // Digital Laboratory &bull; Research</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-atelier-indigo animate-pulse" />
+            <span>§ 01 // Digital Atelier &bull; India &bull; 2026</span>
           </div>
           <div className="hidden sm:flex items-center gap-4">
-            <span>Design &bull; Systems &bull; Artifacts</span>
-            <span>LATENT LABS &bull; 2026</span>
+            <span>Systems &bull; Botany &bull; Digital Matter</span>
+            <span>LATENT &bull; 17°23&apos; N, 78°29&apos; E</span>
           </div>
         </motion.div>
 
