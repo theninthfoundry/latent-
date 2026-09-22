@@ -27,6 +27,16 @@ const config: Config = {
           clay: "#A25738",
           inkblue: "#2A3A4A",
         },
+        atelier: {
+          indigo: "#142C48",
+          ink: "#111111",
+          bone: "#F3EFE5",
+          paper: "#FAF8F1",
+          faded: "#7894A6",
+          rose: "#C9A5A0",
+          brass: "#B6A06A",
+          lime: "#C7D46A",
+        },
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Fraunces", "Georgia", "serif"],
