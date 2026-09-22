@@ -130,22 +130,77 @@ d:/neam/
 
 ---
 
-## Section Catalog
+## Section Catalog & Digital Matter Topology
 
 | # | Section | Component | Description |
 |---|---|---|---|
 | `00` | **Preloader** | `Skiper8` | Rapid multilingual reveal and Dennis Snellenberg curved wave exit. |
-| `01` | **Hero** | `Hero` | Monumental typography (*"WE MAKE NEW THINGS FEEL INEVITABLE"*), coordinate tags, and index markers. |
-| `02` | **Thesis** | `Thesis` | Dual-view studio manifesto contrasting algorithmic acceleration with intentional restraint. |
-| `03` | **The Method** | `Method` | Three-phase circular engineering loop: *01 Observation*, *02 Synthesis*, *03 Materialization*. |
-| `04` | **Work** | `Work` | Featured client case studies, digital systems, and interactive portfolio artifacts. |
-| `05` | **The Table** | `TheTable` | Tangible desk view featuring physical studio tools, washi tape, and design materials. |
-| `06` | **Human × Machine** | `HumanMachine` | Synthesis matrix contrasting computational brute-force with human editorial taste. |
-| `07` | **The Lab** | `Lab` | Interactive experimental research directory and computational prototypes. |
-| `08` | **Field Notes** | `FieldNotes` | Studio observations, philosophical essays, and technical commentaries. |
-| `09–11` | **The Studio** | `Studio` | Architectural constellation, core beliefs, and difficult questions. |
-| `12` | **Final CTA** | `FinalCTA` | Split commission buttons with tactile interaction triggers. |
-| `13` | **Footer** | `Footer` | Colophon, copyright, coordinate metadata, and live crowd canvas footnote. |
+| `01` | **Hero** | `Hero` | Monumental typography (*"WE MAKE NEW THINGS FEEL INEVITABLE"*), coordinate tags, and Indian digital atelier markers. |
+| `02` | **Thesis** | `ThesisTeaser` | Studio manifesto: *"Some ideas need a website. Some need a world. We work somewhere between the two."* |
+| `03` | **The Table** | `TheTable` | Tangible desk view featuring physical studio tools, washi tape, and raw substrates. |
+| `04` | **Digital Matter** | `Capabilities` | The capability hierarchy: Sovereign **BUILD**, primary doors **REPAIR** & **EVOLVE**, superpowers **RESCUE** (takeover manifesto) & **TRANSFORM** (spreadsheet-to-app metamorphosis), and the quiet constellation (**AUDIT**, **RECOVER**, **CARE**, **EXPERIMENT**, **ARCHIVE**). |
+| `05` | **Diagnostic Engine** | `DiagnosticEngine` | Empirical **Specimen Audits** (*E-Commerce, Abandoned SaaS, Architectural Monograph*) + **Live Audit Connection**. Features the signature *"LATENT RECOMMENDS: LEAVE IT"* finding. |
+| `06` | **Selected Work** | `Work` | Living technical archives: *OTARU* (textile point-cloud), *SOLOMON* (episodic AI memory), and *SATQUERY* (multispectral Earth telemetry). |
+| `07` | **Final CTA** | `FinalCTA` | Split commission buttons with tactile interaction triggers. |
+| `08` | **Footer & Colophon** | `Footer` | Colophon, *“Made slowly. Digital Atelier • India • 2026”*, capabilities strip, and live crowd canvas. |
+| `✦` | **LATENT / FIX** | `LatentFixModal` | Frictionless emergency intake portal (*"Something broken? Send it."* &bull; `fix@latent.studio`). |
+
+---
+
+## The Material System
+
+Every visual and interactive decision is grounded in physical substrate materials:
+
+- **Paper (`#FAF8F1` / `#F7F6F2`)**: Bone, cream, and subtle paper grain. Silence and restraint.
+- **Ink (`#111111` / `#17150F`)**: Almost black. High-contrast Swiss-grade typography and structural boundaries.
+- **Indigo (`#142C48`)**: Primary Latent studio identity. Deep dye of cultural memory and computation.
+- **Brass (`#B6A06A`)**: Rare metadata, archival coordinate stamps, and formal report accents.
+- **Pista (`#C7D46A`)**: Extremely rare live signal indicator.
+- **Pixel**: The underlying computational structure and jaali grid physics.
+- **Botanical**: Living organism state. The rare blue flower punctuation (`✦` &rarr; petal &rarr; bloom &rarr; dissolve).
+- **Textile**: Formal archive state. Indian carpet border grammar (90% bare paper, 10% discovered artifact).
+- **Celestial**: Astronomical and experimental studio state (`17°23' N, 78°29' E`).
+
+---
+
+## The 70 / 20 / 8 / 2 Quietness Constraint
+
+A strict design and engineering rule governing the interface:
+
+- **70% — Silence**: Paper space, whitespace, motionless editorial typography, quiet confidence.
+- **20% — Atmosphere**: Subtle ambient motion, breathing stitches, coordinate pulses.
+- **8% — Interaction**: Reactive craft responses (damaged pixel self-healing, scanlines, literal transformations).
+- **2% — Magic**: Unexpected wonder where the visitor pauses: *"What just happened?"*
+
+---
+
+## Craft Principles Over Cultural Clichés
+
+Latent strictly rejects stereotypical ornamental clichés (no mandalas, diyas, temples, Sanskrit text, or elephants).
+Instead, it embodies **underlying craft disciplines translated into digital form**:
+* **Jaali** &rarr; Perforated pixel matrix and multi-state computational canvas.
+* **Kalamkari** &rarr; Precision hand-drawn botanical linework.
+* **Block Printing** &rarr; Repeated computational cell motifs.
+* **Textile & Carpet Borders** &rarr; Restrained framing around formal artifacts.
+* **Indigo Dye** &rarr; Sovereign color identity.
+* **Astronomical Diagrams** &rarr; Celestial studio figure and coordinate system.
+
+---
+
+## Art Direction Freeze & Quality Gates
+
+> **LATENT is not seeking more visual ideas. The visual language is complete. Future work should refine, simplify, or extend existing systems rather than introduce new ones.**
+
+Every future element must strictly belong to the nine locked materials:
+**Paper &bull; Ink &bull; Indigo &bull; Brass &bull; Pista &bull; Pixel &bull; Botanical &bull; Textile &bull; Celestial**
+
+Before considering any change production-ready, it must pass the **Five Quality Gates**:
+
+1. **First 10 Seconds**: A completely new visitor understands: **LATENT &bull; We build inevitables.** without needing to decipher anything else.
+2. **Scroll Intention**: Every transition is slow, intentional, and liquid. Animation never competes with typography.
+3. **Mobile Composition**: A dedicated tactile composition preserving **paper &rarr; craft &rarr; system &rarr; silence**, not a cramped desktop grid.
+4. **Performance Integrity**: Zero performance irony. Sub-second paint, optimized assets, and lightweight execution for a studio that repairs and audits others.
+5. **Radical Accessibility**: First-class keyboard traversal, clear focus rings, strict contrast, semantic landmark trees, and full reduced-motion support.
 
 ---
 
