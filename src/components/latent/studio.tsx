@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { CelestialSun } from "./celestial-sun";
 
 const DISCIPLINES = [
   { name: "Product Design", lead: "Spatial systems & tactile interfaces" },
@@ -53,19 +54,20 @@ export function Studio() {
       {/* Chapter 1: The Studio Constellation */}
       <div className="mb-12 sm:mb-14">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-              § 05 // The Collective
-            </span>
-            <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
-              Small by design. <br />
-              <span className="italic font-normal text-ink-muted">Deep by default.</span>
-            </h2>
+          <div className="flex items-start gap-6">
+            <CelestialSun size={100} className="hidden sm:inline-block shrink-0 mt-1" />
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
+                § 05 // The Digital Atelier &bull; India &bull; 2026
+              </span>
+              <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
+                Small by design. <br />
+                <span className="italic font-normal text-ink-muted">Deep by default.</span>
+              </h2>
+            </div>
           </div>
           <p className="font-sans text-sm text-ink-muted max-w-md font-light leading-relaxed">
-            We deliberately remain a compact, senior studio. No account managers
-            diluting decisions. You collaborate directly with the designers and
-            engineers shaping your world.
+            A small digital atelier working between systems, images, machines, and culture. We deliberately remain a compact, senior studio. No account managers diluting decisions. You collaborate directly with the designers and engineers shaping your world.
           </p>
         </div>
 
