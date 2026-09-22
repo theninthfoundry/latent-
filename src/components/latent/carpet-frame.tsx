@@ -33,7 +33,15 @@ export function CarpetFrame({
 
   return (
     <div className={`relative p-5 sm:p-8 rounded-2xl bg-paper border border-paper-border/80 shadow-[0_8px_30px_rgba(20,44,72,0.03)] overflow-hidden ${className}`}>
-      {/* Corner Filigree: Top-Left */}
+      {/* Subtle Royal Indian Carpet Watermark on Edge */}
+      <img
+        src="/artifacts/atelier/carpet-border.jpg"
+        onError={(e) => {
+          e.currentTarget.src = "/api/atelier-asset?name=carpet-border";
+        }}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.05] mix-blend-multiply pointer-events-none select-none scale-105"
+      />
       <svg
         className="absolute top-2 left-2 w-10 h-10 pointer-events-none text-current opacity-80"
         viewBox="0 0 40 40"

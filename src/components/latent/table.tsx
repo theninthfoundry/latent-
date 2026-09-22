@@ -39,19 +39,28 @@ const MATERIALS: Material[] = [
     id: "image",
     name: "Image",
     subtitle: "Visual atmosphere",
-    type: "Optical Contact Sheet",
-    note: "“No stock photos. Ever.”",
-    artifactTitle: "Optical Chromatic Study — Vespera Pavilion",
+    type: "Risograph Optical Specimen",
+    note: "“No stock photos. Ever. Every mark must feel printed by human hands.”",
+    artifactTitle: "Risograph Halftone Study — Studio Specimen № 014",
     renderArtifact: () => (
-      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-ink">
+      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-paper-card p-6 flex flex-col items-center justify-center">
+        <div className="washi-tape -top-2 left-8 opacity-80" />
         <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
-          alt="Architectural light study"
-          className="w-full h-64 sm:h-80 object-cover opacity-90"
+          src="/artifacts/atelier/risograph-hand.png"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=risograph-hand";
+          }}
+          alt="Risograph Halftone Hand & Vintage Camera with Red Star Flash"
+          className="h-64 sm:h-80 object-contain drop-shadow-[0_12px_32px_rgba(23,21,15,0.18)]"
         />
-        <div className="p-4 bg-paper-card border-t border-paper-border font-mono text-[11px] text-ink-muted flex justify-between">
-          <span>50mm f/1.4 • Kodak Portra 400 Tone</span>
-          <span>Tokyo Lab Archive</span>
+        <div className="w-full mt-4 p-3 bg-paper border border-paper-border rounded-xl font-mono text-[11px] text-ink-muted flex justify-between items-center">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
+            <span>Risograph Halftone Specimen &bull; 300 DPI</span>
+          </span>
+          <span className="text-accent-clay font-medium uppercase text-[10px]">
+            Atelier Archive № 014
+          </span>
         </div>
       </div>
     ),
@@ -60,26 +69,119 @@ const MATERIALS: Material[] = [
     id: "code",
     name: "Code",
     subtitle: "The tactile substrate",
-    type: "Production Syntax",
-    note: "“Code is not translation; code is the final material.”",
-    artifactTitle: "Kinetic Easing Matrix in Rust/TS",
+    type: "Cross-Stitch Pixel Lattice",
+    note: "“Code is not translation; code is needlepoint made of light.”",
+    artifactTitle: "Pixel Jaali & Computational Typography",
     renderArtifact: () => (
-      <div className="rounded-2xl bg-ink p-6 border border-ink font-mono text-xs text-paper overflow-x-auto shadow-sm">
-        <div className="flex items-center gap-2 pb-3 mb-3 border-b border-paper/10 text-[10px] text-paper/60 uppercase">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          <span>src/engine/spring.ts</span>
+      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-paper-card p-6 flex flex-col items-center justify-center">
+        <div className="washi-tape -top-2 left-8 opacity-80" />
+        <img
+          src="/artifacts/atelier/pixel-jaali.png"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=pixel-jaali";
+          }}
+          alt="Cross-stitch Needlepoint Pixel Grid — Do What You Love"
+          className="h-64 sm:h-80 object-contain drop-shadow-[0_8px_24px_rgba(20,44,72,0.12)] rounded-lg"
+        />
+        <div className="w-full mt-4 p-3 bg-paper border border-paper-border rounded-xl font-mono text-[11px] text-ink-muted flex justify-between items-center">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-atelier-indigo" />
+            <span>Pixel Lattice &bull; Needlepoint Cross-Stitch</span>
+          </span>
+          <span className="text-atelier-indigo font-medium uppercase text-[10px]">
+            Substrate Matrix
+          </span>
         </div>
-        <pre className="text-paper/90 leading-relaxed">
-          <code>{`export function springSimulation(
-  target: number, 
-  velocity: number, 
-  stiffness = 180, 
-  damping = 12
-) {
-  const force = -stiffness * (current - target) - damping * velocity;
-  return current + velocity * dt + 0.5 * force * dt * dt;
-}`}</code>
-        </pre>
+      </div>
+    ),
+  },
+  {
+    id: "textile",
+    name: "Textile",
+    subtitle: "Carpet & filigree grammar",
+    type: "Silk & Wool Royal Tapestry",
+    note: "“A border is not decoration; it is an architectural container.”",
+    artifactTitle: "Indian/Persian Royal Medallion Tapestry",
+    renderArtifact: () => (
+      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-paper-card p-6 flex flex-col items-center justify-center">
+        <div className="washi-tape -top-2 left-8 opacity-80" />
+        <img
+          src="/artifacts/atelier/carpet-border.jpg"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=carpet-border";
+          }}
+          alt="Royal Indian Floral Carpet Tapestry with Filigree Medallion"
+          className="h-64 sm:h-80 object-contain drop-shadow-[0_12px_32px_rgba(23,21,15,0.15)] rounded-lg"
+        />
+        <div className="w-full mt-4 p-3 bg-paper border border-paper-border rounded-xl font-mono text-[11px] text-ink-muted flex justify-between items-center">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />
+            <span>Royal Acanthus &amp; Rose Medallion &bull; Silk Weft</span>
+          </span>
+          <span className="text-atelier-brass font-medium uppercase text-[10px]">
+            Textile Heritage
+          </span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "celestial",
+    name: "Celestial",
+    subtitle: "Astronomical coordinates",
+    type: "Solar Woodcut Engraving",
+    note: "“Time is a spatial dimension when mapped to the stars.”",
+    artifactTitle: "Solar Meridian & Star Constellation Map",
+    renderArtifact: () => (
+      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-atelier-indigo p-6 flex flex-col items-center justify-center">
+        <div className="washi-tape -top-2 left-8 opacity-80" />
+        <img
+          src="/artifacts/atelier/celestial-sun.jpg"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=celestial-sun";
+          }}
+          alt="Celestial Sun Face with Constellations and Solar Rays"
+          className="h-64 sm:h-80 object-contain drop-shadow-[0_12px_32px_rgba(0,0,0,0.4)] rounded-lg"
+        />
+        <div className="w-full mt-4 p-3 bg-paper text-ink border border-paper-border rounded-xl font-mono text-[11px] text-ink-muted flex justify-between items-center">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />
+            <span>17°23&apos; N &bull; 78°29&apos; E &bull; Solar Rays</span>
+          </span>
+          <span className="text-atelier-indigo font-medium uppercase text-[10px]">
+            Celestial Specimen
+          </span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "botanical",
+    name: "Botanical",
+    subtitle: "The living mark",
+    type: "Hand-Drawn Indigo Flower",
+    note: "“Growth is not linear. It expands in five deliberate directions.”",
+    artifactTitle: "Indigo Botanical Specimen with Pearl Stamens",
+    renderArtifact: () => (
+      <div className="relative rounded-2xl overflow-hidden border border-paper-border bg-paper-card p-6 flex flex-col items-center justify-center">
+        <div className="washi-tape -top-2 left-8 opacity-80" />
+        <img
+          src="/artifacts/atelier/botanical-flower.png"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=botanical-flower";
+          }}
+          alt="Authentic Indigo Botanical Flower with Pearl Stamens"
+          className="h-64 sm:h-80 object-contain drop-shadow-[0_12px_32px_rgba(20,44,72,0.2)]"
+        />
+        <div className="w-full mt-4 p-3 bg-paper border border-paper-border rounded-xl font-mono text-[11px] text-ink-muted flex justify-between items-center">
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-atelier-indigo" />
+            <span>Indigo Botanical Bloom &bull; Pearl Stamen Center</span>
+          </span>
+          <span className="text-atelier-indigo font-medium uppercase text-[10px]">
+            Living Mark
+          </span>
+        </div>
       </div>
     ),
   },
@@ -116,35 +218,6 @@ const MATERIALS: Material[] = [
     ),
   },
   {
-    id: "voice",
-    name: "Voice",
-    subtitle: "Acoustic resonance",
-    type: "Waveform Spectroscopy",
-    note: "“Silence has a louder frequency than noise.”",
-    artifactTitle: "Spatial Audio Spatialization Spec",
-    renderArtifact: () => (
-      <div className="p-8 rounded-2xl bg-paper-subtle border border-paper-border flex flex-col justify-center items-center text-center">
-        <div className="flex items-center gap-1.5 h-20 mb-6">
-          {[4, 12, 28, 48, 80, 64, 32, 16, 55, 90, 100, 72, 44, 20, 8, 30, 60, 40, 10].map(
-            (h, i) => (
-              <span
-                key={i}
-                style={{ height: `${h}%` }}
-                className="w-1.5 bg-ink rounded-full animate-pulse"
-              />
-            )
-          )}
-        </div>
-        <p className="font-serif text-lg text-ink font-light">
-          Binaural Room Impulse Response (BRIR)
-        </p>
-        <span className="font-mono text-xs text-ink-muted mt-1">
-          48.0 kHz • 24-bit Lossless
-        </span>
-      </div>
-    ),
-  },
-  {
     id: "motion",
     name: "Motion",
     subtitle: "Choreography of time",
@@ -167,63 +240,6 @@ const MATERIALS: Material[] = [
       </div>
     ),
   },
-  {
-    id: "model",
-    name: "Model",
-    subtitle: "Latent cognition",
-    type: "Neural Embeddings",
-    note: "“AI is a material, not a personality.”",
-    artifactTitle: "1536-Dimensional Semantic Neighbor Search",
-    renderArtifact: () => (
-      <div className="p-6 rounded-2xl bg-ink text-paper border border-ink font-mono text-xs space-y-4">
-        <div className="flex justify-between text-paper/60 text-[10px] uppercase">
-          <span>Latent Query: &ldquo;inevitable design&rdquo;</span>
-          <span>Resonance: 0.982</span>
-        </div>
-        <div className="space-y-2 text-paper/80">
-          <div className="p-2 bg-paper/5 rounded border border-paper/10">
-            01. Structural clarity without excess decoration (0.982)
-          </div>
-          <div className="p-2 bg-paper/5 rounded border border-paper/10">
-            02. Tactile resonance matching human intuition (0.965)
-          </div>
-          <div className="p-2 bg-paper/5 rounded border border-paper/10">
-            03. Invisible technology disappearing into interface (0.941)
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "system",
-    name: "System",
-    subtitle: "Enduring architecture",
-    type: "Topology Diagram",
-    note: "“Complexity belongs backstage.”",
-    artifactTitle: "Fault-Tolerant Distributed Node Mesh",
-    renderArtifact: () => (
-      <div className="p-6 rounded-2xl bg-paper-card border border-paper-border font-mono text-xs space-y-4">
-        <div className="text-ink-muted text-[10px] uppercase flex justify-between">
-          <span>Distributed Mesh Topology</span>
-          <span>Zero-Egress Failover</span>
-        </div>
-        <div className="grid grid-cols-3 gap-3 text-center py-4">
-          <div className="p-3 bg-paper border border-paper-border rounded">
-            <span className="block font-medium text-ink">Edge PoP</span>
-            <span className="text-[10px] text-ink-muted">&lt; 12ms</span>
-          </div>
-          <div className="p-3 bg-ink text-paper rounded border border-ink">
-            <span className="block font-medium">Memory Ring</span>
-            <span className="text-[10px] text-paper/70">CRDT Sync</span>
-          </div>
-          <div className="p-3 bg-paper border border-paper-border rounded">
-            <span className="block font-medium text-ink">Zero-Trust</span>
-            <span className="text-[10px] text-ink-muted">Encrypted</span>
-          </div>
-        </div>
-      </div>
-    ),
-  },
 ];
 
 export function TheTable() {
@@ -231,19 +247,25 @@ export function TheTable() {
 
   return (
     <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
-      {/* Studio Table Material Watermark 01: Blue Checker Swatch on Desk with restrained parallax */}
-      <ParallaxLayer offset={16} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.10] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
+      {/* Studio Table Material Watermark 01: Authentic Royal Carpet Tapestry with restrained parallax */}
+      <ParallaxLayer offset={16} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.12] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
         <img
-          src="/artifacts/blue-checker.png"
+          src="/artifacts/atelier/carpet-border.jpg"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=carpet-border";
+          }}
           alt=""
           className="w-full h-full object-cover scale-110"
         />
       </ParallaxLayer>
 
-      {/* Studio Table Material Watermark 02: Atomic Diagram Specimen with restrained parallax */}
-      <ParallaxLayer offset={18} direction="down" className="absolute bottom-10 -left-20 w-[440px] h-[440px] pointer-events-none select-none opacity-[0.07] mix-blend-multiply rotate-45 overflow-hidden z-0">
+      {/* Studio Table Material Watermark 02: Authentic Celestial Sun Specimen with restrained parallax */}
+      <ParallaxLayer offset={18} direction="down" className="absolute bottom-10 -left-20 w-[440px] h-[440px] pointer-events-none select-none opacity-[0.09] mix-blend-multiply rotate-45 overflow-hidden z-0">
         <img
-          src="/artifacts/atomic-diagram.png"
+          src="/artifacts/atelier/celestial-sun.jpg"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=celestial-sun";
+          }}
           alt=""
           className="w-full h-full object-contain"
         />
@@ -253,7 +275,7 @@ export function TheTable() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
-            § 03 // Materials
+            § 03 // Materials &bull; The Atelier Desk
           </span>
           <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
             The Studio Table.
@@ -261,7 +283,7 @@ export function TheTable() {
         </div>
         <p className="font-sans text-sm text-ink-muted max-w-md font-light leading-relaxed">
           We move comfortably between disciplines. Inspect the actual raw
-          materials we bring to the desk every morning.
+          materials, prints, textiles, and optical specimens we bring to the desk every morning.
         </p>
       </div>
 
@@ -296,7 +318,7 @@ export function TheTable() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left: Metadata & Studio Note */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-8 rounded-3xl bg-paper-card border border-paper-border">
+          <div className="p-8 rounded-3xl bg-paper-card border border-paper-border shadow-2xs">
             <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted block mb-2">
               Material // {activeMaterial.name}
             </span>
@@ -312,7 +334,7 @@ export function TheTable() {
               <span className="font-mono text-[10px] uppercase text-ink-muted tracking-widest block mb-1">
                 Studio Reflection:
               </span>
-              <p className="font-hand text-2xl text-ink leading-relaxed">
+              <p className="font-hand text-2xl text-accent-clay leading-relaxed">
                 {activeMaterial.note}
               </p>
             </div>
@@ -337,3 +359,5 @@ export function TheTable() {
     </section>
   );
 }
+
+export default TheTable;

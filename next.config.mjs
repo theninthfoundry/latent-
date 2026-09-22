@@ -1,4 +1,31 @@
 /** @type {import('next').NextConfig} */
+import fs from 'fs';
+import path from 'path';
+
+try {
+  const srcDir = 'C:\\Users\\namir\\.gemini\\antigravity-ide\\brain\\03c1a863-6222-4951-9062-fd13d2cc6633\\.user_uploaded';
+  const destDir = path.resolve('public/artifacts/atelier');
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+  const mapping = {
+    'media_1790086245117.jpg': 'carpet-border.jpg',
+    'media_1790086267512.png': 'botanical-flower.png',
+    'media_1790086275081.jpg': 'celestial-sun.jpg',
+    'media_1790086287759.png': 'pixel-jaali.png',
+    'media_1790086374082.png': 'risograph-hand.png'
+  };
+  for (const [srcFile, destFile] of Object.entries(mapping)) {
+    const srcPath = path.join(srcDir, srcFile);
+    const destPath = path.join(destDir, destFile);
+    if (fs.existsSync(srcPath) && !fs.existsSync(destPath)) {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+} catch (e) {
+  // ignore
+}
+
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval';

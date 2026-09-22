@@ -650,14 +650,24 @@ export function Capabilities() {
           aria-label="Select EXPERIMENT capability"
           className="p-5 rounded-2xl bg-atelier-indigo text-paper border border-atelier-indigo hover:shadow-md transition-all cursor-pointer flex flex-col justify-between h-36 relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-brass"
         >
-          <div className="flex items-center justify-between">
+          {/* Subtle Celestial Sun Specimen Watermark */}
+          <img
+            src="/artifacts/atelier/celestial-sun.jpg"
+            onError={(e) => {
+              e.currentTarget.src = "/api/atelier-asset?name=celestial-sun";
+            }}
+            alt=""
+            className="absolute -right-4 -bottom-4 w-28 h-28 object-cover rounded-full opacity-20 pointer-events-none group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"
+          />
+
+          <div className="relative z-10 flex items-center justify-between">
             <span className="font-mono text-[10px] uppercase text-atelier-brass">§ 09 // EXPERIMENT</span>
             <span className="font-mono text-[10px] animate-pulse">✦</span>
           </div>
-          <span className="font-serif text-lg font-light leading-snug">
+          <span className="relative z-10 font-serif text-lg font-light leading-snug">
             Things that <span className="italic text-atelier-brass">shouldn&apos;t exist</span> yet.
           </span>
-          <span className="font-mono text-[9px] text-paper/70">Celestial &bull; Machine</span>
+          <span className="relative z-10 font-mono text-[9px] text-paper/70">Celestial &bull; Machine</span>
         </div>
 
         {/* ARCHIVE (The Museum Memory) */}
@@ -674,16 +684,26 @@ export function Capabilities() {
           tabIndex={0}
           role="button"
           aria-label="Select ARCHIVE capability"
-          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-brass transition-all cursor-pointer flex flex-col justify-between h-36 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-brass"
+          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-brass transition-all cursor-pointer flex flex-col justify-between h-36 relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-brass"
         >
-          <div className="flex items-center justify-between">
+          {/* Subtle Royal Carpet Filigree Watermark */}
+          <img
+            src="/artifacts/atelier/carpet-border.jpg"
+            onError={(e) => {
+              e.currentTarget.src = "/api/atelier-asset?name=carpet-border";
+            }}
+            alt=""
+            className="absolute -right-6 -bottom-6 w-32 h-32 object-cover rounded-xl opacity-15 mix-blend-multiply pointer-events-none group-hover:opacity-35 group-hover:scale-105 transition-all duration-500"
+          />
+
+          <div className="relative z-10 flex items-center justify-between">
             <span className="font-mono text-[10px] text-ink-muted uppercase">§ 10 // ARCHIVE</span>
             <span className="font-mono text-[9px] text-atelier-brass font-bold">№ 014</span>
           </div>
-          <span className="font-serif text-lg text-ink font-normal leading-snug">
+          <span className="relative z-10 font-serif text-lg text-ink font-normal leading-snug">
             Things we made to <span className="italic text-atelier-brass">know</span>.
           </span>
-          <span className="font-mono text-[9px] text-ink-muted">Specimens &bull; Tools</span>
+          <span className="relative z-10 font-mono text-[9px] text-ink-muted">Specimens &bull; Tools</span>
         </div>
       </div>
 
