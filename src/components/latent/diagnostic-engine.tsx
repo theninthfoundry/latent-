@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CarpetFrame } from "./carpet-frame";
-import { ArrowRight, CheckCircle, AlertCircle, Sparkles, Send, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertCircle, Sparkles, Send, ShieldCheck, AlertTriangle, AlertOctagon } from "lucide-react";
 
 interface SpecimenAudit {
   id: string;
@@ -22,7 +22,7 @@ interface SpecimenAudit {
   whatShouldChange: React.ReactNode;
   handwrittenNote: string;
   verdict: "repair" | "evolve" | "sound";
-  statusBadge: string;
+  statusBadge: React.ReactNode;
   verdictLabel: string;
 }
 
@@ -54,9 +54,8 @@ const SPECIMENS: SpecimenAudit[] = [
         Refactor cart state into an <span className="font-serif italic text-atelier-indigo font-semibold">atomic offline-safe IndexedDB store</span>. Modernize responsive jaali-style image grids with an automated AVIF pipeline. Harmonize visual typography.
       </>
     ),
-    handwrittenNote: "← Real issue: 5.4MB uncompressed images causing immediate mobile bounce. Fixed in a 48h surgical sprint.",
-    verdict: "repair",
-    statusBadge: "⚠️ CRITICAL RUNTIME FRICTION DETECTED",
+    handwrittenNote: "Real issue: 5.4MB uncompressed images causing immediate mobile bounce. Fixed in a 48h surgical sprint.",
+    statusBadge: <span className="flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.5} /> CRITICAL RUNTIME FRICTION DETECTED</span>,
     verdictLabel: "LATENT RECOMMENDS: REPAIR",
   },
   {
@@ -86,9 +85,8 @@ const SPECIMENS: SpecimenAudit[] = [
         Latent Rescue takeover: <span className="font-serif italic text-atelier-indigo font-semibold">quarantine dependencies</span>, reconstruct automated testing matrix, migrate App Router, and deliver clear architectural schematics.
       </>
     ),
-    handwrittenNote: "← Common disaster when external agencies vanish. We stabilize code without needing a total rewrite.",
-    verdict: "evolve",
-    statusBadge: "🛑 ORPHANED ARCHITECTURE & DATA LEAK",
+    handwrittenNote: "Common disaster when external agencies vanish. We stabilize code without needing a total rewrite.",
+    statusBadge: <span className="flex items-center gap-1.5"><AlertOctagon className="w-3.5 h-3.5" strokeWidth={1.5} /> ORPHANED ARCHITECTURE & DATA LEAK</span>,
     verdictLabel: "LATENT RECOMMENDS: EVOLVE / RESCUE",
   },
   {
@@ -118,9 +116,8 @@ const SPECIMENS: SpecimenAudit[] = [
         <span className="font-serif italic text-emerald-800 font-semibold">Nothing substantial.</span> We do not manufacture fake problems where genuine craft already exists. Keep your capital and maintain current system.
       </>
     ),
-    handwrittenNote: "← Uncompromising studio integrity: if a codebase is already well-made, we advise you to leave it untouched.",
-    verdict: "sound",
-    statusBadge: "✦ VERIFIED SOUND SUBSTRATE (ARCHIVAL GRADE)",
+    handwrittenNote: "Uncompromising studio integrity: if a codebase is already well-made, we advise you to leave it untouched.",
+    statusBadge: <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} /> VERIFIED SOUND SUBSTRATE (ARCHIVAL GRADE)</span>,
     verdictLabel: "LATENT RECOMMENDS: LEAVE IT",
   },
 ];
@@ -145,16 +142,16 @@ export function DiagnosticEngine() {
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
-            <span>§ 06 // LATENT DIAGNOSTIC &bull; TELEMETRY MONOGRAPH</span>
+            <span>§ 04 // LATENT DIAGNOSTIC &bull; TELEMETRY MONOGRAPH</span>
           </div>
-          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-[-0.03em]">
+          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-[-0.03em] text-balance">
             We find what{" "}
             <span className="italic font-normal text-accent-clay underline decoration-paper-border underline-offset-4">
               isn&apos;t working
             </span>
             .
           </h3>
-          <p className="font-sans text-xs sm:text-sm text-ink-muted font-light max-w-[65ch] leading-[1.6]">
+          <p className="font-sans text-xs sm:text-sm text-ink-muted font-light max-w-[62ch] text-pretty leading-[1.6]">
             Not marketing fluff or generic Lighthouse scores. An unvarnished technical inspection of{" "}
             <span className="font-mono text-xs bg-paper-subtle px-1.5 py-0.5 rounded border border-paper-border text-ink">
               runtime friction
@@ -190,66 +187,72 @@ export function DiagnosticEngine() {
 
       {activeTab === "specimens" ? (
         /* 01 — Specimen Audits */
-        <div className="space-y-6">
-          {/* Specimen Case Buttons */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted mr-1">
-              Select Specimen:
-            </span>
-            {SPECIMENS.map((specimen) => (
-              <button
-                key={specimen.id}
-                onClick={() => setSelectedSpecimen(specimen)}
-                className={`px-3.5 py-2 rounded-xl border font-mono text-xs transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
-                  selectedSpecimen.id === specimen.id
-                    ? "bg-ink text-paper border-ink shadow-subtle"
-                    : "bg-paper text-ink-light border-paper-border hover:border-ink/40"
-                }`}
+        <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 w-full max-w-[1440px] mx-auto relative pt-8">
+          {/* Sticky Left Meta Column */}
+          <div className="lg:w-[320px] shrink-0 lg:sticky lg:top-32 space-y-12">
+            
+            <div className="space-y-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
+                Specimen Index
+              </span>
+              <div
+                className="flex flex-col gap-1 p-1 bg-paper-card border border-paper-border rounded-xl"
+                role="radiogroup"
+                aria-label="Select Specimen"
               >
-                <span className="font-medium">{specimen.name.split(" ")[0]}</span>
-                <span className={`text-[10px] ${selectedSpecimen.id === specimen.id ? "text-paper/70" : "text-ink-muted"}`}>
-                  ({specimen.category})
-                </span>
-              </button>
-            ))}
+                {SPECIMENS.map((specimen) => (
+                  <button
+                    key={specimen.id}
+                    role="radio"
+                    aria-checked={selectedSpecimen.id === specimen.id}
+                    onClick={() => setSelectedSpecimen(specimen)}
+                    className={`px-4 py-3 rounded-lg font-mono text-[11px] text-left transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
+                      selectedSpecimen.id === specimen.id
+                        ? "bg-ink text-paper shadow-sm font-semibold"
+                        : "text-ink-muted hover:bg-paper-subtle hover:text-ink"
+                    }`}
+                  >
+                    <div className="flex justify-between items-center w-full">
+                      <span>{specimen.name}</span>
+                      {selectedSpecimen.id === specimen.id && <CheckCircle className="w-3.5 h-3.5 text-paper" />}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4 font-mono text-[10px]">
+               <div className="border-b border-paper-border pb-3">
+                 <span className="text-ink-muted block mb-1">Target URL</span> 
+                 <span className="text-ink text-xs">{selectedSpecimen.url}</span>
+               </div>
+               <div className="border-b border-paper-border pb-3">
+                 <span className="text-ink-muted block mb-1">Audit Verdict</span> 
+                 <span className="font-semibold text-ink text-xs">{selectedSpecimen.verdictLabel}</span>
+               </div>
+               <div className="pt-2">
+                 <span className="text-ink-muted block mb-1">Status</span> 
+                 <div className="flex items-center gap-2">
+                    <span className={`w-2 h-2 rounded-full ${
+                      selectedSpecimen.verdict === "sound" ? "bg-emerald-700" : selectedSpecimen.verdict === "evolve" ? "bg-atelier-brass" : "bg-accent-clay"
+                    }`} />
+                    <span className="text-ink uppercase">{selectedSpecimen.statusBadge}</span>
+                 </div>
+               </div>
+            </div>
           </div>
 
-          {/* The Master Diagnostic Monograph Framed in Carpet Grammar */}
-          <CarpetFrame
-            variant="brass"
-            title={`LATENT REPORT / 001 // ${selectedSpecimen.url}`}
-            tag={selectedSpecimen.verdictLabel}
-          >
-            <div className="space-y-6">
-              {/* Prominent Health Status Header Banner */}
-              <div
-                className={`p-3.5 sm:p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                  selectedSpecimen.verdict === "sound"
-                    ? "bg-paper border-emerald-700/30 text-ink"
-                    : selectedSpecimen.verdict === "evolve"
-                    ? "bg-paper border-atelier-brass/40 text-ink"
-                    : "bg-paper border-accent-clay/40 text-ink"
-                }`}
-              >
-                <div className="flex items-center gap-2.5 font-mono text-xs font-semibold tracking-wider uppercase">
-                  <span
-                    className={`w-2 h-2 rounded-full shrink-0 ${
-                      selectedSpecimen.verdict === "sound"
-                        ? "bg-emerald-700"
-                        : selectedSpecimen.verdict === "evolve"
-                        ? "bg-atelier-brass"
-                        : "bg-accent-clay"
-                    }`}
-                  />
-                  <span>{selectedSpecimen.statusBadge}</span>
-                </div>
-                <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest">
-                  Target: <strong className="text-ink">{selectedSpecimen.url}</strong>
-                </span>
+          {/* The Master Diagnostic Document (Right) */}
+          <div className="flex-1 w-full bg-[#FAF9F5] border-[0.5px] border-ink/20 p-8 sm:p-12 shadow-sm relative overflow-hidden">
+            <div className="space-y-12">
+              
+              <div className="border-b-[0.5px] border-ink/15 pb-4 mb-8">
+                <span className="font-serif text-3xl font-light text-ink block tracking-tight">Technical Telemetry</span>
+                <span className="font-mono text-[10px] text-ink/60 uppercase tracking-widest mt-2 block">Score Rows / Diagnostic Output</span>
               </div>
 
-              {/* 4 Intuitive System Vitals (Clear, visual, understandable) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {/* Score Rows with Animated Bars */}
+              <div className="space-y-6">
                 {[
                   {
                     title: "01. Runtime Speed",
@@ -277,97 +280,75 @@ export function DiagnosticEngine() {
                   const isHigh = item.val >= 80;
 
                   return (
-                    <div
-                      key={item.title}
-                      className="p-3.5 rounded-2xl bg-paper-card border border-paper-border space-y-2 shadow-2xs"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted">
+                    <div key={item.title} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[0.5px] border-ink/10 pb-4">
+                      <div className="sm:w-1/3">
+                        <span className="font-mono text-[10px] uppercase tracking-widest text-ink block mb-1 font-bold">
                           {item.title}
                         </span>
-                        <span
-                          className={`font-serif text-lg font-semibold ${
-                            isLow
-                              ? "text-accent-clay"
-                              : isMed
-                              ? "text-amber-800"
-                              : "text-emerald-800"
-                          }`}
-                        >
-                          {item.val}/100
+                        <span className="font-mono text-[9px] text-ink/70 truncate block pr-4">
+                          {item.note}
                         </span>
                       </div>
-
-                      {/* Visual Health Gauge */}
-                      <div className="w-full h-1.5 bg-paper-subtle rounded-full overflow-hidden">
-                        <div
-                          style={{ width: `${item.val}%` }}
-                          className={`h-full rounded-full ${
-                            isLow
-                              ? "bg-accent-clay"
-                              : isMed
-                              ? "bg-amber-700"
-                              : "bg-emerald-600"
+                      
+                      <div className="sm:w-2/3 flex items-center gap-4">
+                        <div className="flex-1 h-1 bg-ink/10 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${item.val}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                            className={`h-full rounded-full ${
+                              isLow ? "bg-accent-clay" : isMed ? "bg-amber-700" : "bg-emerald-700"
+                            }`}
+                          />
+                        </div>
+                        <span
+                          className={`font-mono text-[11px] font-bold w-12 text-right ${
+                            isLow ? "text-accent-clay" : isMed ? "text-amber-800" : "text-emerald-800"
                           }`}
-                        />
-                      </div>
-
-                      <div className="font-mono text-[10px] text-ink-light pt-0.5 truncate">
-                        {item.note}
+                        >
+                          {item.val}
+                        </span>
                       </div>
                     </div>
                   );
                 })}
               </div>
 
-              {/* The Three Diagnostic Realities (Distinct Colors, Borders & Inline Fonts) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-                {/* 1. What Is Wrong */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-paper-card border border-accent-clay/35 space-y-2.5 shadow-2xs">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent-clay font-bold flex items-center gap-1.5">
-                    <AlertCircle className="w-3.5 h-3.5" />
-                    <span>01 // The Breakdown</span>
-                  </span>
-                  <p className="font-sans text-xs sm:text-sm text-ink font-light leading-relaxed">
+              {/* The Three Diagnostic Realities */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t-[0.5px] border-ink/15">
+                <div className="space-y-2">
+                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">01 / Observation</span>
+                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
                     {selectedSpecimen.whatIsWrong}
                   </p>
                 </div>
-
-                {/* 2. Why It Matters */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-paper-card border border-amber-600/35 space-y-2.5 shadow-2xs">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-amber-800 font-bold flex items-center gap-1.5">
-                    <AlertCircle className="w-3.5 h-3.5" />
-                    <span>02 // The Business Cost</span>
-                  </span>
-                  <p className="font-sans text-xs sm:text-sm text-ink font-light leading-relaxed">
+                <div className="space-y-2">
+                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">02 / Consequence</span>
+                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
                     {selectedSpecimen.whyItMatters}
                   </p>
                 </div>
-
-                {/* 3. What Should Change */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-paper-card border border-atelier-indigo/35 space-y-2.5 shadow-2xs">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-atelier-indigo font-bold flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>03 // Latent Prescription</span>
-                  </span>
-                  <p className="font-sans text-xs sm:text-sm text-ink font-light leading-relaxed">
+                <div className="space-y-2">
+                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">03 / Action Plan</span>
+                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
                     {selectedSpecimen.whatShouldChange}
                   </p>
                 </div>
               </div>
 
               {/* Handwritten Engineer Marginalia Note in Caveat */}
-              <div className="p-3 rounded-xl bg-paper-subtle border border-paper-border flex items-center justify-between">
-                <span className="font-hand text-base sm:text-lg text-accent-clay">
+              <div className="p-4 rounded border-[0.5px] border-ink/15 bg-white flex items-center justify-between">
+                <span className="font-hand text-lg text-accent-clay">
                   {selectedSpecimen.handwrittenNote}
                 </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink-muted hidden sm:inline">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-ink/50 hidden sm:inline">
                   ATELIER NOTES
                 </span>
               </div>
 
               {/* Dignified Recommendation Action Footer */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-paper border border-atelier-brass/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs shadow-2xs">
+              <div className="p-5 rounded bg-white border border-atelier-brass/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs shadow-sm">
                 <div>
                   <span className="text-atelier-indigo uppercase tracking-widest block text-[9px] font-bold">
                     Studio Finding // Action Protocol
@@ -392,8 +373,9 @@ export function DiagnosticEngine() {
                   </a>
                 )}
               </div>
+
             </div>
-          </CarpetFrame>
+          </div>
         </div>
       ) : (
         /* 02 — Request a Live System Audit */
@@ -410,8 +392,8 @@ export function DiagnosticEngine() {
                 <p className="font-sans text-xs sm:text-sm text-ink-muted leading-[1.6] max-w-[60ch]">
                   Provide your production URL or repository. Latent engineers review code entropy, mobile runtime performance, and security headers, returning a formal Latent Report within 48 hours.
                 </p>
-                <div className="font-hand text-base sm:text-lg text-accent-clay pt-1">
-                  ← We inspect the real code, not generic bot scans.
+                <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted pt-1">
+                  We inspect the real code, not generic bot scans.
                 </div>
               </div>
 

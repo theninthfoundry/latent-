@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export type BotanicalRarityMode = "bud" | "petal" | "bloom" | "dissolve" | "specimen";
 
@@ -43,7 +44,7 @@ export function BotanicalBloom({
         >
           {/* Subtle cross-stitch asterisk */}
           <span className="font-mono text-atelier-faded text-sm sm:text-base transition-colors group-hover:text-atelier-indigo">
-            ✦
+            <Sparkles className="w-4 h-4 inline-block" strokeWidth={1.5} />
           </span>
           {/* Faint micro pistil dot */}
           <span className="absolute w-1 h-1 rounded-full bg-atelier-brass/80 group-hover:scale-150 transition-transform" />

@@ -52,28 +52,38 @@ export function Footer() {
             <ul className="space-y-2.5 text-ink">
               <li>
                 <Link href="/#capabilities" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
-                  Capabilities (Digital Matter)
+                  01 — Capabilities (Digital Matter)
                 </Link>
               </li>
               <li>
                 <Link href="/work" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
-                  Selected Archive
+                  02 — Selected Archive
                 </Link>
               </li>
               <li>
                 <Link href="/studio" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
-                  The Studio &amp; Methods
+                  03 — The Studio &amp; Methods
                 </Link>
               </li>
               <li>
                 <Link href="/lab" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
-                  The Lab &amp; Experiments
+                  04 — The Lab &amp; Experiments
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-ink transition-colors font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
-                  Terms &amp; Conditions ↗
+                <Link href="/terms" className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
+                  05 — Terms &amp; Conditions ↗
                 </Link>
+              </li>
+              <li>
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink block">
+                  06 — GitHub Profile ↗
+                </a>
+              </li>
+              <li>
+                <a href="mailto:inquiries@latent.labs?subject=Portfolio%20Inquiry%20/%20Resume%20Request" className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink block">
+                  07 — Request CV / Resume ↗
+                </a>
               </li>
             </ul>
           </nav>
@@ -85,34 +95,14 @@ export function Footer() {
             </span>
             <div>
               <a
-                href="mailto:inquiries@latent.studio"
+                href="mailto:inquiries@latent.labs"
                 className="font-serif text-2xl sm:text-3xl text-ink hover:text-atelier-indigo transition-all font-light block leading-tight tracking-tight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
-                inquiries@latent.studio →
+                inquiries@latent.labs →
               </a>
-              <div className="flex items-center gap-2 mt-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
-                <span className="text-[11px] text-ink-muted font-mono">
-                  Emergency repair dispatched via fix@latent.studio
-                </span>
-              </div>
             </div>
 
             <div className="flex items-center gap-6 pt-2 text-ink-muted">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
-              >
-                GitHub ↗
-              </a>
-              <a
-                href="mailto:inquiries@latent.studio?subject=CV%20Request"
-                className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
-              >
-                Resume / CV ↗
-              </a>
               <a
                 href="https://twitter.com"
                 target="_blank"

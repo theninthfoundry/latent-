@@ -15,7 +15,7 @@ export function FinalCTA() {
     >
       {/* Top Tag */}
       <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted border-b border-paper-border pb-3 shrink-0 relative z-10">
-        <span>12 // Final Declaration</span>
+        <span>§ 06 // Final Declaration</span>
         <span>Initiation &bull; Q3/Q4</span>
       </div>
 

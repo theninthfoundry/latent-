@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export type JaaliState =
   | "dormant"
@@ -73,10 +74,10 @@ export function PixelJaali({
       <div className="absolute inset-0 cross-stitch-pattern opacity-40 pointer-events-none" />
 
       {/* Archival Corner Marks */}
-      <div className="absolute top-2.5 left-2.5 text-atelier-faded text-[10px]">✦</div>
-      <div className="absolute top-2.5 right-2.5 text-atelier-faded text-[10px]">✦</div>
-      <div className="absolute bottom-2.5 left-2.5 text-atelier-faded text-[10px]">✦</div>
-      <div className="absolute bottom-2.5 right-2.5 text-atelier-faded text-[10px]">✦</div>
+      <div className="absolute top-2.5 left-2.5 text-atelier-faded"><Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} /></div>
+      <div className="absolute top-2.5 right-2.5 text-atelier-faded"><Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} /></div>
+      <div className="absolute bottom-2.5 left-2.5 text-atelier-faded"><Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} /></div>
+      <div className="absolute bottom-2.5 right-2.5 text-atelier-faded"><Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} /></div>
 
       {/* Header with State Selector */}
       <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-paper-border/50">
@@ -157,7 +158,7 @@ export function PixelJaali({
                 className={`h-3 sm:h-3.5 rounded-[1.5px] flex items-center justify-center transition-colors duration-300 ${cellStyle}`}
               >
                 {isFilled && currentState === "ornament" && (
-                  <span className="text-[6px] text-paper font-mono leading-none">✦</span>
+                  <span className="text-[6px] text-paper font-mono leading-none"><Sparkles className="w-2 h-2" strokeWidth={1.5} /></span>
                 )}
               </motion.div>
             );

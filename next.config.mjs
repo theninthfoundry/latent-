@@ -92,6 +92,7 @@ const nextConfig = {
         hostname: "skiper-ui.com",
       },
     ],
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [

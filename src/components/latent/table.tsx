@@ -275,13 +275,13 @@ export function TheTable() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
-            § 03 // Materials &bull; The Atelier Desk
+            § 02 // Materials &bull; The Atelier Desk
           </span>
-          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink">
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink text-balance">
             The Studio Table.
           </h2>
         </div>
-        <p className="font-sans text-sm text-ink-muted max-w-[65ch] font-light leading-[1.6]">
+        <p className="font-sans text-sm text-ink-muted max-w-[62ch] text-pretty font-light leading-[1.6]">
           We move comfortably between disciplines. Inspect the actual raw
           materials, prints, textiles, and optical specimens we bring to the desk every morning.
         </p>

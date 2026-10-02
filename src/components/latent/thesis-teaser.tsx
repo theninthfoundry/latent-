@@ -23,7 +23,7 @@ export function ThesisTeaser() {
       {/* Editorial Header Tag */}
       <Reveal>
         <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted mb-12 sm:mb-16 relative z-10 border-b border-paper-border/60 pb-3">
-          <span>§ 02 — Scope &amp; Ambition</span>
+          <span>§ 01 — Scope &amp; Ambition</span>
           <span>The Thesis</span>
         </div>
       </Reveal>
@@ -31,7 +31,7 @@ export function ThesisTeaser() {
       {/* Monumental Editorial Serif Statement */}
       <div className="max-w-5xl relative z-10 space-y-10 sm:space-y-12">
         <Reveal delay={0.05}>
-          <blockquote className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-light text-ink leading-[1.04] tracking-[-0.03em]">
+          <blockquote className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-light text-ink leading-[1.04] tracking-[-0.03em] text-balance">
             Some ideas need a website. <br />
             Some need a{" "}
             <span className="italic font-normal text-atelier-indigo underline decoration-paper-border underline-offset-8">
@@ -48,13 +48,13 @@ export function ThesisTeaser() {
         <Reveal delay={0.12}>
           <div className="pt-8 border-t border-paper-border flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
             <div className="space-y-2">
-              <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[65ch] leading-[1.6]">
+              <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[62ch] text-pretty leading-[1.6]">
                 Most digital projects stop at utility or surface decoration. We design the
                 entire container: the <span className="font-serif italic text-atelier-indigo">visual language</span>, the underlying system, the
                 way it responds, and the cultural aura it projects into the world.
               </p>
-              <div className="font-hand text-base sm:text-lg text-accent-clay">
-                ← Digital architecture treated with the permanence of stone and textile.
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted pt-2 border-t border-paper-border/50">
+                Digital architecture treated with the permanence of stone and textile.
               </div>
             </div>
             <div className="font-mono text-xs text-ink-muted shrink-0 flex items-center gap-1.5">

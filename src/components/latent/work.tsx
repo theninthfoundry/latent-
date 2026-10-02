@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { WashiTape, HandDrawnArrow } from "./naive-elements";
+import React from "react";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { LatentImage } from "./latent-image";
 
 interface ProjectCase {
   id: string;
@@ -141,20 +139,7 @@ const CASES: ProjectCase[] = [
 ];
 
 export function Work() {
-  const [activeCase, setActiveCase] = useState<ProjectCase>(CASES[0]);
 
-  React.useEffect(() => {
-    const handleHash = () => {
-      if (typeof window !== "undefined" && window.location.hash) {
-        const id = window.location.hash.replace("#", "");
-        const matched = CASES.find((c) => c.id === id);
-        if (matched) setActiveCase(matched);
-      }
-    };
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
-  }, []);
 
   return (
     <section
@@ -167,10 +152,12 @@ export function Work() {
         direction="up"
         className="absolute top-12 -left-12 w-72 h-72 pointer-events-none select-none opacity-[0.06] mix-blend-multiply overflow-hidden rotate-12 z-0"
       >
-        <img
+        <LatentImage
           src="/artifacts/halftone-stars.png"
           alt=""
-          className="w-full h-full object-contain scale-125"
+          width={500}
+          height={500}
+          className="w-full h-full object-contain scale-125 object-[20%_80%]"
         />
       </ParallaxLayer>
 
@@ -180,10 +167,12 @@ export function Work() {
         direction="down"
         className="absolute top-1/3 -right-24 w-[540px] h-[440px] pointer-events-none select-none opacity-[0.05] mix-blend-multiply -rotate-6 overflow-hidden rounded-3xl z-0"
       >
-        <img
+        <LatentImage
           src="/artifacts/textile-rug.png"
           alt=""
-          className="w-full h-full object-cover scale-110"
+          width={540}
+          height={440}
+          className="w-full h-full object-cover scale-110 object-[80%_20%]"
         />
       </ParallaxLayer>
 
@@ -191,168 +180,65 @@ export function Work() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
-            § 01 // The Workshop &amp; Archive
+            § 05 // The Workshop &amp; Archive
           </span>
-          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink">
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink text-balance">
             Things we make.
           </h2>
         </div>
-        <p className="font-sans text-sm text-ink-muted max-w-[65ch] font-light leading-[1.6]">
+        <p className="font-sans text-sm text-ink-muted max-w-[62ch] text-pretty font-light leading-[1.6]">
           Not portfolio thumbnails. A curated look at the actual studio desk
           where ideas transform into physical and digital reality.
         </p>
       </div>
 
-      {/* Project Workbench Selector */}
-      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-10 sm:mb-12 font-mono text-xs">
-        {CASES.map((c) => {
-          const isSelected = activeCase.id === c.id;
-          return (
-            <button
-              key={c.id}
-              onClick={() => {
-                setActiveCase(c);
-                if (typeof window !== "undefined") {
-                  window.history.replaceState(null, "", `#${c.id}`);
-                }
-              }}
-              className={`px-4 py-2.5 rounded-full border transition-all duration-200 flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
-                isSelected
-                  ? "bg-ink text-paper border-ink shadow-card"
-                  : "bg-paper text-ink-muted border-paper-border hover:border-ink/40 hover:text-ink shadow-subtle"
-              }`}
-            >
-              <span>{c.code}</span>
-              <span className="text-ink-muted/50">&bull;</span>
-              <span className="font-semibold uppercase tracking-wider">{c.title}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* The Studio Desk Workbench Spread (Mixed Media) */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeCase.id}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-8 sm:space-y-10"
-        >
-          {/* Top Workbench Row: Large Final UI + Case Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Final UI Display (Large Frame) */}
-            <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-paper-border bg-ink aspect-[16/10] relative group shadow-card">
-              <img
-                src={activeCase.finalUI}
-                alt={activeCase.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+      {/* Project Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 relative z-10 pt-4">
+        {CASES.map((c) => (
+          <div key={c.id} className="group relative flex flex-col space-y-5">
+            {/* Large Cover Frame */}
+            <div className="rounded-2xl overflow-hidden border-[0.5px] border-ink/20 bg-ink aspect-[4/3] sm:aspect-[16/10] relative shadow-sm cursor-pointer">
+              <LatentImage
+                src={c.finalUI}
+                alt={c.title}
+                fill
+                className="w-full h-full object-cover object-center transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03]"
               />
-
-              {/* Minimal Clean Specimen Badge */}
-              <div className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-widest bg-ink/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-paper-border/30 text-paper shadow-subtle">
-                {activeCase.code} &bull; {activeCase.title}
+              
+              {/* Caption slide on hover */}
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-ink/95 via-ink/80 to-transparent text-paper translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-[0.16,1,0.3,1] flex items-end">
+                <p className="font-sans text-xs sm:text-sm font-light text-pretty leading-relaxed text-paper/90 max-w-[50ch]">
+                  {c.narrative}
+                </p>
               </div>
             </div>
 
-            {/* Case Narrative & Technical Specs (Editorial Card) */}
-            <div className="lg:col-span-4 p-7 sm:p-8 rounded-2xl bg-paper-card border border-paper-border space-y-6 flex flex-col justify-between h-full shadow-card">
+            {/* Metadata (Project Name, Premise, Tags) */}
+            <div className="space-y-3 px-1">
               <div>
-                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted block mb-2">
-                  The Premise
+                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted block mb-1.5">
+                  {c.code} // {c.client}
                 </span>
-                <p className="font-serif text-2xl sm:text-3xl text-ink font-light leading-snug tracking-tight">
-                  {activeCase.tagline}
-                </p>
-                <p className="font-sans text-xs sm:text-sm text-ink-light font-light leading-[1.6] mt-4 max-w-[60ch]">
-                  {activeCase.narrative}
-                </p>
+                <h3 className="font-serif text-3xl font-light text-ink tracking-tight">
+                  {c.title}
+                </h3>
               </div>
-
-              <div className="pt-6 border-t border-paper-border">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block mb-3 font-medium">
-                  Technical Architecture
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {activeCase.specs.map((spec) => (
-                    <span
-                      key={spec}
-                      className="px-2.5 py-1 rounded bg-paper text-ink-light border border-paper-border font-mono text-[11px]"
-                    >
-                      {spec}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Workbench Row: Studio Desk Materials (Photo + Note + Code + Diagram) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-            {/* 1. Research Photograph */}
-            <div className="p-4 rounded-2xl bg-paper-card border border-paper-border space-y-3 shadow-sm">
-              <div className="rounded-xl overflow-hidden aspect-[4/3] border border-paper-border bg-ink">
-                <img
-                  src={activeCase.deskArtifacts.photo}
-                  alt={activeCase.deskArtifacts.photoCaption}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-ink-muted">
-                {activeCase.deskArtifacts.photoCaption}
+              <p className="font-sans text-base text-ink-muted font-light text-pretty">
+                {c.tagline}
               </p>
-            </div>
-
-            {/* 2. Handwritten Washi-Taped Studio Note (Naïve 3% rule) */}
-            <div className="relative p-6 rounded-2xl bg-[#FFFDF9] border border-paper-border flex flex-col justify-between shadow-sm">
-              <WashiTape className="-top-2.5 left-6" />
-              <div className="pt-2">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block mb-2">
-                  Studio Desk Reflection
-                </span>
-                <p className="font-hand text-2xl sm:text-3xl text-ink leading-snug">
-                  {activeCase.deskArtifacts.sketchNote}
-                </p>
-              </div>
-              <div className="pt-4 border-t border-dashed border-paper-border font-mono text-[10px] text-ink-muted">
-                Pencil on paper &bull; Field Notebook
-              </div>
-            </div>
-
-            {/* 3. System Topology Diagram */}
-            <div className="p-6 rounded-2xl bg-paper-subtle border border-paper-border flex flex-col justify-between shadow-sm">
-              <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block mb-2">
-                  {activeCase.deskArtifacts.diagramTitle}
-                </span>
-                <div className="font-mono text-xs text-ink leading-relaxed p-3 bg-paper rounded-lg border border-paper-border mt-3">
-                  {activeCase.deskArtifacts.diagram}
-                </div>
-              </div>
-              <div className="font-mono text-[10px] text-ink-muted uppercase tracking-widest pt-4">
-                Architecture Topology Spec
-              </div>
-            </div>
-
-            {/* 4. Production Code Fragment */}
-            <div className="p-5 rounded-2xl bg-ink border border-ink text-paper font-mono text-xs flex flex-col justify-between shadow-sm">
-              <div>
-                <div className="flex items-center justify-between pb-2 mb-3 border-b border-paper/15 text-[10px] text-paper/60 uppercase">
-                  <span>{activeCase.deskArtifacts.codeLang}</span>
-                  <span className="text-emerald-400">Verified Build</span>
-                </div>
-                <pre className="text-[11px] leading-relaxed text-paper/90 overflow-x-auto">
-                  <code>{activeCase.deskArtifacts.codeSnippet}</code>
-                </pre>
-              </div>
-              <div className="font-mono text-[10px] text-paper/50 uppercase tracking-widest pt-3 border-t border-paper/15">
-                Core Production Substrate
+              
+              {/* Tech tags as mono pills */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {c.specs.map((spec) => (
+                  <span key={spec} className="font-mono text-[9px] uppercase tracking-wider text-ink/70 px-2.5 py-1 rounded-full bg-paper-subtle border-[0.5px] border-ink/15">
+                    {spec}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        ))}
+      </div>
     </section>
   );
 }
