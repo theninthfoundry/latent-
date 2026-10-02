@@ -34,6 +34,15 @@ export function Skiper8({
   const [isActive, setIsActive] = useState(true);
   const [isDismissed, setIsDismissed] = useState(false);
 
+  // Check prefers-reduced-motion
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsActive(false);
+      setIsDismissed(true);
+      onComplete?.();
+    }
+  }, [onComplete]);
+
   // Measure window dimensions
   useEffect(() => {
     const updateDimension = () => {

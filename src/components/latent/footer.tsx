@@ -20,18 +20,21 @@ export function Footer() {
       </div>
 
       {/* 02 — The Crafted Footer Information */}
-      <div className="relative z-10 max-w-[1500px] w-full mx-auto px-6 sm:px-12 lg:px-20 mb-36 sm:mb-44 space-y-12 sm:space-y-16">
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto px-6 sm:px-10 lg:px-16 mb-28 sm:mb-36 space-y-12 sm:space-y-14">
         {/* Main Information Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-12 pb-12 border-b border-paper-border/60">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-12 pb-10 border-b border-paper-border">
           {/* Studio Brand & Worldview */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <Link href="/" className="font-serif text-3xl sm:text-4xl font-normal tracking-tight block">
+              <Link
+                href="/"
+                className="font-serif text-3xl sm:text-4xl font-normal tracking-tight block focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
+              >
                 LATENT
               </Link>
               <BotanicalBloom size={32} />
             </div>
-            <p className="font-sans text-sm text-ink-muted max-w-sm font-light leading-relaxed">
+            <p className="font-sans text-sm text-ink-muted max-w-sm font-light leading-[1.6]">
               A digital atelier with Indian cultural memory, working between systems, images, machines, and culture. We uncover what is latent inside ambitious ideas and build inevitables.
             </p>
             <div className="font-mono text-[10px] text-ink-muted uppercase tracking-widest pt-1 flex items-center gap-3">
@@ -42,53 +45,53 @@ export function Footer() {
           </div>
 
           {/* Index Navigation */}
-          <div className="md:col-span-3 space-y-3 font-mono text-xs">
-            <span className="uppercase tracking-widest text-ink-muted block mb-3 font-semibold">
+          <nav aria-label="Footer Index" className="md:col-span-3 space-y-3 font-mono text-xs">
+            <span className="uppercase tracking-widest text-ink-muted block mb-3 font-medium">
               Index
             </span>
-            <ul className="space-y-2 text-ink">
+            <ul className="space-y-2.5 text-ink">
               <li>
-                <Link href="/#capabilities" className="hover:text-atelier-indigo transition-colors">
+                <Link href="/#capabilities" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
                   Capabilities (Digital Matter)
                 </Link>
               </li>
               <li>
-                <Link href="/work" className="hover:text-atelier-indigo transition-colors">
+                <Link href="/work" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
                   Selected Archive
                 </Link>
               </li>
               <li>
-                <Link href="/studio" className="hover:text-atelier-indigo transition-colors">
+                <Link href="/studio" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
                   The Studio &amp; Methods
                 </Link>
               </li>
               <li>
-                <Link href="/lab" className="hover:text-atelier-indigo transition-colors">
+                <Link href="/lab" className="hover:text-atelier-indigo transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
                   The Lab &amp; Experiments
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-ink transition-colors font-medium">
+                <Link href="/terms" className="hover:text-ink transition-colors font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink">
                   Terms &amp; Conditions ↗
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Connect & Direct Inquiries */}
           <div className="md:col-span-4 space-y-4 font-mono text-xs">
-            <span className="uppercase tracking-widest text-ink-muted block mb-2 font-semibold">
+            <span className="uppercase tracking-widest text-ink-muted block mb-2 font-medium">
               Direct Inquiries
             </span>
             <div>
               <a
                 href="mailto:inquiries@latent.studio"
-                className="font-serif text-2xl sm:text-3xl text-ink hover:text-atelier-indigo transition-all font-light block leading-tight"
+                className="font-serif text-2xl sm:text-3xl text-ink hover:text-atelier-indigo transition-all font-light block leading-tight tracking-tight focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
                 inquiries@latent.studio →
               </a>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+              <div className="flex items-center gap-2 mt-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
                 <span className="text-[11px] text-ink-muted font-mono">
                   Emergency repair dispatched via fix@latent.studio
                 </span>
@@ -100,13 +103,13 @@ export function Footer() {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-ink transition-colors"
+                className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
                 GitHub ↗
               </a>
               <a
                 href="mailto:inquiries@latent.studio?subject=CV%20Request"
-                className="hover:text-ink transition-colors"
+                className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
                 Resume / CV ↗
               </a>
@@ -114,7 +117,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-ink transition-colors"
+                className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               >
                 Twitter / X ↗
               </a>
@@ -123,8 +126,8 @@ export function Footer() {
         </div>
 
         {/* 10 Matter Capabilities Strip */}
-        <div className="py-6 border-b border-paper-border/50 font-mono text-xs text-ink-light">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="py-5 border-b border-paper-border font-mono text-xs text-ink-light">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             {[
               "01 BUILD",
               "02 REPAIR",
@@ -159,7 +162,7 @@ export function Footer() {
       </div>
 
       {/* Grounded Horizon Baseline */}
-      <div className="w-full h-px bg-paper-border/40 relative z-20" />
+      <div className="w-full h-px bg-paper-border relative z-20" />
     </footer>
   );
 }

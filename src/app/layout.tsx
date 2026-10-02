@@ -116,7 +116,7 @@ export default function RootLayout({
       <body className="bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-paper">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100000] focus:px-4 focus:py-2 focus:bg-ink focus:text-paper focus:text-xs focus:font-mono focus:rounded focus:outline-none focus:ring-2 focus:ring-accent-gold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100000] focus:px-4 focus:py-2.5 focus:bg-ink focus:text-paper focus:text-xs focus:font-mono focus:rounded-md focus:outline-none focus:ring-2 focus:ring-ink focus:ring-offset-2 shadow-card"
         >
           Skip to main content
         </a>
