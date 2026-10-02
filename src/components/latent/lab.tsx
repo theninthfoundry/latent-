@@ -80,7 +80,7 @@ export function Lab() {
   return (
     <section
       id="lab"
-      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-6 sm:pt-8 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Studio Lab Background Watermark: Stippled Atomic Schematic Coordinate Orbit with restrained parallax */}
       <ParallaxLayer offset={18} direction="up" className="absolute -top-12 -left-24 w-[520px] h-[520px] pointer-events-none select-none opacity-[0.07] mix-blend-multiply rotate-12 overflow-hidden z-0">

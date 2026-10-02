@@ -144,7 +144,7 @@ export function Work() {
   return (
     <section
       id="work"
-      className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden"
+      className="relative pt-6 sm:pt-8 pb-24 sm:pb-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Background Artifact 01: Halftone Stars drifting behind header */}
       <ParallaxLayer

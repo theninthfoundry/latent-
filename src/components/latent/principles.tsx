@@ -32,7 +32,7 @@ export const STUDIO_PRINCIPLES = [
 
 export function Principles() {
   return (
-    <section id="principles" className="relative py-20 sm:py-28 border-t border-paper-border scroll-mt-24">
+    <section id="principles" className="relative pt-6 sm:pt-8 pb-20 sm:pb-28 border-t border-paper-border scroll-mt-24">
       <Reveal>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-paper-border pb-6">
           <div>

@@ -49,7 +49,7 @@ export function Studio() {
   return (
     <section
       id="studio"
-      className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border"
+      className="relative pt-6 sm:pt-8 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border"
     >
       {/* Chapter 1: The Studio Constellation */}
       <div className="mb-12 sm:mb-14">

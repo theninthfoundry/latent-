@@ -32,7 +32,7 @@ export function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden select-none"
+      className="relative pt-6 sm:pt-8 pb-24 sm:pb-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden select-none"
     >
       {/* Dynamic Substrate Canvas Reaction (Indian Craft in Motion) */}
       <div className="absolute inset-0 pointer-events-none transition-opacity duration-700">

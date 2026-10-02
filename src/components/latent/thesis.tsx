@@ -7,7 +7,7 @@ import { spatialEase } from "@/lib/motion/easings";
 
 export function Thesis() {
   return (
-    <section className="relative pt-12 sm:pt-16 pb-12 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
+    <section className="relative pt-6 sm:pt-8 pb-12 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
       {/* Halftone Stars Marginalia: Restrained spatial depth in upper right margin */}
       <ParallaxLayer
         offset={14}
