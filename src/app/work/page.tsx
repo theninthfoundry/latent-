@@ -14,6 +14,7 @@ export default function WorkPage() {
   return (
     <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
       <Navbar />
+      <h1 className="sr-only">Selected Work & Technical Archive</h1>
       <Work />
       <FinalCTA />
       <Footer />
