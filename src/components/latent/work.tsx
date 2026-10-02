@@ -159,13 +159,13 @@ export function Work() {
   return (
     <section
       id="work"
-      className="relative pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto overflow-hidden"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden"
     >
       {/* Background Artifact 01: Halftone Stars drifting behind header */}
       <ParallaxLayer
-        offset={15}
+        offset={14}
         direction="up"
-        className="absolute top-12 -left-12 w-72 h-72 pointer-events-none select-none opacity-[0.08] mix-blend-multiply overflow-hidden rotate-12 z-0"
+        className="absolute top-12 -left-12 w-72 h-72 pointer-events-none select-none opacity-[0.06] mix-blend-multiply overflow-hidden rotate-12 z-0"
       >
         <img
           src="/artifacts/halftone-stars.png"
@@ -176,9 +176,9 @@ export function Work() {
 
       {/* Background Artifact 02: Large Indigo Textile Tapestry Bleed */}
       <ParallaxLayer
-        offset={18}
+        offset={16}
         direction="down"
-        className="absolute top-1/3 -right-24 w-[540px] h-[440px] pointer-events-none select-none opacity-[0.06] mix-blend-multiply -rotate-6 overflow-hidden rounded-3xl z-0"
+        className="absolute top-1/3 -right-24 w-[540px] h-[440px] pointer-events-none select-none opacity-[0.05] mix-blend-multiply -rotate-6 overflow-hidden rounded-3xl z-0"
       >
         <img
           src="/artifacts/textile-rug.png"
@@ -188,23 +188,23 @@ export function Work() {
       </ParallaxLayer>
 
       {/* Editorial Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16 border-b border-paper-border pb-6 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
+          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
             § 01 // The Workshop &amp; Archive
           </span>
-          <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink">
             Things we make.
           </h2>
         </div>
-        <p className="font-sans text-sm text-ink-muted max-w-md font-light leading-relaxed">
+        <p className="font-sans text-sm text-ink-muted max-w-[65ch] font-light leading-[1.6]">
           Not portfolio thumbnails. A curated look at the actual studio desk
           where ideas transform into physical and digital reality.
         </p>
       </div>
 
       {/* Project Workbench Selector */}
-      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-12 font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-10 sm:mb-12 font-mono text-xs">
         {CASES.map((c) => {
           const isSelected = activeCase.id === c.id;
           return (
@@ -216,10 +216,10 @@ export function Work() {
                   window.history.replaceState(null, "", `#${c.id}`);
                 }
               }}
-              className={`px-4 py-2.5 rounded-full border transition-all duration-200 flex items-center gap-2.5 ${
+              className={`px-4 py-2.5 rounded-full border transition-all duration-200 flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
                 isSelected
-                  ? "bg-ink text-paper border-ink shadow-sm"
-                  : "bg-paper text-ink-muted border-paper-border hover:border-ink/40 hover:text-ink"
+                  ? "bg-ink text-paper border-ink shadow-card"
+                  : "bg-paper text-ink-muted border-paper-border hover:border-ink/40 hover:text-ink shadow-subtle"
               }`}
             >
               <span>{c.code}</span>
@@ -234,44 +234,44 @@ export function Work() {
       <AnimatePresence mode="wait">
         <motion.div
           key={activeCase.id}
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-10"
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-8 sm:space-y-10"
         >
           {/* Top Workbench Row: Large Final UI + Case Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Final UI Display (Large Frame) */}
-            <div className="lg:col-span-8 rounded-3xl overflow-hidden border border-paper-border bg-ink aspect-[16/10] relative group shadow-sm">
+            <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-paper-border bg-ink aspect-[16/10] relative group shadow-card">
               <img
                 src={activeCase.finalUI}
                 alt={activeCase.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
               />
 
               {/* Minimal Clean Specimen Badge */}
-              <div className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-widest bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-white/90 shadow-sm">
+              <div className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-widest bg-ink/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-paper-border/30 text-paper shadow-subtle">
                 {activeCase.code} &bull; {activeCase.title}
               </div>
             </div>
 
             {/* Case Narrative & Technical Specs (Editorial Card) */}
-            <div className="lg:col-span-4 p-8 rounded-3xl bg-paper-card border border-paper-border space-y-6 flex flex-col justify-between h-full">
+            <div className="lg:col-span-4 p-7 sm:p-8 rounded-2xl bg-paper-card border border-paper-border space-y-6 flex flex-col justify-between h-full shadow-card">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-ink-muted block mb-2">
+                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted block mb-2">
                   The Premise
                 </span>
-                <p className="font-serif text-2xl sm:text-3xl text-ink font-light leading-snug">
+                <p className="font-serif text-2xl sm:text-3xl text-ink font-light leading-snug tracking-tight">
                   {activeCase.tagline}
                 </p>
-                <p className="font-sans text-xs sm:text-sm text-ink-light font-light leading-relaxed mt-4">
+                <p className="font-sans text-xs sm:text-sm text-ink-light font-light leading-[1.6] mt-4 max-w-[60ch]">
                   {activeCase.narrative}
                 </p>
               </div>
 
               <div className="pt-6 border-t border-paper-border">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block mb-3">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted block mb-3 font-medium">
                   Technical Architecture
                 </span>
                 <div className="flex flex-wrap gap-2">
