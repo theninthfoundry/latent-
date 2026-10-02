@@ -24,7 +24,7 @@ export function SplitCTAButton({
 
   const buttonElement = (
     <Button
-      className={`group not-disabled:inset-shadow-none inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full border-none bg-transparent p-0 font-normal shadow-none hover:bg-transparent transition-all duration-300 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 ${className}`}
+      className={`group not-disabled:inset-shadow-none inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full border-none bg-transparent p-0 font-normal shadow-none hover:bg-transparent transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 ${className}`}
     >
       {/* Pill Text Label */}
       <span
