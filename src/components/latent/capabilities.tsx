@@ -23,6 +23,8 @@ export function Capabilities() {
   const [activeVerb, setActiveVerb] = useState<MatterVerb>("build");
   const [hoveredVerb, setHoveredVerb] = useState<MatterVerb | null>(null);
   const [fixModalOpen, setFixModalOpen] = useState(false);
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
   // The active substrate state is either what's hovered or what's selected
   const substrateState = hoveredVerb || activeVerb;
@@ -66,8 +68,8 @@ export function Capabilities() {
         ) : substrateState === "experiment" ? (
           /* EXPERIMENT: Unpredictable Ambient Star Drift */
           <div className="absolute inset-0 opacity-15">
-            <div className="absolute top-1/4 left-1/3 text-xs text-atelier-indigo">✦</div>
-            <div className="absolute top-2/3 right-1/4 text-xs text-atelier-brass">✦</div>
+            <div className="absolute top-1/4 left-1/3 text-atelier-indigo"><Sparkles className="w-3 h-3" strokeWidth={1.5} /></div>
+            <div className="absolute top-2/3 right-1/4 text-atelier-brass"><Sparkles className="w-3 h-3" strokeWidth={1.5} /></div>
           </div>
         ) : substrateState === "care" ? (
           /* CARE: Deep Calm Breathing Lattice */
@@ -82,20 +84,20 @@ export function Capabilities() {
       <div className="relative z-10 max-w-4xl mb-16 sm:mb-20">
         <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-4 border-b border-paper-border/60 pb-2">
           <span className="w-1.5 h-1.5 rounded-full bg-atelier-indigo" />
-          <span>§ 04 // DIGITAL MATTER</span>
+          <span>§ 03 // DIGITAL MATTER</span>
         </div>
 
-        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-ink tracking-[-0.03em] leading-[1.05] mb-6">
+        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-ink tracking-[-0.03em] leading-[1.05] mb-6 text-balance">
           We <span className="italic font-normal text-atelier-indigo">build</span>. We{" "}
-          <span className="italic font-normal text-accent-clay">repair</span>. <br />
-          We <span className="italic font-normal text-atelier-faded">evolve</span>. We{" "}
-          <span className="italic font-normal text-atelier-brass">rescue</span>. <br />
-          <span className="italic font-normal text-ink-muted">
+          <span className="font-normal text-accent-clay">repair</span>. <br />
+          We <span className="font-normal text-atelier-faded">evolve</span>. We{" "}
+          <span className="font-normal text-atelier-brass">rescue</span>. <br />
+          <span className="font-normal text-ink-muted">
             We transform. We experiment.
           </span>
         </h2>
 
-        <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[65ch] leading-[1.6]">
+        <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[62ch] text-pretty leading-[1.6]">
           Latent does not only create things from zero. Digital systems are{" "}
           <span className="font-serif italic text-ink font-normal">living matter</span>:
           they are born, they break, they evolve, they get abandoned, and they are transformed into{" "}
@@ -119,11 +121,11 @@ export function Capabilities() {
               Something broken? → <span className="font-serif italic lowercase font-normal">dispatch to atelier</span>
             </span>
             <span className="text-atelier-brass opacity-60 group-hover:opacity-100 transition-opacity text-[10px]">
-              ✦
+              <Sparkles className="w-2.5 h-2.5 text-atelier-brass opacity-60 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             </span>
           </button>
           <span className="font-mono text-[11px] text-ink-muted hidden sm:inline">
-            Direct senior triage &bull; fix@latent.studio
+            Direct senior triage &bull; fix@latent.labs
           </span>
         </div>
       </div>
@@ -171,8 +173,8 @@ export function Capabilities() {
             <p className="font-sans text-sm sm:text-base font-light opacity-90 max-w-md leading-relaxed">
               Things that <span className="font-serif italic text-paper font-normal">should exist</span>. Taking ideas from zero to their inevitable tactile existence: <span className="text-atelier-brass font-medium">websites</span>, brand worlds, living archives, and autonomous AI systems.
             </p>
-            <div className="font-hand text-lg text-atelier-brass/90 pt-1">
-              ← The reason Latent exists.
+            <div className="font-mono text-[10px] uppercase tracking-widest text-atelier-brass/90 pt-4 border-t border-current/10 mt-6">
+              The reason Latent exists.
             </div>
           </div>
 
@@ -221,14 +223,12 @@ export function Capabilities() {
               <p className="font-sans text-xs text-ink-muted leading-relaxed">
                 Precise architectural surgery on <span className="font-mono text-[10px] bg-accent-clay/10 text-accent-clay px-1.5 py-0.5 rounded">collapsed mobile layouts</span>, broken forms, and failing deployments.
               </p>
-              <div className="font-hand text-base text-accent-clay pt-1">
-                ← Direct emergency triage within 24h.
-              </div>
+              <div className="hidden"></div>
             </div>
 
             <div className="pt-4 border-t border-paper-border font-mono text-[10px] text-accent-clay flex items-center justify-between">
               <span>Emergency Intake Available</span>
-              <span>✦</span>
+              <Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} />
             </div>
           </div>
 
@@ -267,14 +267,12 @@ export function Capabilities() {
               <p className="font-sans text-xs text-ink-muted leading-relaxed">
                 Old to new. Static to <span className="text-atelier-faded font-medium underline decoration-atelier-faded/40">interactive</span>. Slow to fast. Generic to distinctive. Working across time.
               </p>
-              <div className="font-hand text-base text-atelier-faded pt-1">
-                ← Modernization without rebuilding from zero.
-              </div>
+              <div className="hidden"></div>
             </div>
 
             <div className="pt-4 border-t border-paper-border font-mono text-[10px] text-ink-muted flex items-center justify-between">
               <span>Modernization &bull; Zero Disruption</span>
-              <span>✦</span>
+              <Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} />
             </div>
           </div>
         </div>
@@ -339,67 +337,54 @@ export function Capabilities() {
             </blockquote>
 
             {/* Forensic Case File Evidence Docket */}
-            <div className="my-4 p-4 rounded-2xl bg-paper-subtle/80 border border-paper-border space-y-2.5 relative">
-              <div className="flex items-center justify-between border-b border-paper-border pb-2">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted font-medium">
-                  EVIDENCE LOG // INCIDENT #409
+            <div className="my-4 p-5 rounded bg-[#FAF9F5] border-[0.5px] border-ink/20 space-y-3 relative shadow-sm">
+              <div className="flex items-center justify-between border-b-[0.5px] border-ink/15 pb-2">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink/70 font-bold">
+                  CASE FILE // INCIDENT #409
                 </span>
-                <span className="font-mono text-[9px] uppercase text-ink-light font-semibold bg-paper px-2 py-0.5 rounded border border-paper-border">
-                  RECOVERABLE BY LATENT
-                </span>
+                {/* Stamp style mark */}
+                <div className="border border-red-700/80 text-red-700/80 px-2 py-0.5 transform rotate-2 font-mono text-[9px] font-bold tracking-widest uppercase">
+                  RECOVERABLE
+                </div>
               </div>
 
               {/* 3 Clear Evidence Items */}
-              <div className="grid grid-cols-1 gap-2 pt-0.5 text-xs font-sans">
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
-                  <span className="font-mono text-[10px] text-accent-clay mt-0.5 font-semibold">01</span>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-ink block">
-                      Broken Deployment
-                    </span>
-                    <span className="text-ink-muted text-[11px] font-light">
-                      Failing Vercel build loops &amp; unpinned Docker base images.
-                    </span>
+              <div className="grid grid-cols-1 gap-0 text-xs font-mono border-[0.5px] border-ink/15 bg-white">
+                <div className="flex items-start gap-4 p-2 border-b-[0.5px] border-ink/15">
+                  <span className="text-accent-clay font-bold w-4">01</span>
+                  <div className="flex-1 text-[10px]">
+                    <span className="font-bold text-ink block uppercase tracking-wide">Broken Deployment</span>
+                    <span className="text-ink/70 mt-0.5 block">Failing Vercel build loops &amp; unpinned Docker images.</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
-                  <span className="font-mono text-[10px] text-atelier-brass mt-0.5 font-semibold">02</span>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-ink block">
-                      Zero Documentation
-                    </span>
-                    <span className="text-ink-muted text-[11px] font-light">
-                      Previous agency left no schema maps, API keys, or runbooks.
-                    </span>
+                <div className="flex items-start gap-4 p-2 border-b-[0.5px] border-ink/15">
+                  <span className="text-atelier-brass font-bold w-4">02</span>
+                  <div className="flex-1 text-[10px]">
+                    <span className="font-bold text-ink block uppercase tracking-wide">Zero Documentation</span>
+                    <span className="text-ink/70 mt-0.5 block">No schema maps, API keys, or runbooks left behind.</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
-                  <span className="font-mono text-[10px] text-atelier-indigo mt-0.5 font-semibold">03</span>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-atelier-indigo block">
-                      Latent Protocol
-                    </span>
-                    <span className="text-ink-muted text-[11px] font-light">
-                      Senior takeover: quarantine entropy, pin dependencies &amp; ship stable release.
-                    </span>
+                <div className="flex items-start gap-4 p-2 bg-ink/5">
+                  <span className="text-atelier-indigo font-bold w-4">03</span>
+                  <div className="flex-1 text-[10px]">
+                    <span className="font-bold text-atelier-indigo block uppercase tracking-wide">Latent Protocol</span>
+                    <span className="text-ink/80 mt-0.5 block">Quarantine entropy, pin dependencies &amp; ship release.</span>
                   </div>
                 </div>
               </div>
 
               {/* Handwritten Marginalia Annotation */}
-              <div className="pt-2 border-t border-paper-border flex items-center justify-between">
-                <span className="font-hand text-base text-accent-clay">
-                  ← Handled 14 broken repos in 2026. Zero rebuilds needed.
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink-muted">
-                  48-HR TAKEOVER
+              <div className="pt-3 border-t-[0.5px] border-ink/15 flex items-center justify-between">
+                <span className="hidden"></span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-ink/50">
+                  ILLUSTRATIVE SCENARIO
                 </span>
               </div>
             </div>
 
-            <p className="font-sans text-xs text-ink-muted font-light max-w-[65ch] leading-[1.6]">
+            <p className="font-sans text-xs text-ink-muted font-light max-w-[62ch] text-pretty leading-[1.6]">
               Abandoned repositories, unfinished SaaS, and undocumented AI prototypes. Give us the repo artifact; we establish sanity and finish it.
             </p>
           </div>
@@ -409,7 +394,7 @@ export function Capabilities() {
               <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
               <span>Status: Operational Takeover</span>
             </span>
-            <span className="text-atelier-indigo font-medium hover:underline flex items-center gap-1">
+            <span className="text-atelier-indigo font-medium link-underline flex items-center gap-1">
               Initiate Rescue →
             </span>
           </div>
@@ -464,79 +449,63 @@ export function Capabilities() {
               MESSY CELLS &rarr; BUSINESS LOGIC &rarr; BESPOKE INTERFACE &rarr; SOVEREIGN APP
             </div>
 
-            {/* High-Contrast Before & After Visual Metamorphosis */}
-            <div className="my-4 p-4 rounded-2xl bg-paper-subtle/80 border border-paper-border space-y-3">
-              <div className="flex items-center justify-between text-[10px] font-mono border-b border-paper-border/70 pb-2">
-                <span className="text-accent-clay font-medium flex items-center gap-1">
-                  <span>BEFORE // The Drag</span>
-                </span>
-                <span className="text-atelier-indigo font-semibold px-2 py-0.5 rounded bg-atelier-indigo/10 border border-atelier-indigo/20 flex items-center gap-1">
-                  <span>✦ MUTATION ✦</span>
-                </span>
-                <span className="text-emerald-800 font-medium flex items-center gap-1">
-                  <span>AFTER // Sovereign Software</span>
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 items-stretch">
-                {/* Left: The Messy Old Spreadsheet */}
-                <div className="space-y-1.5 font-mono text-[9px] bg-paper p-3 rounded-xl border border-paper-border shadow-2xs">
-                  <div className="flex items-center justify-between text-ink-muted pb-1 border-b border-paper-border">
-                    <span className="font-bold text-accent-clay">⚠️ Google Sheets #4</span>
-                    <span className="text-accent-clay bg-accent-clay/10 px-1 py-0.5 rounded">16 hrs lost/wk</span>
+            {/* Draggable Comparison Slider */}
+            <div className="my-4 relative h-[180px] sm:h-[220px] rounded-2xl overflow-hidden border border-paper-border select-none shadow-sm cursor-ew-resize group"
+                 onMouseDown={() => setIsDragging(true)}
+                 onMouseUp={() => setIsDragging(false)}
+                 onMouseLeave={() => setIsDragging(false)}
+                 onMouseMove={(e) => {
+                   if (isDragging) {
+                     const rect = e.currentTarget.getBoundingClientRect();
+                     const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+                     setSliderPos((x / rect.width) * 100);
+                   }
+                 }}
+                 onTouchMove={(e) => {
+                   const rect = e.currentTarget.getBoundingClientRect();
+                   const x = Math.max(0, Math.min(e.touches[0].clientX - rect.left, rect.width));
+                   setSliderPos((x / rect.width) * 100);
+                 }}
+            >
+              {/* RIGHT / UNDERNEATH: AFTER (Clean Interface) */}
+              <div className="absolute inset-0 bg-atelier-indigo p-5 sm:p-6 text-paper flex flex-col justify-center">
+                <div className="max-w-[200px] ml-auto text-right">
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-emerald-400 mb-2 flex items-center justify-end gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live Dispatch
                   </div>
-                  <div className="grid grid-cols-3 gap-1 text-[9px] text-ink-muted pt-1">
-                    <span className="bg-paper-subtle p-1 rounded font-mono">A1: 14,288</span>
-                    <span className="bg-paper-subtle p-1 rounded font-mono">B1: 94.2%</span>
-                    <span className="bg-red-500/10 text-red-700 p-1 rounded font-mono font-bold">#REF! ERR</span>
+                  <div className="font-serif text-2xl font-normal leading-tight mb-3">Autonomous Order Engine</div>
+                  <div className="w-full bg-paper/20 h-1 rounded-full overflow-hidden mb-2">
+                    <div className="bg-atelier-brass h-full w-[94%] rounded-full" />
                   </div>
-                  <div className="grid grid-cols-3 gap-1 text-[9px] text-ink-muted">
-                    <span className="bg-paper-subtle p-1 rounded font-mono">A2: 28,400</span>
-                    <span className="bg-amber-500/10 text-amber-800 p-1 rounded font-mono">SYNC LAG</span>
-                    <span className="bg-paper-subtle p-1 rounded font-mono">B2: 98.1%</span>
-                  </div>
-                  <div className="pt-1.5 text-[9px] text-accent-clay border-t border-paper-border/60 flex justify-between">
-                    <span>Manual copy-paste</span>
-                    <span className="font-semibold">Fragile</span>
-                  </div>
-                </div>
-
-                {/* Right: The Polished Autonomous Software UI */}
-                <div className="p-3.5 rounded-xl bg-atelier-indigo text-paper text-[10px] font-sans flex flex-col justify-between shadow-md relative overflow-hidden group">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[8px] uppercase tracking-wider text-atelier-brass font-semibold">
-                      Latent Custom System
-                    </span>
-                    <span className="flex items-center gap-1 font-mono text-[8px] text-emerald-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Live Dispatch</span>
-                    </span>
-                  </div>
-
-                  <div className="my-2 space-y-1">
-                    <div className="font-serif text-base font-normal tracking-tight">
-                      Autonomous Order Engine
-                    </div>
-                    <div className="font-mono text-[9px] text-paper/70 flex items-center justify-between">
-                      <span>Throughput: +312%</span>
-                      <span className="text-emerald-400 font-semibold">0 Errors</span>
-                    </div>
-                  </div>
-
-                  <div className="w-full bg-paper/20 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-atelier-brass h-full w-4/5 rounded-full" />
+                  <div className="font-mono text-[9px] text-paper/70 flex justify-between">
+                    <span>94% Synchronized</span>
+                    <span>0 Errors</span>
                   </div>
                 </div>
               </div>
 
-              {/* Handwritten Annotation */}
-              <div className="pt-2 border-t border-paper-border/70 flex items-center justify-between">
-                <span className="font-hand text-base text-atelier-indigo">
-                  ← Replaced 4 clumsy Excel sheets with a single bespoke web interface.
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-700 font-semibold">
-                  Zero Manual Entry
-                </span>
+              {/* LEFT / OVERLAY: BEFORE (Messy Spreadsheet) */}
+              <div className="absolute inset-0 bg-paper-subtle overflow-hidden border-r-2 border-ink shadow-[4px_0_12px_rgba(0,0,0,0.1)]" style={{ width: `${sliderPos}%` }}>
+                <div className="w-full h-full p-4 min-w-[300px]">
+                  <div className="font-mono text-[10px] text-accent-clay mb-3 font-semibold flex items-center gap-1.5 border-b border-paper-border/50 pb-2">
+                    <AlertOctagon className="w-3.5 h-3.5" strokeWidth={1.5} /> Google Sheets #4 (16 hrs lost/wk)
+                  </div>
+                  <div className="grid grid-cols-4 gap-px bg-paper-border border border-paper-border rounded text-[9px] font-mono text-ink-muted">
+                    <div className="bg-paper p-1.5 text-center">A</div><div className="bg-paper p-1.5 text-center">B</div><div className="bg-paper p-1.5 text-center">C</div><div className="bg-paper p-1.5 text-center">D</div>
+                    <div className="bg-paper p-1.5">14,288</div><div className="bg-paper p-1.5">94.2%</div><div className="bg-red-500/10 text-red-700 font-bold p-1.5">#REF!</div><div className="bg-paper p-1.5">N/A</div>
+                    <div className="bg-paper p-1.5">28,400</div><div className="bg-amber-500/10 text-amber-800 p-1.5">SYNC LAG</div><div className="bg-paper p-1.5">98.1%</div><div className="bg-paper p-1.5">OK</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slider Handle */}
+              <div className="absolute top-0 bottom-0 -ml-3.5 w-7 flex items-center justify-center cursor-ew-resize z-10" style={{ left: `${sliderPos}%` }}>
+                <div className="w-7 h-7 bg-ink rounded-full flex items-center justify-center shadow-md border-2 border-paper">
+                  <div className="flex gap-0.5">
+                    <div className="w-0.5 h-2.5 bg-paper/60 rounded-full" />
+                    <div className="w-0.5 h-2.5 bg-paper/60 rounded-full" />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -547,164 +516,52 @@ export function Capabilities() {
 
           <div className="pt-4 mt-4 border-t border-paper-border font-mono text-[11px] text-ink-muted flex items-center justify-between">
             <span>Spreadsheet → App &bull; PDF → Workflow</span>
-            <span className="text-atelier-indigo font-medium hover:underline flex items-center gap-1">
+            <span className="text-atelier-indigo font-medium link-underline flex items-center gap-1">
               Explore Mutations →
             </span>
           </div>
         </div>
       </div>
 
-      {/* 04 — Infrastructure, Soul, and Memory (Quiet Constellation) */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        {/* AUDIT */}
-        <div
-          onMouseEnter={() => setHoveredVerb("audit")}
-          onMouseLeave={() => setHoveredVerb(null)}
-          onClick={() => setActiveVerb("audit")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveVerb("audit");
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Select AUDIT capability"
-          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-indigo transition-all cursor-pointer flex flex-col justify-between h-36 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-indigo"
-        >
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] text-ink-muted uppercase">§ 06 // AUDIT</span>
-            <span className="font-mono text-[9px] text-atelier-indigo font-bold">48H</span>
-          </div>
-          <span className="font-serif text-lg text-ink font-normal leading-snug">
-            We find what <span className="italic text-accent-clay">isn&apos;t working</span>.
-          </span>
-          <span className="font-mono text-[9px] text-ink-muted">Code &bull; UX &bull; Security</span>
-        </div>
-
-        {/* RECOVER */}
-        <div
-          onMouseEnter={() => setHoveredVerb("recover")}
-          onMouseLeave={() => setHoveredVerb(null)}
-          onClick={() => setActiveVerb("recover")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveVerb("recover");
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Select RECOVER capability"
-          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-rose transition-all cursor-pointer flex flex-col justify-between h-36 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-rose"
-        >
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] text-ink-muted uppercase">§ 07 // RECOVER</span>
-            <span className="font-mono text-[9px] text-accent-clay font-bold">DNA</span>
-          </div>
-          <span className="font-serif text-lg text-ink font-normal leading-snug">
-            We recover what was <span className="italic text-accent-clay">lost</span>.
-          </span>
-          <span className="font-mono text-[9px] text-ink-muted">Deployments &bull; Repos</span>
-        </div>
-
-        {/* CARE */}
-        <div
-          onMouseEnter={() => setHoveredVerb("care")}
-          onMouseLeave={() => setHoveredVerb(null)}
-          onClick={() => setActiveVerb("care")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveVerb("care");
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Select CARE capability"
-          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-faded transition-all cursor-pointer flex flex-col justify-between h-36 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-faded"
-        >
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] text-ink-muted uppercase">§ 08 // CARE</span>
-            <span className="font-mono text-[9px] text-emerald-700 font-bold">CALM</span>
-          </div>
-          <span className="font-serif text-lg text-ink font-normal leading-snug">
-            Worth keeping <span className="italic text-atelier-faded">alive</span>.
-          </span>
-          <span className="font-mono text-[9px] text-ink-muted">Guardianship &bull; Hygiene</span>
-        </div>
-
-        {/* EXPERIMENT (The Alien Soul) */}
-        <div
-          onMouseEnter={() => setHoveredVerb("experiment")}
-          onMouseLeave={() => setHoveredVerb(null)}
-          onClick={() => setActiveVerb("experiment")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveVerb("experiment");
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Select EXPERIMENT capability"
-          className="p-5 rounded-2xl bg-atelier-indigo text-paper border border-atelier-indigo hover:shadow-md transition-all cursor-pointer flex flex-col justify-between h-36 relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-brass"
-        >
-          {/* Subtle Celestial Sun Specimen Watermark */}
-          <img
-            src="/artifacts/atelier/celestial-sun.jpg"
-            onError={(e) => {
-              e.currentTarget.src = "/api/atelier-asset?name=celestial-sun";
+      {/* 04 — Infrastructure, Soul, and Memory (Compact Index) */}
+      <div className="relative z-10 flex flex-col border-t border-paper-border mt-16 sm:mt-20">
+        {[
+          { id: "audit", label: "01", title: "Audit", desc: "We find what isn't working. Code • UX • Security" },
+          { id: "recover", label: "02", title: "Recover", desc: "We recover what was lost. Deployments • Repos" },
+          { id: "care", label: "03", title: "Care", desc: "Worth keeping alive. Guardianship • Hygiene" },
+          { id: "experiment", label: "04", title: "Experiment", desc: "Things that shouldn't exist yet. Celestial • Machine" },
+          { id: "archive", label: "05", title: "Archive", desc: "Things we made to know. Specimens • Tools" }
+        ].map((item) => (
+          <div
+            key={item.id}
+            onMouseEnter={() => setHoveredVerb(item.id as MatterVerb)}
+            onMouseLeave={() => setHoveredVerb(null)}
+            onClick={() => setActiveVerb(item.id as MatterVerb)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setActiveVerb(item.id as MatterVerb);
+              }
             }}
-            alt=""
-            className="absolute -right-4 -bottom-4 w-28 h-28 object-cover rounded-full opacity-20 pointer-events-none group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"
-          />
+            tabIndex={0}
+            role="button"
+            aria-label={`Select ${item.title} capability`}
+            className="group flex flex-col md:flex-row md:items-center justify-between p-5 border-b border-paper-border hover:bg-paper-subtle transition-all cursor-pointer focus-visible:outline-none focus-visible:bg-paper-subtle"
+          >
+            <div className="flex items-center gap-6 md:w-1/3">
+              <span className="font-mono text-[10px] uppercase text-ink-muted w-6">{item.label}</span>
+              <span className="font-serif text-2xl sm:text-3xl font-light text-ink group-hover:text-atelier-indigo transition-colors">{item.title}</span>
+            </div>
+            
+            <div className="mt-2 md:mt-0 font-sans text-sm text-ink-muted font-light text-pretty md:w-1/2 overflow-hidden max-h-0 md:max-h-12 group-hover:max-h-24 transition-all duration-300 ease-in-out opacity-60 group-hover:opacity-100">
+              {item.desc}
+            </div>
 
-          <div className="relative z-10 flex items-center justify-between">
-            <span className="font-mono text-[10px] uppercase text-atelier-brass">§ 09 // EXPERIMENT</span>
-            <span className="font-mono text-[10px] animate-pulse">✦</span>
+            <div className="hidden md:flex md:w-1/6 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight className="w-5 h-5 text-atelier-indigo" strokeWidth={1.5} />
+            </div>
           </div>
-          <span className="relative z-10 font-serif text-lg font-light leading-snug">
-            Things that <span className="italic text-atelier-brass">shouldn&apos;t exist</span> yet.
-          </span>
-          <span className="relative z-10 font-mono text-[9px] text-paper/70">Celestial &bull; Machine</span>
-        </div>
-
-        {/* ARCHIVE (The Museum Memory) */}
-        <div
-          onMouseEnter={() => setHoveredVerb("archive")}
-          onMouseLeave={() => setHoveredVerb(null)}
-          onClick={() => setActiveVerb("archive")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveVerb("archive");
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Select ARCHIVE capability"
-          className="p-5 rounded-2xl bg-paper-card border border-paper-border hover:border-atelier-brass transition-all cursor-pointer flex flex-col justify-between h-36 relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-brass"
-        >
-          {/* Subtle Royal Carpet Filigree Watermark */}
-          <img
-            src="/artifacts/atelier/carpet-border.jpg"
-            onError={(e) => {
-              e.currentTarget.src = "/api/atelier-asset?name=carpet-border";
-            }}
-            alt=""
-            className="absolute -right-6 -bottom-6 w-32 h-32 object-cover rounded-xl opacity-15 mix-blend-multiply pointer-events-none group-hover:opacity-35 group-hover:scale-105 transition-all duration-500"
-          />
-
-          <div className="relative z-10 flex items-center justify-between">
-            <span className="font-mono text-[10px] text-ink-muted uppercase">§ 10 // ARCHIVE</span>
-            <span className="font-mono text-[9px] text-atelier-brass font-bold">№ 014</span>
-          </div>
-          <span className="relative z-10 font-serif text-lg text-ink font-normal leading-snug">
-            Things we made to <span className="italic text-atelier-brass">know</span>.
-          </span>
-          <span className="relative z-10 font-mono text-[9px] text-ink-muted">Specimens &bull; Tools</span>
-        </div>
+        ))}
       </div>
 
       {/* Emergency Intake Back Door Modal */}
