@@ -30,16 +30,16 @@ export function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative py-28 sm:py-36 px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto border-t border-paper-border overflow-hidden select-none"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden select-none"
     >
       {/* Dynamic Substrate Canvas Reaction (Indian Craft in Motion) */}
       <div className="absolute inset-0 pointer-events-none transition-opacity duration-700">
         {substrateState === "repair" ? (
           /* REPAIR: Self-Healing Damaged Pixel Field */
-          <div className="absolute inset-0 flex items-center justify-center opacity-25">
+          <div className="absolute inset-0 flex items-center justify-center opacity-20">
             <motion.div
               initial={{ scale: 0.95, opacity: 0.2 }}
-              animate={{ scale: 1, opacity: 0.4 }}
+              animate={{ scale: 1, opacity: 0.35 }}
               transition={{ duration: 0.6 }}
               className="grid grid-cols-16 gap-1"
             >
@@ -47,10 +47,10 @@ export function Capabilities() {
                 <motion.div
                   key={i}
                   animate={{
-                    backgroundColor: i % 3 === 0 ? "#142C48" : "transparent",
-                    borderColor: "#142C48",
+                    backgroundColor: i % 3 === 0 ? "#14283E" : "transparent",
+                    borderColor: "#14283E",
                   }}
-                  className="w-3 h-3 border border-paper-border/60"
+                  className="w-3 h-3 border border-paper-border"
                 />
               ))}
             </motion.div>
@@ -61,31 +61,31 @@ export function Capabilities() {
             initial={{ y: "-100%" }}
             animate={{ y: "100%" }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-            className="w-full h-px bg-atelier-indigo/30 shadow-[0_0_12px_rgba(20,44,72,0.4)]"
+            className="w-full h-px bg-atelier-indigo/25 shadow-[0_0_8px_rgba(20,40,62,0.3)]"
           />
         ) : substrateState === "experiment" ? (
           /* EXPERIMENT: Unpredictable Ambient Star Drift */
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/3 text-xs text-atelier-indigo animate-bounce">✦</div>
-            <div className="absolute top-2/3 right-1/4 text-xs text-atelier-brass animate-pulse">✦</div>
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-1/4 left-1/3 text-xs text-atelier-indigo">✦</div>
+            <div className="absolute top-2/3 right-1/4 text-xs text-atelier-brass">✦</div>
           </div>
         ) : substrateState === "care" ? (
           /* CARE: Deep Calm Breathing Lattice */
-          <div className="absolute inset-0 jaali-grid opacity-15" />
+          <div className="absolute inset-0 jaali-grid opacity-10" />
         ) : (
           /* DEFAULT / DORMANT: Faint cross-stitch texture */
-          <div className="absolute inset-0 cross-stitch-pattern opacity-10" />
+          <div className="absolute inset-0 cross-stitch-pattern opacity-8" />
         )}
       </div>
 
       {/* 01 — The Quiet Entrance */}
-      <div className="relative z-10 max-w-4xl mb-20 sm:mb-24">
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-4">
+      <div className="relative z-10 max-w-4xl mb-16 sm:mb-20">
+        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-4 border-b border-paper-border/60 pb-2">
           <span className="w-1.5 h-1.5 rounded-full bg-atelier-indigo" />
           <span>§ 04 // DIGITAL MATTER</span>
         </div>
 
-        <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light text-ink tracking-tight leading-[1.05] mb-6">
+        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-ink tracking-[-0.03em] leading-[1.05] mb-6">
           We <span className="italic font-normal text-atelier-indigo">build</span>. We{" "}
           <span className="italic font-normal text-accent-clay">repair</span>. <br />
           We <span className="italic font-normal text-atelier-faded">evolve</span>. We{" "}
@@ -95,7 +95,7 @@ export function Capabilities() {
           </span>
         </h2>
 
-        <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-2xl leading-relaxed">
+        <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[65ch] leading-[1.6]">
           Latent does not only create things from zero. Digital systems are{" "}
           <span className="font-serif italic text-ink font-normal">living matter</span>:
           they are born, they break, they evolve, they get abandoned, and they are transformed into{" "}
@@ -109,16 +109,16 @@ export function Capabilities() {
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
           <button
             onClick={() => setFixModalOpen(true)}
-            className="group px-4 py-2 rounded-full bg-paper border border-atelier-brass/60 hover:border-atelier-brass text-ink font-mono text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 shadow-2xs hover:shadow-sm"
+            className="group px-4 py-2 rounded-full bg-paper border border-atelier-brass/50 hover:border-atelier-brass text-ink font-mono text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 shadow-subtle hover:shadow-card focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
+            aria-label="Open emergency repair dispatch docket"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-clay opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-clay" />
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-clay" />
             </span>
             <span className="group-hover:text-atelier-indigo">
               Something broken? → <span className="font-serif italic lowercase font-normal">dispatch to atelier</span>
             </span>
-            <span className="text-atelier-brass opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[10px]">
+            <span className="text-atelier-brass opacity-60 group-hover:opacity-100 transition-opacity text-[10px]">
               ✦
             </span>
           </button>
@@ -340,48 +340,48 @@ export function Capabilities() {
 
             {/* Forensic Case File Evidence Docket */}
             <div className="my-4 p-4 rounded-2xl bg-paper-subtle/80 border border-paper-border space-y-2.5 relative">
-              <div className="flex items-center justify-between border-b border-paper-border/80 pb-2">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted font-semibold">
+              <div className="flex items-center justify-between border-b border-paper-border pb-2">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted font-medium">
                   EVIDENCE LOG // INCIDENT #409
                 </span>
-                <span className="font-mono text-[9px] uppercase text-emerald-800 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                <span className="font-mono text-[9px] uppercase text-ink-light font-semibold bg-paper px-2 py-0.5 rounded border border-paper-border">
                   RECOVERABLE BY LATENT
                 </span>
               </div>
 
               {/* 3 Clear Evidence Items */}
               <div className="grid grid-cols-1 gap-2 pt-0.5 text-xs font-sans">
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-paper border border-paper-border/60">
-                  <span className="text-accent-clay font-mono text-xs mt-0.5">🛑</span>
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
+                  <span className="font-mono text-[10px] text-accent-clay mt-0.5 font-semibold">01</span>
                   <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-accent-clay block">
+                    <span className="font-mono text-[10px] uppercase font-semibold text-ink block">
                       Broken Deployment
                     </span>
-                    <span className="text-ink-light text-[11px] font-light">
+                    <span className="text-ink-muted text-[11px] font-light">
                       Failing Vercel build loops &amp; unpinned Docker base images.
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-paper border border-paper-border/60">
-                  <span className="text-amber-700 font-mono text-xs mt-0.5">⚠️</span>
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
+                  <span className="font-mono text-[10px] text-atelier-brass mt-0.5 font-semibold">02</span>
                   <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-amber-700 block">
+                    <span className="font-mono text-[10px] uppercase font-semibold text-ink block">
                       Zero Documentation
                     </span>
-                    <span className="text-ink-light text-[11px] font-light">
+                    <span className="text-ink-muted text-[11px] font-light">
                       Previous agency left no schema maps, API keys, or runbooks.
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-paper border border-paper-border/60">
-                  <span className="text-emerald-700 font-mono text-xs mt-0.5">✦</span>
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-paper border border-paper-border">
+                  <span className="font-mono text-[10px] text-atelier-indigo mt-0.5 font-semibold">03</span>
                   <div>
-                    <span className="font-mono text-[10px] uppercase font-semibold text-emerald-700 block">
+                    <span className="font-mono text-[10px] uppercase font-semibold text-atelier-indigo block">
                       Latent Protocol
                     </span>
-                    <span className="text-ink-light text-[11px] font-light">
+                    <span className="text-ink-muted text-[11px] font-light">
                       Senior takeover: quarantine entropy, pin dependencies &amp; ship stable release.
                     </span>
                   </div>
@@ -389,7 +389,7 @@ export function Capabilities() {
               </div>
 
               {/* Handwritten Marginalia Annotation */}
-              <div className="pt-2 border-t border-paper-border/70 flex items-center justify-between">
+              <div className="pt-2 border-t border-paper-border flex items-center justify-between">
                 <span className="font-hand text-base text-accent-clay">
                   ← Handled 14 broken repos in 2026. Zero rebuilds needed.
                 </span>
@@ -399,7 +399,7 @@ export function Capabilities() {
               </div>
             </div>
 
-            <p className="font-sans text-xs text-ink-muted font-light leading-relaxed">
+            <p className="font-sans text-xs text-ink-muted font-light max-w-[65ch] leading-[1.6]">
               Abandoned repositories, unfinished SaaS, and undocumented AI prototypes. Give us the repo artifact; we establish sanity and finish it.
             </p>
           </div>
