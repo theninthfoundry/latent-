@@ -15,7 +15,7 @@ interface SplitCTAButtonProps {
 
 export function SplitCTAButton({
   label = "Start a Project",
-  href = "mailto:inquiries@latent.studio",
+  href = "mailto:inquiries@latent.labs",
   size = "default",
   className = "",
 }: SplitCTAButtonProps) {
