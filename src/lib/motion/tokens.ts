@@ -8,17 +8,17 @@
  */
 
 export const DURATION = {
-  instant: 0.1,    // Immediate feedback (active presses, tiny shifts)
-  fast: 0.24,       // Microinteractions, button transitions, hover states
-  standard: 0.45,   // UI element reveals, state transitions, focus shifts
-  slow: 0.8,        // Editorial text reveals, large component entrance
-  cinematic: 1.2,   // Section continuum, welcome wake-up morph
+  instant: 0.5,    // Nothing too fast, unhurried
+  fast: 0.6,       // Microinteractions
+  standard: 0.7,   // UI element reveals
+  slow: 0.8,       // Editorial text reveals
+  cinematic: 0.9,  // Section continuum
 } as const;
 
 export const DELAY = {
-  staggerFast: 0.04,
-  staggerStandard: 0.08,
-  staggerSlow: 0.14,
+  staggerFast: 0.06,
+  staggerStandard: 0.06,
+  staggerSlow: 0.06,
 } as const;
 
 export const DEPTH_LAYER = {
