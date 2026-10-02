@@ -2,30 +2,26 @@
  * LATENT Labs Apple-Inspired Cubic-Bezier Curves & Physics
  */
 
-// Apple-inspired smooth deceleration: swift initial movement, prolonged natural settling
-export const spatialEase = [0.16, 1, 0.3, 1] as const;
-
-// Cinematic S-curve for continuous section pacing
-export const cinematicEase = [0.65, 0, 0.35, 1] as const;
-
-// Subtle Apple typographic morph curve (blur, scale, opacity blend)
-export const appleMorph = [0.4, 0, 0.2, 1] as const;
-
-// Curtain lift and departure curve
-export const exitEase = [0.76, 0, 0.24, 1] as const;
+// Unhurried easing: cubic-bezier(0.22, 1, 0.36, 1)
+export const spatialEase = [0.22, 1, 0.36, 1] as const;
+export const cinematicEase = [0.22, 1, 0.36, 1] as const;
+export const appleMorph = [0.22, 1, 0.36, 1] as const;
+export const exitEase = [0.22, 1, 0.36, 1] as const;
 
 // Restrained spring configuration for physical microinteractions (zero bounce, tactile settling)
 export const tactileSpring = {
   type: "spring",
   stiffness: 280,
-  damping: 26,
-  mass: 0.8,
+  damping: 40,
+  mass: 1,
+  bounce: 0,
 } as const;
 
-// Magnetic pull spring
+// Magnetic pull spring (unhurried)
 export const magneticSpring = {
   type: "spring",
-  stiffness: 180,
-  damping: 18,
-  mass: 0.1,
+  stiffness: 150,
+  damping: 30,
+  mass: 1,
+  bounce: 0,
 } as const;
