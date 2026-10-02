@@ -4,17 +4,64 @@
 
 @layer base {
   :root {
-    --paper: #F7F6F2;
-    --paper-subtle: #EFECE6;
+    /* ─── Neutral Ramp (Archival Paper & Warm Ink) ─── */
+    --paper: #F9F8F5;
+    --paper-subtle: #F2EFE9;
+    --paper-card: #FFFFFF;
+    --paper-border: rgba(23, 21, 15, 0.09);
+    --paper-border-hover: rgba(23, 21, 15, 0.22);
+    --paper-darker: #E7E3D9;
+
     --ink: #17150F;
     --ink-light: #2E2A23;
-    --muted-ink: #78736A;
-    --paper-border: #E2DFD7;
+    --ink-muted: #666159; /* WCAG AA 4.6:1+ on paper */
+    --ink-faint: #918C83;
+
+    /* ─── Restrained Accent Ramp (Warm Terracotta & Atelier Brass) ─── */
+    --accent: #9A4C2E;
+    --accent-clay: #9A4C2E; /* WCAG AA 4.8:1+ on paper */
+    --accent-clay-subtle: rgba(154, 76, 46, 0.08);
+    --accent-gold: #8C6F3E;
+    --accent-inkblue: #1B2B3A;
+
+    --atelier-indigo: #14283E;
+    --atelier-brass: #856933; /* WCAG AA 4.7:1+ on paper */
+    --atelier-faded: #3D5A6E;
+    --atelier-rose: #9C5852;
+    --atelier-bone: #F2EEE5;
+    --atelier-paper: #FAF8F2;
+
+    /* ─── Surfaces & Shadows (Layered, Soft, Restrained) ─── */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-full: 9999px;
+
+    --shadow-subtle: 0 1px 2px rgba(23, 21, 15, 0.03), 0 4px 12px rgba(23, 21, 15, 0.02);
+    --shadow-card: 0 2px 6px rgba(23, 21, 15, 0.03), 0 16px 36px -6px rgba(23, 21, 15, 0.05);
+    --shadow-float: 0 4px 12px rgba(23, 21, 15, 0.04), 0 24px 48px -8px rgba(23, 21, 15, 0.08);
+
+    /* ─── Spacing Rhythm Scale (8px Modular Grid) ─── */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+    --space-16: 128px;
+
+    /* ─── Focus System ─── */
+    --focus-ring: 2px solid #17150F;
+    --focus-ring-offset: 2px;
   }
 
   html {
     background-color: var(--paper);
     color: var(--ink);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
   }
 
   /* Lenis recommended styling */
@@ -47,6 +94,25 @@
     background-color: var(--ink);
     color: var(--paper);
   }
+
+  /* Global Keyboard Focus States */
+  :focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 /* Enforce native browser pointer across the studio */
@@ -62,6 +128,12 @@ input[type="text"], input[type="email"], textarea {
   cursor: text !important;
 }
 
+/* Editorial Body Measure & Leading */
+.measure-prose {
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
 /* Editorial hairline rule */
 .editorial-rule {
   height: 1px;
@@ -69,51 +141,52 @@ input[type="text"], input[type="email"], textarea {
   width: 100%;
 }
 
-/* Mixed Media: Washi tape effect */
+/* Mixed Media: Washi tape effect (Restrained & Architectural) */
 .washi-tape {
   position: absolute;
-  height: 20px;
-  width: 80px;
-  background-color: rgba(226, 223, 215, 0.65);
+  height: 18px;
+  width: 72px;
+  background-color: rgba(235, 231, 222, 0.7);
   backdrop-filter: blur(2px);
-  border-left: 2px dashed rgba(200, 195, 185, 0.7);
-  border-right: 2px dashed rgba(200, 195, 185, 0.7);
-  box-shadow: 0 1px 2px rgba(23, 21, 15, 0.04);
-  transform: rotate(-3deg);
+  border-left: 1.5px dashed rgba(185, 180, 170, 0.6);
+  border-right: 1.5px dashed rgba(185, 180, 170, 0.6);
+  box-shadow: 0 1px 2px rgba(23, 21, 15, 0.03);
+  transform: rotate(-2.5deg);
   z-index: 20;
 }
 
 /* Custom subtle paper scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F6F2;
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D8D4C9;
+  background: #D4D0C5;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B5B0A2;
+  background: #B8B3A6;
 }
 
 /* Atelier Craft Utilities: Indian Cultural Memory & Digital Matter */
 .jaali-grid {
-  background-image: radial-gradient(rgba(20, 44, 72, 0.12) 1px, transparent 0);
+  background-image: radial-gradient(rgba(20, 40, 62, 0.08) 1px, transparent 0);
   background-size: 16px 16px;
 }
 
 .jaali-grid-dense {
-  background-image: radial-gradient(rgba(20, 44, 72, 0.16) 1.2px, transparent 0);
+  background-image: radial-gradient(rgba(20, 40, 62, 0.12) 1.2px, transparent 0);
   background-size: 8px 8px;
 }
 
 .cross-stitch-pattern {
   background-image: 
-    linear-gradient(to right, rgba(20, 44, 72, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(20, 44, 72, 0.06) 1px, transparent 1px);
-  background-size: 14px 14px;
+    linear-gradient(to right, rgba(20, 40, 62, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 40, 62, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 .textile-stitch-x {
