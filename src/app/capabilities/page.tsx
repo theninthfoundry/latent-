@@ -15,6 +15,7 @@ export default function CapabilitiesPage() {
   return (
     <main id="main-content" className="relative min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper font-sans">
       <Navbar />
+      <h1 className="sr-only">Capabilities</h1>
 
       <div className="pt-16 sm:pt-20">
         <Capabilities />
