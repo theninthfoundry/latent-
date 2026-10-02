@@ -246,9 +246,9 @@ export function TheTable() {
   const [activeMaterial, setActiveMaterial] = useState(MATERIALS[0]);
 
   return (
-    <section className="relative pt-12 sm:pt-14 pb-14 sm:pb-16 px-6 sm:px-12 lg:px-20 max-w-[1500px] mx-auto border-t border-paper-border overflow-hidden">
+    <section className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto border-t border-paper-border overflow-hidden">
       {/* Studio Table Material Watermark 01: Authentic Royal Carpet Tapestry with restrained parallax */}
-      <ParallaxLayer offset={16} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.12] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
+      <ParallaxLayer offset={14} direction="up" className="absolute -top-10 -right-16 w-80 h-72 pointer-events-none select-none opacity-[0.08] mix-blend-multiply -rotate-6 overflow-hidden rounded-2xl z-0">
         <img
           src="/artifacts/atelier/carpet-border.jpg"
           onError={(e) => {
@@ -260,7 +260,7 @@ export function TheTable() {
       </ParallaxLayer>
 
       {/* Studio Table Material Watermark 02: Authentic Celestial Sun Specimen with restrained parallax */}
-      <ParallaxLayer offset={18} direction="down" className="absolute bottom-10 -left-20 w-[440px] h-[440px] pointer-events-none select-none opacity-[0.09] mix-blend-multiply rotate-45 overflow-hidden z-0">
+      <ParallaxLayer offset={16} direction="down" className="absolute bottom-10 -left-20 w-[440px] h-[440px] pointer-events-none select-none opacity-[0.06] mix-blend-multiply rotate-45 overflow-hidden z-0">
         <img
           src="/artifacts/atelier/celestial-sun.jpg"
           onError={(e) => {
@@ -272,33 +272,33 @@ export function TheTable() {
       </ParallaxLayer>
 
       {/* Editorial Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 sm:mb-10 border-b border-paper-border pb-6 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-1.5 block">
+          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
             § 03 // Materials &bull; The Atelier Desk
           </span>
-          <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ink">
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink">
             The Studio Table.
           </h2>
         </div>
-        <p className="font-sans text-sm text-ink-muted max-w-md font-light leading-relaxed">
+        <p className="font-sans text-sm text-ink-muted max-w-[65ch] font-light leading-[1.6]">
           We move comfortably between disciplines. Inspect the actual raw
           materials, prints, textiles, and optical specimens we bring to the desk every morning.
         </p>
       </div>
 
       {/* Materials Selector Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 mb-8 sm:mb-10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3 mb-10 sm:mb-12">
         {MATERIALS.map((mat) => {
           const isSelected = activeMaterial.id === mat.id;
           return (
             <button
               key={mat.id}
               onClick={() => setActiveMaterial(mat)}
-              className={`p-3.5 rounded-xl text-left transition-all duration-200 border flex flex-col justify-between h-24 ${
+              className={`p-3.5 rounded-xl text-left transition-all duration-200 border flex flex-col justify-between h-22 sm:h-24 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
                 isSelected
-                  ? "bg-ink text-paper border-ink shadow-sm"
-                  : "bg-paper-card text-ink border-paper-border hover:border-ink/40"
+                  ? "bg-ink text-paper border-ink shadow-card"
+                  : "bg-paper-card text-ink border-paper-border hover:border-ink/40 shadow-subtle"
               }`}
             >
               <span
@@ -308,7 +308,7 @@ export function TheTable() {
               >
                 {mat.type.split(" ")[0]}
               </span>
-              <span className="font-serif text-base font-normal">{mat.name}</span>
+              <span className="font-serif text-base font-normal tracking-tight">{mat.name}</span>
             </button>
           );
         })}
@@ -318,11 +318,11 @@ export function TheTable() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left: Metadata & Studio Note */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-8 rounded-3xl bg-paper-card border border-paper-border shadow-2xs">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted block mb-2">
+          <div className="p-7 sm:p-8 rounded-2xl bg-paper-card border border-paper-border shadow-card">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted block mb-2">
               Material // {activeMaterial.name}
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-light text-ink mb-2">
+            <h3 className="font-serif text-2xl sm:text-3xl font-light text-ink tracking-tight mb-2">
               {activeMaterial.subtitle}
             </h3>
             <p className="font-mono text-xs text-ink-muted uppercase tracking-wider mb-6">
@@ -334,7 +334,7 @@ export function TheTable() {
               <span className="font-mono text-[10px] uppercase text-ink-muted tracking-widest block mb-1">
                 Studio Reflection:
               </span>
-              <p className="font-hand text-2xl text-accent-clay leading-relaxed">
+              <p className="font-hand text-xl sm:text-2xl text-accent-clay leading-relaxed">
                 {activeMaterial.note}
               </p>
             </div>
@@ -349,7 +349,7 @@ export function TheTable() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
               {activeMaterial.renderArtifact()}
             </motion.div>
