@@ -59,7 +59,7 @@ export function LatentFixModal({ isOpen, onClose }: LatentFixModalProps) {
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 p-2 text-ink-muted hover:text-ink hover:bg-paper-subtle transition-colors rounded-full focus:outline-none"
+              className="absolute top-6 right-6 p-2 text-ink-muted hover:text-ink hover:bg-paper-subtle transition-colors rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -69,8 +69,8 @@ export function LatentFixModal({ isOpen, onClose }: LatentFixModalProps) {
               <div className="space-y-6 pt-2">
                 {/* Docket Rubber Stamp Header */}
                 <div className="flex items-center justify-between border-b border-paper-border pb-3">
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border border-accent-clay/40 bg-accent-clay/5 font-mono text-[9px] uppercase tracking-widest text-accent-clay font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-clay animate-pulse" />
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border border-accent-clay/30 bg-accent-clay-subtle font-mono text-[9px] uppercase tracking-widest text-accent-clay font-medium">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-clay" />
                     <span>LATENT // EMERGENCY DISPATCH DOCKET № 2026</span>
                   </div>
                   <span className="font-mono text-[10px] text-ink-muted tracking-widest hidden sm:inline">
@@ -87,7 +87,7 @@ export function LatentFixModal({ isOpen, onClose }: LatentFixModalProps) {
                     </span>
                     ? <br />
                     Send it to the{" "}
-                    <span className="italic font-normal text-atelier-indigo underline decoration-atelier-brass/60 underline-offset-4">
+                    <span className="italic font-normal text-atelier-indigo underline decoration-paper-border underline-offset-4">
                       atelier
                     </span>
                     .
@@ -102,60 +102,63 @@ export function LatentFixModal({ isOpen, onClose }: LatentFixModalProps) {
                 {/* Dispatch Form */}
                 <form onSubmit={handleSubmit} className="space-y-4 pt-1">
                   <div>
-                    <label className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
+                    <label htmlFor="fix-what-happened" className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
                       <span>01 // What happened?</span>
                       <span className="text-accent-clay font-medium">* Required</span>
                     </label>
                     <textarea
+                      id="fix-what-happened"
                       rows={3}
                       required
                       autoFocus
                       placeholder="e.g. Mobile navigation collapses below 768px, checkout throws 500 on iOS Safari, or deployment failing on Vercel..."
                       value={whatHappened}
                       onChange={(e) => setWhatHappened(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-paper-card border border-paper-border font-sans text-xs sm:text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:border-atelier-indigo focus:ring-1 focus:ring-atelier-indigo resize-none leading-relaxed transition-all shadow-2xs"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-paper-card border border-paper-border font-sans text-xs sm:text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:border-ink resize-none leading-relaxed transition-colors shadow-subtle"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
+                      <label htmlFor="fix-target-system" className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
                         02 // Target URL or Repo
                       </label>
                       <input
+                        id="fix-target-system"
                         type="text"
                         placeholder="https://... or github.com/..."
                         value={targetSystem}
                         onChange={(e) => setTargetSystem(e.target.value)}
-                        className="w-full h-10 px-3.5 rounded-xl bg-paper-card border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus:border-atelier-indigo focus:ring-1 focus:ring-atelier-indigo transition-all shadow-2xs"
+                        className="w-full h-10 px-3.5 rounded-xl bg-paper-card border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:border-ink transition-colors shadow-subtle"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
+                      <label htmlFor="fix-contact-email" className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
                         03 // Your Email
                       </label>
                       <input
+                        id="fix-contact-email"
                         type="email"
                         required
                         placeholder="founder@company.com"
                         value={contactEmail}
                         onChange={(e) => setContactEmail(e.target.value)}
-                        className="w-full h-10 px-3.5 rounded-xl bg-paper-card border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus:border-atelier-indigo focus:ring-1 focus:ring-atelier-indigo transition-all shadow-2xs"
+                        className="w-full h-10 px-3.5 rounded-xl bg-paper-card border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:border-ink transition-colors shadow-subtle"
                       />
                     </div>
                   </div>
 
                   {/* Submission Action */}
-                  <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-paper-border/80">
+                  <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-paper-border">
                     <div className="font-mono text-[10px] text-ink-muted flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                      <span>Direct intake: <strong className="text-ink">fix@latent.studio</strong></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
+                      <span>Direct intake: <strong className="text-ink">fix@latent.labs</strong></span>
                     </div>
 
                     <button
                       type="submit"
-                      className="group h-11 px-6 rounded-full bg-atelier-indigo text-paper font-mono text-xs uppercase tracking-wider hover:bg-ink transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.98]"
+                      className="group h-10 px-6 rounded-full bg-atelier-indigo text-paper font-mono text-xs uppercase tracking-wider hover:bg-ink transition-all flex items-center justify-center gap-2 shadow-subtle hover:shadow-card active:scale-[0.98] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
                     >
                       <span className="font-semibold">Dispatch Signal</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
