@@ -72,11 +72,24 @@ export const metadata: Metadata = {
     siteName: "LATENT Labs",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LATENT Labs — A Laboratory for What Comes Next",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "LATENT — A Laboratory for What Comes Next",
     description: "We make new things feel inevitable.",
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   alternates: {
     canonical: siteUrl,
