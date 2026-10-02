@@ -23,17 +23,17 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-10 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto overflow-hidden"
+      className="relative flex flex-col pt-28 sm:pt-36 pb-20 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto overflow-hidden"
     >
       <motion.div
         style={shouldReduceMotion ? {} : { opacity: heroOpacity, y: heroY }}
-        className="relative w-full flex-1 flex flex-col justify-center z-10"
+        className="relative w-full flex-1 flex flex-col z-10"
       >
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
           transition={{ duration: 0.6, ease: cinematicEase, delay: 0.1 }}
-          className="mb-8 font-mono text-[10px] text-ink-muted tracking-wider uppercase flex items-center gap-2"
+          className="mb-4 sm:mb-6 font-mono text-[10px] text-ink-muted tracking-wider uppercase flex items-center gap-2"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
           2 slots open
