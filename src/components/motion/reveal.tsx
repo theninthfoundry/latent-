@@ -1,62 +1,79 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { spatialEase } from "@/lib/motion/easings";
+import { DURATION } from "@/lib/motion/tokens";
 
 export function Reveal({
   children,
   delay = 0,
   y = 24,
-  duration = 0.9,
+  duration = DURATION.slow,
   className = "",
+  stagger = false,
 }: {
   children: React.ReactNode;
   delay?: number;
   y?: number;
   duration?: number;
   className?: string;
+  stagger?: boolean;
 }) {
+  const shouldReduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
+  if (shouldReduceMotion) {
+    return (
+      <div ref={ref} className={className}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {children}
+        </motion.div>
+      </div>
+    );
+  }
 
-    const el = ref.current;
-    if (!el) return;
-
-    // Check for prefers-reduced-motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(el, { opacity: 1, y: 0 });
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y },
-        {
-          opacity: 1,
-          y: 0,
-          duration,
-          delay,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            once: true,
+  if (stagger) {
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.06,
+              delayChildren: delay,
+            },
           },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, [delay, y, duration]);
+        }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
     <div ref={ref} className={className}>
-      {children}
+      <motion.div
+        initial={{ opacity: 0, y }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+        transition={{
+          duration,
+          delay,
+          ease: spatialEase,
+        }}
+        className="will-change-transform"
+      >
+        {children}
+      </motion.div>
     </div>
   );
 }
