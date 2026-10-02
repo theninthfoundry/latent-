@@ -26,7 +26,7 @@ export function TextReveal({
 }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
+  const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
 
   if (shouldReduceMotion) {
     return <Component className={className}>{children}</Component>;
@@ -37,8 +37,8 @@ export function TextReveal({
     <Component ref={containerRef as any} className={`overflow-hidden ${className}`}>
       <motion.span
         className="block will-change-transform"
-        initial={{ y: "105%", opacity: 0 }}
-        animate={isInView ? { y: "0%", opacity: 1 } : { y: "105%", opacity: 0 }}
+        initial={{ y: "100%", opacity: 0 }}
+        animate={isInView ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
         transition={{
           duration,
           delay,
@@ -69,7 +69,7 @@ export function ImageReveal({
 }: ImageRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
+  const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -80,14 +80,13 @@ export function ImageReveal({
       <motion.div
         className="w-full h-full will-change-transform"
         initial={{
-          clipPath: "inset(8% 0% 8% 0%)",
           opacity: 0,
           scale: 1.04,
         }}
         animate={
           isInView
-            ? { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, scale: 1 }
-            : { clipPath: "inset(8% 0% 8% 0%)", opacity: 0, scale: 1.04 }
+            ? { opacity: 1, scale: 1 }
+            : { opacity: 0, scale: 1.04 }
         }
         transition={{
           duration,
