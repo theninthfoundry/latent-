@@ -139,22 +139,22 @@ export function DiagnosticEngine() {
   };
 
   return (
-    <div id="audit" className="w-full max-w-5xl mx-auto my-12 sm:my-16 space-y-8">
+    <div id="audit" className="w-full max-w-5xl mx-auto my-10 sm:my-14 space-y-8">
       {/* Editorial Header with Mixed Typography */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-paper-border/70">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-paper-border">
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
             <span>§ 06 // LATENT DIAGNOSTIC &bull; TELEMETRY MONOGRAPH</span>
           </div>
-          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight">
+          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-[-0.03em]">
             We find what{" "}
-            <span className="italic font-normal text-accent-clay underline decoration-atelier-brass/60 underline-offset-4">
+            <span className="italic font-normal text-accent-clay underline decoration-paper-border underline-offset-4">
               isn&apos;t working
             </span>
             .
           </h3>
-          <p className="font-sans text-xs sm:text-sm text-ink-muted font-light max-w-xl leading-relaxed">
+          <p className="font-sans text-xs sm:text-sm text-ink-muted font-light max-w-[65ch] leading-[1.6]">
             Not marketing fluff or generic Lighthouse scores. An unvarnished technical inspection of{" "}
             <span className="font-mono text-xs bg-paper-subtle px-1.5 py-0.5 rounded border border-paper-border text-ink">
               runtime friction
@@ -164,12 +164,12 @@ export function DiagnosticEngine() {
         </div>
 
         {/* View Mode Switcher */}
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-paper-card border border-atelier-brass/40 font-mono text-[10px] uppercase tracking-wider shadow-2xs">
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-paper-card border border-paper-border font-mono text-[10px] uppercase tracking-wider shadow-subtle shrink-0">
           <button
             onClick={() => setActiveTab("specimens")}
-            className={`px-4 py-1.5 rounded-full transition-all ${
+            className={`px-4 py-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
               activeTab === "specimens"
-                ? "bg-atelier-indigo text-paper font-semibold shadow-xs"
+                ? "bg-atelier-indigo text-paper font-semibold shadow-subtle"
                 : "text-ink-muted hover:text-ink"
             }`}
           >
@@ -177,9 +177,9 @@ export function DiagnosticEngine() {
           </button>
           <button
             onClick={() => setActiveTab("live")}
-            className={`px-4 py-1.5 rounded-full transition-all ${
+            className={`px-4 py-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
               activeTab === "live"
-                ? "bg-atelier-indigo text-paper font-semibold shadow-xs"
+                ? "bg-atelier-indigo text-paper font-semibold shadow-subtle"
                 : "text-ink-muted hover:text-ink"
             }`}
           >
@@ -200,14 +200,14 @@ export function DiagnosticEngine() {
               <button
                 key={specimen.id}
                 onClick={() => setSelectedSpecimen(specimen)}
-                className={`px-3.5 py-2 rounded-xl border font-mono text-xs transition-all flex items-center gap-2 ${
+                className={`px-3.5 py-2 rounded-xl border font-mono text-xs transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
                   selectedSpecimen.id === specimen.id
-                    ? "bg-ink text-paper border-ink shadow-sm ring-1 ring-atelier-brass/50"
+                    ? "bg-ink text-paper border-ink shadow-subtle"
                     : "bg-paper text-ink-light border-paper-border hover:border-ink/40"
                 }`}
               >
                 <span className="font-medium">{specimen.name.split(" ")[0]}</span>
-                <span className={`text-[10px] ${selectedSpecimen.id === specimen.id ? "text-atelier-brass" : "text-ink-muted"}`}>
+                <span className={`text-[10px] ${selectedSpecimen.id === specimen.id ? "text-paper/70" : "text-ink-muted"}`}>
                   ({specimen.category})
                 </span>
               </button>
@@ -223,20 +223,22 @@ export function DiagnosticEngine() {
             <div className="space-y-6">
               {/* Prominent Health Status Header Banner */}
               <div
-                className={`p-3.5 sm:p-4 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                className={`p-3.5 sm:p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                   selectedSpecimen.verdict === "sound"
-                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-900"
+                    ? "bg-paper border-emerald-700/30 text-ink"
                     : selectedSpecimen.verdict === "evolve"
-                    ? "bg-amber-500/10 border-amber-500/30 text-amber-900"
-                    : "bg-accent-clay/10 border-accent-clay/30 text-accent-clay"
+                    ? "bg-paper border-atelier-brass/40 text-ink"
+                    : "bg-paper border-accent-clay/40 text-ink"
                 }`}
               >
-                <div className="flex items-center gap-2.5 font-mono text-xs font-bold tracking-wider uppercase">
+                <div className="flex items-center gap-2.5 font-mono text-xs font-semibold tracking-wider uppercase">
                   <span
-                    className={`w-2 h-2 rounded-full ${
+                    className={`w-2 h-2 rounded-full shrink-0 ${
                       selectedSpecimen.verdict === "sound"
-                        ? "bg-emerald-600"
-                        : "bg-accent-clay animate-pulse"
+                        ? "bg-emerald-700"
+                        : selectedSpecimen.verdict === "evolve"
+                        ? "bg-atelier-brass"
+                        : "bg-accent-clay"
                     }`}
                   />
                   <span>{selectedSpecimen.statusBadge}</span>
@@ -395,56 +397,58 @@ export function DiagnosticEngine() {
         </div>
       ) : (
         /* 02 — Request a Live System Audit */
-        <div className="p-8 sm:p-12 rounded-3xl bg-paper-card border border-atelier-brass/50 space-y-6 shadow-sm">
+        <div className="p-7 sm:p-10 rounded-2xl bg-paper-card border border-paper-border space-y-6 shadow-card">
           {!liveRequested ? (
             <form onSubmit={handleLiveSubmit} className="space-y-5 max-w-xl">
               <div className="space-y-2">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-atelier-brass font-semibold block">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted font-medium block">
                   COMMISSION SYSTEM TELEMETRY INSPECTION
                 </span>
-                <h4 className="font-serif text-3xl font-light text-ink">
+                <h4 className="font-serif text-2xl sm:text-3xl font-light text-ink tracking-tight">
                   Connect your project to the atelier.
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-ink-muted leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-ink-muted leading-[1.6] max-w-[60ch]">
                   Provide your production URL or repository. Latent engineers review code entropy, mobile runtime performance, and security headers, returning a formal Latent Report within 48 hours.
                 </p>
-                <div className="font-hand text-base text-accent-clay pt-1">
+                <div className="font-hand text-base sm:text-lg text-accent-clay pt-1">
                   ← We inspect the real code, not generic bot scans.
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
+                <label htmlFor="diag-live-url" className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5 font-medium">
                   Production URL or GitHub Repository
                 </label>
                 <input
+                  id="diag-live-url"
                   type="text"
                   required
                   placeholder="https://yourproduct.com or github.com/org/repo"
                   value={liveUrl}
                   onChange={(e) => setLiveUrl(e.target.value)}
-                  className="w-full h-11 px-3.5 rounded-xl bg-paper border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus:border-atelier-indigo focus:ring-1 focus:ring-atelier-indigo shadow-2xs"
+                  className="w-full h-11 px-3.5 rounded-xl bg-paper border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:border-ink transition-colors shadow-subtle"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5">
+                <label htmlFor="diag-live-email" className="block font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-1.5 font-medium">
                   Where should we dispatch the report?
                 </label>
                 <input
+                  id="diag-live-email"
                   type="email"
                   required
                   placeholder="founder@company.com"
                   value={liveEmail}
                   onChange={(e) => setLiveEmail(e.target.value)}
-                  className="w-full h-11 px-3.5 rounded-xl bg-paper border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus:border-atelier-indigo focus:ring-1 focus:ring-atelier-indigo shadow-2xs"
+                  className="w-full h-11 px-3.5 rounded-xl bg-paper border border-paper-border font-mono text-xs text-ink placeholder:text-ink-muted/50 focus:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:border-ink transition-colors shadow-subtle"
                 />
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-full bg-atelier-indigo text-paper font-mono text-xs uppercase tracking-wider hover:bg-ink transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
+                  className="px-6 py-3 rounded-full bg-atelier-indigo text-paper font-mono text-xs uppercase tracking-wider hover:bg-ink transition-all flex items-center gap-2 shadow-subtle hover:shadow-card focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink"
                 >
                   <span className="font-semibold">Request Live Telemetry Audit</span>
                   <Send className="w-3.5 h-3.5" />

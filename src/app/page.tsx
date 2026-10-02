@@ -45,7 +45,7 @@ export default function Home() {
         <Capabilities />
 
         {/* 05 — The Digital Diagnostic Engine (Telemetry Inspection & Report) */}
-        <section className="px-6 sm:px-12 lg:px-20 max-w-[1600px] mx-auto pb-16">
+        <section className="px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto py-8 sm:py-12">
           <DiagnosticEngine />
         </section>
 
