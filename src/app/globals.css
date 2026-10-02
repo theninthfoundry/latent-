@@ -14,19 +14,19 @@
 
     --ink: #17150F;
     --ink-light: #2E2A23;
-    --ink-muted: #666159; /* WCAG AA 4.6:1+ on paper */
+    --ink-muted: #534F49; /* WCAG AA 4.6:1+ on paper */
     --ink-faint: #918C83;
 
     /* ─── Restrained Accent Ramp (Warm Terracotta & Atelier Brass) ─── */
     --accent: #9A4C2E;
-    --accent-clay: #9A4C2E; /* WCAG AA 4.8:1+ on paper */
+    --accent-clay: #803D24; /* WCAG AA 4.8:1+ on paper */
     --accent-clay-subtle: rgba(154, 76, 46, 0.08);
     --accent-gold: #8C6F3E;
     --accent-inkblue: #1B2B3A;
 
     --atelier-indigo: #14283E;
-    --atelier-brass: #856933; /* WCAG AA 4.7:1+ on paper */
-    --atelier-faded: #3D5A6E;
+    --atelier-brass: #6A5328; /* WCAG AA 4.7:1+ on paper */
+    --atelier-faded: #324B5C;
     --atelier-rose: #9C5852;
     --atelier-bone: #F2EEE5;
     --atelier-paper: #FAF8F2;
@@ -97,9 +97,10 @@
 
   /* Global Keyboard Focus States */
   :focus-visible {
-    outline: var(--focus-ring);
-    outline-offset: var(--focus-ring-offset);
+    outline: var(--focus-ring) !important;
+    outline-offset: var(--focus-ring-offset) !important;
     border-radius: var(--radius-sm);
+    box-shadow: none !important;
   }
 
   /* Respect prefers-reduced-motion */
@@ -130,8 +131,16 @@ input[type="text"], input[type="email"], textarea {
 
 /* Editorial Body Measure & Leading */
 .measure-prose {
-  max-width: 65ch;
+  max-width: 62ch;
   line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  text-wrap: balance;
+}
+
+p, .font-sans {
+  text-wrap: pretty;
 }
 
 /* Editorial hairline rule */
@@ -139,6 +148,28 @@ input[type="text"], input[type="email"], textarea {
   height: 1px;
   background-color: var(--paper-border);
   width: 100%;
+}
+
+/* Link left-to-right animated underline */
+a:not([class*="btn"]):not([class*="button"]):not([class*="group"]):not(.no-underline) {
+  position: relative;
+  text-decoration: none;
+}
+a:not([class*="btn"]):not([class*="button"]):not([class*="group"]):not(.no-underline)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+a:not([class*="btn"]):not([class*="button"]):not([class*="group"]):not(.no-underline):hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 /* Mixed Media: Washi tape effect (Restrained & Architectural) */
