@@ -243,138 +243,137 @@ export function DiagnosticEngine() {
           </div>
 
           {/* The Master Diagnostic Document (Right) */}
-          <div className="flex-1 w-full bg-[#FAF9F5] border-[0.5px] border-ink/20 p-8 sm:p-12 shadow-sm relative overflow-hidden">
-            <div className="space-y-12">
-              
-              <div className="border-b-[0.5px] border-ink/15 pb-4 mb-8">
-                <span className="font-serif text-3xl font-light text-ink block tracking-tight">Technical Telemetry</span>
-                <span className="font-mono text-[10px] text-ink/60 uppercase tracking-widest mt-2 block">Score Rows / Diagnostic Output</span>
-              </div>
-
-              {/* Score Rows with Animated Bars */}
+          <div className="flex-1 min-w-0">
+            <CarpetFrame
+              variant="brass"
+              title={`LATENT REPORT / 001 // ${selectedSpecimen.url.toUpperCase()}`}
+              tag={selectedSpecimen.verdictLabel}
+              className="w-full"
+            >
               <div className="space-y-6">
-                {[
-                  {
-                    title: "01. Runtime Speed",
-                    val: selectedSpecimen.scores.speed.val,
-                    note: selectedSpecimen.scores.speed.note,
-                  },
-                  {
-                    title: "02. Mobile Conversion",
-                    val: selectedSpecimen.scores.mobileUx.val,
-                    note: selectedSpecimen.scores.mobileUx.note,
-                  },
-                  {
-                    title: "03. Code & State Health",
-                    val: selectedSpecimen.scores.codeHealth.val,
-                    note: selectedSpecimen.scores.codeHealth.note,
-                  },
-                  {
-                    title: "04. Visual System",
-                    val: selectedSpecimen.scores.visualSystem.val,
-                    note: selectedSpecimen.scores.visualSystem.note,
-                  },
-                ].map((item) => {
-                  const isLow = item.val < 50;
-                  const isMed = item.val >= 50 && item.val < 80;
-                  const isHigh = item.val >= 80;
+                
+                {/* Top Alert Banner */}
+                <div className={`px-5 py-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                  selectedSpecimen.verdict === 'repair' ? 'bg-accent-clay/5 border-accent-clay/20 text-accent-clay' :
+                  selectedSpecimen.verdict === 'evolve' ? 'bg-amber-500/5 border-amber-500/20 text-amber-800' :
+                  'bg-emerald-500/5 border-emerald-500/20 text-emerald-800'
+                }`}>
+                  <div className="font-mono text-[11px] font-bold uppercase tracking-wider flex items-center">
+                    {selectedSpecimen.statusBadge}
+                  </div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest opacity-60">
+                    TARGET: <span className="font-semibold">{selectedSpecimen.url.toUpperCase()}</span>
+                  </div>
+                </div>
 
-                  return (
-                    <div key={item.title} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[0.5px] border-ink/10 pb-4">
-                      <div className="sm:w-1/3">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-ink block mb-1 font-bold">
-                          {item.title}
-                        </span>
-                        <span className="font-mono text-[9px] text-ink/70 truncate block pr-4">
+                {/* Scores Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {[
+                    { title: "01. Runtime Speed", val: selectedSpecimen.scores.speed.val, note: selectedSpecimen.scores.speed.note },
+                    { title: "02. Mobile Conversion", val: selectedSpecimen.scores.mobileUx.val, note: selectedSpecimen.scores.mobileUx.note },
+                    { title: "03. Code & State Health", val: selectedSpecimen.scores.codeHealth.val, note: selectedSpecimen.scores.codeHealth.note },
+                    { title: "04. Visual System", val: selectedSpecimen.scores.visualSystem.val, note: selectedSpecimen.scores.visualSystem.note },
+                  ].map((item) => {
+                    const isLow = item.val < 50;
+                    const isMed = item.val >= 50 && item.val < 80;
+                    
+                    const scoreColor = isLow ? "text-accent-clay" : isMed ? "text-amber-700" : "text-emerald-700";
+                    const barColor = isLow ? "bg-accent-clay" : isMed ? "bg-amber-700" : "bg-emerald-700";
+
+                    return (
+                      <div key={item.title} className="p-4 rounded-xl border border-paper-border/80 bg-white flex flex-col gap-3 shadow-sm">
+                        <div className="flex justify-between items-start">
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted max-w-[80px] leading-tight">
+                            {item.title}
+                          </span>
+                          <span className={`font-serif text-2xl font-semibold ${scoreColor}`}>
+                            {item.val}/100
+                          </span>
+                        </div>
+                        <div className="h-1.5 w-full bg-ink/5 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${item.val}%` }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className={`h-full rounded-full ${barColor}`}
+                          />
+                        </div>
+                        <span className="font-sans text-[11px] text-ink-muted">
                           {item.note}
                         </span>
                       </div>
-                      
-                      <div className="sm:w-2/3 flex items-center gap-4">
-                        <div className="flex-1 h-1 bg-ink/10 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${item.val}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-                            className={`h-full rounded-full ${
-                              isLow ? "bg-accent-clay" : isMed ? "bg-amber-700" : "bg-emerald-700"
-                            }`}
-                          />
-                        </div>
-                        <span
-                          className={`font-mono text-[11px] font-bold w-12 text-right ${
-                            isLow ? "text-accent-clay" : isMed ? "text-amber-800" : "text-emerald-800"
-                          }`}
-                        >
-                          {item.val}
-                        </span>
-                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Diagnostic Blocks */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <div className="p-5 rounded-2xl border border-accent-clay/20 bg-white space-y-3 shadow-sm">
+                    <div className="flex items-center gap-2 text-accent-clay font-mono text-[10px] uppercase tracking-widest font-bold">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>01 // The Breakdown</span>
                     </div>
-                  );
-                })}
-              </div>
-
-              {/* The Three Diagnostic Realities */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t-[0.5px] border-ink/15">
-                <div className="space-y-2">
-                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">01 / Observation</span>
-                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
-                    {selectedSpecimen.whatIsWrong}
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">02 / Consequence</span>
-                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
-                    {selectedSpecimen.whyItMatters}
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <span className="font-mono text-[10px] text-ink-muted uppercase tracking-widest block">03 / Action Plan</span>
-                  <p className="font-sans text-[11px] text-ink-muted leading-relaxed font-light text-pretty">
-                    {selectedSpecimen.whatShouldChange}
-                  </p>
-                </div>
-              </div>
-
-              {/* Handwritten Engineer Marginalia Note in Caveat */}
-              <div className="p-4 rounded border-[0.5px] border-ink/15 bg-white flex items-center justify-between">
-                <span className="font-hand text-lg text-accent-clay">
-                  {selectedSpecimen.handwrittenNote}
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink/50 hidden sm:inline">
-                  ATELIER NOTES
-                </span>
-              </div>
-
-              {/* Dignified Recommendation Action Footer */}
-              <div className="p-5 rounded bg-white border border-atelier-brass/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs shadow-sm">
-                <div>
-                  <span className="text-atelier-indigo uppercase tracking-widest block text-[9px] font-bold">
-                    Studio Finding // Action Protocol
-                  </span>
-                  <span className="font-serif text-xl text-ink font-normal">
-                    {selectedSpecimen.verdictLabel}
-                  </span>
-                </div>
-
-                {selectedSpecimen.verdict === "sound" ? (
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 font-mono text-[11px] font-semibold">
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Verified Sound Substrate &bull; Zero Action Required</span>
+                    <p className="font-sans text-[13px] text-ink/80 leading-relaxed text-pretty">
+                      {selectedSpecimen.whatIsWrong}
+                    </p>
                   </div>
-                ) : (
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-atelier-indigo text-paper text-[11px] uppercase tracking-wider hover:bg-ink transition-all shadow-xs hover:shadow-sm self-start sm:self-auto"
-                  >
-                    <span>Remediate with Latent</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
 
-            </div>
+                  <div className="p-5 rounded-2xl border border-amber-700/20 bg-white space-y-3 shadow-sm">
+                    <div className="flex items-center gap-2 text-amber-800 font-mono text-[10px] uppercase tracking-widest font-bold">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>02 // The Business Cost</span>
+                    </div>
+                    <p className="font-sans text-[13px] text-ink/80 leading-relaxed text-pretty">
+                      {selectedSpecimen.whyItMatters}
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl border border-atelier-indigo/20 bg-white space-y-3 shadow-sm">
+                    <div className="flex items-center gap-2 text-atelier-indigo font-mono text-[10px] uppercase tracking-widest font-bold">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>03 // Latent Prescription</span>
+                    </div>
+                    <p className="font-sans text-[13px] text-ink/80 leading-relaxed text-pretty">
+                      {selectedSpecimen.whatShouldChange}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Handwritten Note */}
+                <div className="px-5 py-4 rounded-xl bg-[#F0EBE1]/50 border border-paper-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <span className="font-hand text-lg text-accent-clay/90">
+                    &larr; {selectedSpecimen.handwrittenNote}
+                  </span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-ink/40 font-bold shrink-0">
+                    Atelier Notes
+                  </span>
+                </div>
+
+                {/* Footer Action */}
+                <div className="pt-2">
+                  <div className="px-6 py-4 rounded-xl border border-paper-border bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink">
+                      Studio Finding // Action Protocol
+                    </span>
+                    {selectedSpecimen.verdict === "sound" ? (
+                      <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 font-mono text-[11px] font-bold uppercase tracking-wider">
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Verified Sound</span>
+                      </div>
+                    ) : (
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-atelier-indigo text-paper font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-ink transition-all shadow-sm"
+                      >
+                        <span>Remediate with Latent</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            </CarpetFrame>
           </div>
         </div>
       ) : (
