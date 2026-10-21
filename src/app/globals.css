@@ -135,12 +135,16 @@ input[type="text"], input[type="email"], textarea {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6, .font-serif {
-  text-wrap: balance;
+@supports (text-wrap: balance) {
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    text-wrap: balance;
+  }
 }
 
-p, .font-sans {
-  text-wrap: pretty;
+@supports (text-wrap: pretty) {
+  p, .font-sans {
+    text-wrap: pretty;
+  }
 }
 
 /* Editorial hairline rule */
