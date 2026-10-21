@@ -28,6 +28,7 @@ export function Navbar({ isReady = true }: { isReady?: boolean }) {
   }, [pathname]);
 
   const navLinks = [
+    { href: "/#capabilities", label: "Capabilities" },
     { href: "/work", label: "Work" },
     { href: "/studio", label: "Studio" },
     { href: "/lab", label: "Lab", hasDot: true },

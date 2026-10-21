@@ -1,13 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { HandDrawnArrow } from "./naive-elements";
 import { SplitCTAButton } from "./split-cta-button";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
 import { spatialEase } from "@/lib/motion/easings";
 
 export function FinalCTA() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="contact"
@@ -16,7 +18,7 @@ export function FinalCTA() {
       {/* Top Tag */}
       <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted border-b border-paper-border pb-3 shrink-0 relative z-10">
         <span>§ 06 // Final Declaration</span>
-        <span>Initiation &bull; Q3/Q4</span>
+        <span>Now booking &bull; Q4 2026 &ndash; Q1 2027</span>
       </div>
 
       {/* Background Watermark: Faint Atomic Diagram Coordinate Orbit with subtle parallax */}
@@ -33,7 +35,7 @@ export function FinalCTA() {
       {/* Perfectly Contained Single-View Core */}
       <div className="my-auto py-8 sm:py-12 w-full space-y-8 sm:space-y-10 flex-1 flex flex-col justify-center relative z-10">
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: "some" }}
           transition={{ duration: 0.6, ease: spatialEase }}

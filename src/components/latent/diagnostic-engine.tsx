@@ -29,9 +29,9 @@ interface SpecimenAudit {
 const SPECIMENS: SpecimenAudit[] = [
   {
     id: "legacy-shop",
-    name: "Luxury E-Commerce Specimen",
-    url: "archive.atelier-textiles.com",
-    category: "Retail Infrastructure",
+    name: "E-Commerce Specimen (Demo)",
+    url: "archetype.atelier-textiles.internal",
+    category: "Retail Infrastructure Archetype",
     headlineNote: "High-ticket luxury apparel store experiencing silent mobile checkout failure.",
     scores: {
       speed: { val: 48, note: "5.4MB uncompressed banners" },
@@ -46,33 +46,34 @@ const SPECIMENS: SpecimenAudit[] = [
     ),
     whyItMatters: (
       <>
-        <span className="font-serif italic text-ink font-semibold">68% of visitors abandon checkout</span> within the first 4 seconds. Visual inconsistency between catalog and checkout creates acute brand distrust and an estimated <span className="font-mono text-xs text-accent-clay font-semibold">~$14k/mo revenue leakage</span>.
+        <span className="font-serif italic text-ink font-semibold">Mobile checkout abandonment compounds rapidly</span> when state fails to persist across redirects. Uncompressed assets generate severe layout shifts on cellular connections, degrading customer trust at the moment of purchase.
       </>
     ),
     whatShouldChange: (
       <>
-        Refactor cart state into an <span className="font-serif italic text-atelier-indigo font-semibold">atomic offline-safe IndexedDB store</span>. Modernize responsive jaali-style image grids with an automated AVIF pipeline. Harmonize visual typography.
+        Refactor cart state into an <span className="font-serif italic text-atelier-indigo font-semibold">atomic offline-safe IndexedDB store</span>. Modernize responsive image grids with an automated AVIF pipeline. Harmonize visual typography.
       </>
     ),
-    handwrittenNote: "Real issue: 5.4MB uncompressed images causing immediate mobile bounce. Fixed in a 48h surgical sprint.",
-    statusBadge: <span className="flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.5} /> CRITICAL RUNTIME FRICTION DETECTED</span>,
+    handwrittenNote: "Root cause: uncompressed hero assets and missing storage fallback. Resolved through asset pipeline optimization and resilient client storage.",
+    verdict: "repair",
+    statusBadge: <span className="flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.5} /> DEMONSTRATION // RUNTIME FRICTION AUDIT</span>,
     verdictLabel: "LATENT RECOMMENDS: REPAIR",
   },
   {
     id: "abandoned-saas",
-    name: "Abandoned SaaS Dashboard",
-    url: "app.telemetry-node.io",
-    category: "Internal Tooling",
+    name: "SaaS Dashboard Archetype (Demo)",
+    url: "archetype.telemetry-node.internal",
+    category: "Internal Tooling Archetype",
     headlineNote: "B2B analytics portal orphaned after previous dev agency abruptly exited.",
     scores: {
-      speed: { val: 61, note: "Next.js 12 chunk bloat" },
+      speed: { val: 61, note: "Legacy chunk bloat" },
       mobileUx: { val: 36, note: "Broken tables on tablet" },
-      codeHealth: { val: 34, note: "14 orphaned packages & leaks" },
+      codeHealth: { val: 34, note: "Orphaned packages & leaks" },
       visualSystem: { val: 49, note: "Clashing CSS & styles" },
     },
     whatIsWrong: (
       <>
-        Inherited Next.js 12 repository with <span className="font-serif italic text-accent-clay font-semibold">14 orphaned dependencies</span>, unpinned Docker base images, and vanished developer documentation. 8 API endpoints <span className="font-mono text-xs bg-red-500/10 text-red-800 px-1.5 py-0.5 rounded font-medium">leak raw SQL errors</span> in response headers.
+        Inherited legacy repository with <span className="font-serif italic text-accent-clay font-semibold">14 orphaned dependencies</span>, unpinned Docker base images, and vanished developer documentation. 8 API endpoints <span className="font-mono text-xs bg-red-500/10 text-red-800 px-1.5 py-0.5 rounded font-medium">leak raw SQL errors</span> in response headers.
       </>
     ),
     whyItMatters: (
@@ -86,14 +87,15 @@ const SPECIMENS: SpecimenAudit[] = [
       </>
     ),
     handwrittenNote: "Common disaster when external agencies vanish. We stabilize code without needing a total rewrite.",
-    statusBadge: <span className="flex items-center gap-1.5"><AlertOctagon className="w-3.5 h-3.5" strokeWidth={1.5} /> ORPHANED ARCHITECTURE & DATA LEAK</span>,
+    verdict: "evolve",
+    statusBadge: <span className="flex items-center gap-1.5"><AlertOctagon className="w-3.5 h-3.5" strokeWidth={1.5} /> DEMONSTRATION // ORPHANED ARCHITECTURE AUDIT</span>,
     verdictLabel: "LATENT RECOMMENDS: EVOLVE / RESCUE",
   },
   {
     id: "sound-monograph",
-    name: "Architectural Studio Monograph",
-    url: "studio-kanso.design",
-    category: "Digital Identity",
+    name: "Architectural Studio Monograph (Demo)",
+    url: "archetype.studio-monograph.internal",
+    category: "Digital Identity Archetype",
     headlineNote: "Restrained, dignified portfolio built with disciplined craft and semantic clarity.",
     scores: {
       speed: { val: 94, note: "Fast < 750ms render" },
@@ -117,7 +119,8 @@ const SPECIMENS: SpecimenAudit[] = [
       </>
     ),
     handwrittenNote: "Uncompromising studio integrity: if a codebase is already well-made, we advise you to leave it untouched.",
-    statusBadge: <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} /> VERIFIED SOUND SUBSTRATE (ARCHIVAL GRADE)</span>,
+    verdict: "sound",
+    statusBadge: <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} /> DEMONSTRATION // VERIFIED SOUND SUBSTRATE</span>,
     verdictLabel: "LATENT RECOMMENDS: LEAVE IT",
   },
 ];
@@ -142,7 +145,7 @@ export function DiagnosticEngine() {
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-clay" />
-            <span>§ 04 // LATENT DIAGNOSTIC &bull; TELEMETRY MONOGRAPH</span>
+            <span>§ 04 // THE DIAGNOSTIC &bull; HOW WE INVESTIGATE TECHNICAL AND UX DEFECTS</span>
           </div>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-[-0.03em] text-balance">
             We find what{" "}

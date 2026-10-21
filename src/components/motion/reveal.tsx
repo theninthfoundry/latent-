@@ -22,18 +22,12 @@ export function Reveal({
 }) {
   const shouldReduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
 
   if (shouldReduceMotion) {
     return (
       <div ref={ref} className={className}>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          {children}
-        </motion.div>
+        {children}
       </div>
     );
   }

@@ -26,7 +26,7 @@ export function TextReveal({
 }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
+  const isInView = useInView(containerRef, { once: true, margin: "0px 0px -10% 0px" });
 
   if (shouldReduceMotion) {
     return <Component className={className}>{children}</Component>;
@@ -69,7 +69,7 @@ export function ImageReveal({
 }: ImageRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
+  const isInView = useInView(containerRef, { once: true, margin: "0px 0px -10% 0px" });
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;

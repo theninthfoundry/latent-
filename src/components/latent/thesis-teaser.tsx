@@ -23,8 +23,8 @@ export function ThesisTeaser() {
       {/* Editorial Header Tag */}
       <Reveal>
         <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted mb-12 sm:mb-16 relative z-10 border-b border-paper-border/60 pb-3">
-          <span>§ 01 — Scope &amp; Ambition</span>
-          <span>The Thesis</span>
+          <span>§ 01 // The Thesis</span>
+          <span>Why we work the way we do</span>
         </div>
       </Reveal>
 

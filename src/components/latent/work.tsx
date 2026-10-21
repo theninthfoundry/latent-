@@ -11,6 +11,9 @@ interface ProjectCase {
   client: string;
   tagline: string;
   descriptor: string;
+  premise: string;
+  contribution: string;
+  status: string;
   narrative: string;
   deskArtifacts: {
     photo: string;
@@ -30,11 +33,14 @@ const CASES: ProjectCase[] = [
     id: "otaru",
     code: "§ 01",
     title: "OTARU",
-    client: "Otaru Textile Archive, Tokyo",
-    tagline: "The mountain remembers.",
+    client: "Textile Heritage Monograph",
+    tagline: "A tactile spatial archive for archival textiles.",
     descriptor: "LIVING IMAGE ARCHIVE",
+    premise: "Preserving Japanese textile provenance through sensory digital matter instead of flat e-commerce grids.",
+    contribution: "Full stack engineering: WebGL point-cloud rendering, dynamic daylight cycles, and local-first IndexedDB offline caching.",
+    status: "Studio Specimen &bull; Production System",
     narrative:
-      "A world of water, timber, cloth, and the objects that pass through it. For Otaru, we built a living spatial archive where tactile material provenance, acoustic recordings, and dynamic daylight cycles preserve Japanese cultural memory.",
+      "A world of water, timber, cloth, and the objects that pass through it. For Otaru, we built a living spatial archive where tactile material provenance, acoustic recordings, and dynamic daylight cycles preserve cultural memory.",
     finalUI: "/otaru-archive.png",
     specs: ["WebGL point-cloud", "Audio spatialization", "Next.js App Router", "IndexedDB"],
     deskArtifacts: {
@@ -56,9 +62,12 @@ const CASES: ProjectCase[] = [
     id: "solomon",
     code: "§ 02",
     title: "SOLOMON",
-    client: "Cognitive Research Labs",
-    tagline: "An AI that remembers.",
+    client: "Cognitive Knowledge Systems",
+    tagline: "Episodic memory topology with decaying vector resonance.",
     descriptor: "EPISODIC KNOWLEDGE GRAPH",
+    premise: "Replacing disposable chat histories with an enduring associative memory graph that connects disparate thoughts over time.",
+    contribution: "Designed orbital graph visualization and implemented HNSW vector clustering with Ebbinghaus memory decay math.",
+    status: "Applied Research Prototype",
     narrative:
       "Instead of transient chat windows that forget everything upon page refresh, Solomon constructs an autonomous, lifelong episodic memory topology for researchers, linking thoughts written months apart through decaying semantic vector resonance.",
     finalUI: "/solomon-archive.png",
@@ -84,9 +93,12 @@ const CASES: ProjectCase[] = [
     id: "satquery",
     code: "§ 03",
     title: "SATQUERY",
-    client: "Planetary Observation Network",
-    tagline: "A machine that sees the Earth.",
+    client: "Earth Observation Lab",
+    tagline: "Natural language query engine across satellite telemetry.",
     descriptor: "MULTISPECTRAL SATELLITE TELEMETRY",
+    premise: "Accelerating climate analysis by turning Petabytes of geospatial raster layers into direct, conversational map queries.",
+    contribution: "Engineered GPU tile streaming pipeline and sub-second WebGPU rasterization for synthetic aperture radar arrays.",
+    status: "Computational Proof-of-Concept",
     narrative:
       "Allowing climate researchers to query Petabytes of raw multispectral satellite raster telemetry using natural language in milliseconds. The interface becomes geography itself.",
     finalUI:
@@ -112,9 +124,12 @@ const CASES: ProjectCase[] = [
     id: "devstate",
     code: "§ 04",
     title: "DEVSTATE",
-    client: "Cryptographic Engineering Foundation",
-    tagline: "A computer that stays private.",
+    client: "Local-First Cryptographic Tooling",
+    tagline: "Zero-telemetry hermetic workstation runtime.",
     descriptor: "LOCAL-FIRST SECURE RUNTIME",
+    premise: "Constructing an uncompromising privacy boundary for engineers handling sensitive keys and sovereign model weights.",
+    contribution: "Implemented Wasm execution sandbox, CRDT multi-device state synchronization, and zero-knowledge integrity verification.",
+    status: "Open Source Research Specimen",
     narrative:
       "A developer workstation operating entirely in local-first memory with zero outbound telemetry, verifiable zero-knowledge proofs, and encrypted peer-to-peer workspace synchronization.",
     finalUI:
@@ -180,15 +195,14 @@ export function Work() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
-            § 05 // The Workshop &amp; Archive
+            § 05 // The Archive &bull; Selected Work, Experiments, and Systems
           </span>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink text-balance">
             Things we make.
           </h2>
         </div>
         <p className="font-sans text-sm text-ink-muted max-w-[62ch] text-pretty font-light leading-[1.6]">
-          Not portfolio thumbnails. A curated look at the actual studio desk
-          where ideas transform into physical and digital reality.
+          Selected work, research prototypes, and sovereign software systems. A curated look at the actual studio desk where ambitious ideas transform into production reality.
         </p>
       </div>
 
@@ -213,22 +227,40 @@ export function Work() {
               </div>
             </div>
 
-            {/* Metadata (Project Name, Premise, Tags) */}
+            {/* Metadata (Project Name, Premise, Contribution, Status, Tags) */}
             <div className="space-y-3 px-1">
-              <div>
-                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted block mb-1.5">
-                  {c.code} // {c.client}
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted">
+                  {c.code} // {c.descriptor}
                 </span>
+                <span
+                  className="font-mono text-[9px] uppercase tracking-wider text-atelier-indigo font-medium"
+                  dangerouslySetInnerHTML={{ __html: c.status }}
+                />
+              </div>
+
+              <div>
                 <h3 className="font-serif text-3xl font-light text-ink tracking-tight">
                   {c.title}
                 </h3>
+                <p className="font-sans text-sm text-ink-muted font-light mt-1">
+                  {c.tagline}
+                </p>
               </div>
-              <p className="font-sans text-base text-ink-muted font-light text-pretty">
-                {c.tagline}
-              </p>
+
+              <div className="p-3.5 rounded-xl bg-paper-card border border-paper-border space-y-1.5 text-xs font-sans">
+                <p className="text-ink-light">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink font-semibold">Premise: </span>
+                  {c.premise}
+                </p>
+                <p className="text-ink-muted">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-atelier-indigo font-semibold">Contribution: </span>
+                  {c.contribution}
+                </p>
+              </div>
               
               {/* Tech tags as mono pills */}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {c.specs.map((spec) => (
                   <span key={spec} className="font-mono text-[9px] uppercase tracking-wider text-ink/70 px-2.5 py-1 rounded-full bg-paper-subtle border-[0.5px] border-ink/15">
                     {spec}

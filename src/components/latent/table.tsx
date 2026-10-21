@@ -275,38 +275,44 @@ export function TheTable() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-12 border-b border-paper-border pb-6 relative z-10">
         <div>
           <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-2 block">
-            § 02 // Materials &bull; The Atelier Desk
+            § 02 // The Studio Table &bull; Visual Research &amp; Materials
           </span>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-[-0.03em] text-ink text-balance">
             The Studio Table.
           </h2>
         </div>
         <p className="font-sans text-sm text-ink-muted max-w-[62ch] text-pretty font-light leading-[1.6]">
-          We move comfortably between disciplines. Inspect the actual raw
-          materials, prints, textiles, and optical specimens we bring to the desk every morning.
+          Ideas, materials, experiments, and visual research. Inspect the actual raw materials, prints, textiles, code lattices, and optical specimens we bring to the desk every morning.
         </p>
       </div>
 
       {/* Materials Selector Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3 mb-10 sm:mb-12">
+      <div
+        role="tablist"
+        aria-label="Studio Table Materials"
+        className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3 mb-10 sm:mb-12"
+      >
         {MATERIALS.map((mat) => {
           const isSelected = activeMaterial.id === mat.id;
           return (
             <button
               key={mat.id}
+              role="tab"
+              aria-selected={isSelected}
               onClick={() => setActiveMaterial(mat)}
               className={`p-3.5 rounded-xl text-left transition-all duration-200 border flex flex-col justify-between h-22 sm:h-24 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink ${
                 isSelected
-                  ? "bg-ink text-paper border-ink shadow-card"
-                  : "bg-paper-card text-ink border-paper-border hover:border-ink/40 shadow-subtle"
+                  ? "bg-ink text-paper border-ink shadow-card scale-[1.02]"
+                  : "bg-paper-card text-ink border-paper-border hover:border-ink/40 shadow-subtle hover:bg-paper-subtle"
               }`}
             >
               <span
-                className={`font-mono text-[10px] uppercase tracking-wider ${
+                className={`font-mono text-[10px] uppercase tracking-wider flex items-center justify-between ${
                   isSelected ? "text-paper/70" : "text-ink-muted"
                 }`}
               >
-                {mat.type.split(" ")[0]}
+                <span>{mat.type.split(" ")[0]}</span>
+                {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />}
               </span>
               <span className="font-serif text-base font-normal tracking-tight">{mat.name}</span>
             </button>
@@ -341,15 +347,16 @@ export function TheTable() {
           </div>
         </div>
 
-        {/* Right: Live Artifact Render */}
+        {/* Right: Live Artifact Render with subtle tactile desk settling */}
         <div className="lg:col-span-7">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeMaterial.id}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, y: 8, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.99 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="transition-transform duration-300"
             >
               {activeMaterial.renderArtifact()}
             </motion.div>

@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: "%s | LATENT",
   },
   description:
-    "LATENT is an autonomous design, research, and technology laboratory creating products, brands, AI systems, and tactile digital experiences for ambitious ideas.",
+    "LATENT is an independent design and technology studio. We design distinctive digital experiences, build software products, and engineer AI systems for ideas that deserve to exist.",
   keywords: [
     "digital laboratory",
     "design and technology",

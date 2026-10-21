@@ -76,7 +76,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink block">
+                <a href="https://github.com/theninthfoundry" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink block">
                   06 — GitHub Profile ↗
                 </a>
               </li>

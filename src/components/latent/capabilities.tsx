@@ -84,7 +84,7 @@ export function Capabilities() {
       <div className="relative z-10 max-w-4xl mb-16 sm:mb-20">
         <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted mb-4 border-b border-paper-border/60 pb-2">
           <span className="w-1.5 h-1.5 rounded-full bg-atelier-indigo" />
-          <span>§ 03 // DIGITAL MATTER</span>
+          <span>§ 03 // DIGITAL MATTER &bull; WHAT WE BUILD, REPAIR, AND EVOLVE</span>
         </div>
 
         <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light text-ink tracking-[-0.03em] leading-[1.05] mb-6 text-balance">
@@ -130,6 +130,40 @@ export function Capabilities() {
         </div>
       </div>
 
+      {/* 01.5 — The Transformation Continuum Indicator */}
+      <div className="relative z-10 mb-8 flex items-center justify-between pb-3 border-b border-paper-border/60 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
+        <div className="flex items-center gap-3">
+          <span className="text-ink font-semibold">Continuum:</span>
+          <button
+            onClick={() => setActiveVerb("build")}
+            className={`transition-colors focus-visible:outline-none ${
+              activeVerb === "build" ? "text-atelier-indigo font-bold underline underline-offset-4" : "hover:text-ink"
+            }`}
+          >
+            01. Build
+          </button>
+          <span>&rarr;</span>
+          <button
+            onClick={() => setActiveVerb("repair")}
+            className={`transition-colors focus-visible:outline-none ${
+              activeVerb === "repair" ? "text-accent-clay font-bold underline underline-offset-4" : "hover:text-ink"
+            }`}
+          >
+            02. Repair
+          </button>
+          <span>&rarr;</span>
+          <button
+            onClick={() => setActiveVerb("evolve")}
+            className={`transition-colors focus-visible:outline-none ${
+              activeVerb === "evolve" ? "text-atelier-faded font-bold underline underline-offset-4" : "hover:text-ink"
+            }`}
+          >
+            03. Evolve
+          </button>
+        </div>
+        <span className="hidden sm:inline text-ink-muted">State: {activeVerb.toUpperCase()}</span>
+      </div>
+
       {/* 02 — The Hierarchy: Sovereign Anchor + Primary Doors */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 sm:mb-20 items-stretch">
         {/* HERO ANCHOR: BUILD (Disproportionately Sovereign) */}
@@ -148,13 +182,13 @@ export function Capabilities() {
           aria-label="Select BUILD capability"
           className={`lg:col-span-6 p-8 sm:p-12 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-indigo ${
             activeVerb === "build"
-              ? "bg-atelier-indigo text-paper border-atelier-indigo shadow-md"
+              ? "bg-atelier-indigo text-paper border-atelier-indigo shadow-md ring-2 ring-atelier-indigo/30"
               : "bg-paper-card text-ink border-paper-border hover:border-atelier-indigo/60"
           }`}
         >
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs uppercase tracking-widest opacity-70">
-              Hero Capability // Genesis
+              01 // Genesis Offering
             </span>
             <BotanicalBloom
               size={40}
@@ -168,21 +202,23 @@ export function Capabilities() {
               BUILD
             </h3>
             <p className="font-mono text-xs uppercase tracking-widest text-atelier-brass font-medium">
-              We build inevitables.
+              We turn ambitious ideas into production-ready digital products.
             </p>
             <p className="font-sans text-sm sm:text-base font-light opacity-90 max-w-md leading-relaxed">
-              Things that <span className="font-serif italic text-paper font-normal">should exist</span>. Taking ideas from zero to their inevitable tactile existence: <span className="text-atelier-brass font-medium">websites</span>, brand worlds, living archives, and autonomous AI systems.
+              Taking ideas from zero to their inevitable tactile existence: distinctive websites, brand worlds, bespoke web applications, and autonomous AI systems.
             </p>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-atelier-brass/90 pt-4 border-t border-current/10 mt-6">
-              The reason Latent exists.
+            <div className="pt-3 flex flex-wrap gap-2 text-paper/80 font-mono text-[10px] uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-white/10">Websites</span>
+              <span className="px-2 py-0.5 rounded bg-white/10">Software Products</span>
+              <span className="px-2 py-0.5 rounded bg-white/10">AI Systems</span>
             </div>
           </div>
 
           <div className="pt-6 border-t border-current/20 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider opacity-75">
-            <span>Genesis Offering &bull; From Zero</span>
-            <span className="flex items-center gap-1 font-semibold">
-              Explore Build →
-            </span>
+            <span>Genesis &bull; From Zero</span>
+            <a href="/#contact" className="flex items-center gap-1 font-semibold hover:underline">
+              Explore BUILD →
+            </a>
           </div>
         </div>
 
@@ -202,15 +238,15 @@ export function Capabilities() {
             tabIndex={0}
             role="button"
             aria-label="Select REPAIR capability"
-            className={`p-7 sm:p-8 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-900 ${
+            className={`p-7 sm:p-8 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-clay ${
               activeVerb === "repair"
-                ? "bg-paper text-ink border-accent-clay/60 shadow-sm ring-1 ring-accent-clay/30"
+                ? "bg-paper text-ink border-accent-clay/60 shadow-sm ring-2 ring-accent-clay/30"
                 : "bg-paper-card text-ink border-paper-border hover:border-ink/40"
             }`}
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-                Door 01 // Restoration
+                02 // Restoration
               </span>
               <Wrench className="w-4 h-4 text-accent-clay" />
             </div>
@@ -218,17 +254,21 @@ export function Capabilities() {
             <div className="my-6 space-y-2">
               <h4 className="font-serif text-3xl font-light text-ink">REPAIR</h4>
               <p className="font-mono text-[11px] text-accent-clay font-medium">
-                We repair what <span className="font-serif italic font-normal">shouldn&apos;t have broken</span>.
+                We repair what shouldn&apos;t have broken.
               </p>
               <p className="font-sans text-xs text-ink-muted leading-relaxed">
-                Precise architectural surgery on <span className="font-mono text-[10px] bg-accent-clay/10 text-accent-clay px-1.5 py-0.5 rounded">collapsed mobile layouts</span>, broken forms, and failing deployments.
+                Precise architectural surgery on collapsed mobile layouts, broken checkout flows, failing CI/CD builds, and production runtime friction.
               </p>
-              <div className="hidden"></div>
+              <div className="pt-2 flex flex-wrap gap-1.5 font-mono text-[9px] uppercase tracking-wider text-ink-muted">
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">Mobile UX</span>
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">Pipelines</span>
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">Crash Triage</span>
+              </div>
             </div>
 
             <div className="pt-4 border-t border-paper-border font-mono text-[10px] text-accent-clay flex items-center justify-between">
               <span>Emergency Intake Available</span>
-              <Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} />
+              <span className="font-semibold hover:underline">Explore REPAIR →</span>
             </div>
           </div>
 
@@ -248,13 +288,13 @@ export function Capabilities() {
             aria-label="Select EVOLVE capability"
             className={`p-7 sm:p-8 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-faded ${
               activeVerb === "evolve"
-                ? "bg-paper text-ink border-atelier-faded shadow-sm ring-1 ring-atelier-faded/30"
+                ? "bg-paper text-ink border-atelier-faded shadow-sm ring-2 ring-atelier-faded/30"
                 : "bg-paper-card text-ink border-paper-border hover:border-ink/40"
             }`}
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-                Door 02 // Mutation
+                03 // Modernization
               </span>
               <Sparkles className="w-4 h-4 text-atelier-faded" />
             </div>
@@ -262,17 +302,21 @@ export function Capabilities() {
             <div className="my-6 space-y-2">
               <h4 className="font-serif text-3xl font-light text-ink">EVOLVE</h4>
               <p className="font-mono text-[11px] text-atelier-faded font-medium">
-                We evolve things that <span className="font-serif italic font-normal">still have a future</span>.
+                We evolve things that still have a future.
               </p>
               <p className="font-sans text-xs text-ink-muted leading-relaxed">
-                Old to new. Static to <span className="text-atelier-faded font-medium underline decoration-atelier-faded/40">interactive</span>. Slow to fast. Generic to distinctive. Working across time.
+                Modernization, speed optimization, and responsive design systems for living codebases. From legacy frameworks to contemporary architectures without disruption.
               </p>
-              <div className="hidden"></div>
+              <div className="pt-2 flex flex-wrap gap-1.5 font-mono text-[9px] uppercase tracking-wider text-ink-muted">
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">Frameworks</span>
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">Speed</span>
+                <span className="px-1.5 py-0.5 rounded bg-paper-subtle border border-paper-border">UX Systems</span>
+              </div>
             </div>
 
             <div className="pt-4 border-t border-paper-border font-mono text-[10px] text-ink-muted flex items-center justify-between">
-              <span>Modernization &bull; Zero Disruption</span>
-              <Sparkles className="w-2.5 h-2.5" strokeWidth={1.5} />
+              <span>Zero-Downtime Evolution</span>
+              <span className="font-semibold hover:underline">Explore EVOLVE →</span>
             </div>
           </div>
         </div>
@@ -526,11 +570,11 @@ export function Capabilities() {
       {/* 04 — Infrastructure, Soul, and Memory (Compact Index) */}
       <div className="relative z-10 flex flex-col border-t border-paper-border mt-16 sm:mt-20">
         {[
-          { id: "audit", label: "01", title: "Audit", desc: "We find what isn't working. Code • UX • Security" },
-          { id: "recover", label: "02", title: "Recover", desc: "We recover what was lost. Deployments • Repos" },
-          { id: "care", label: "03", title: "Care", desc: "Worth keeping alive. Guardianship • Hygiene" },
-          { id: "experiment", label: "04", title: "Experiment", desc: "Things that shouldn't exist yet. Celestial • Machine" },
-          { id: "archive", label: "05", title: "Archive", desc: "Things we made to know. Specimens • Tools" }
+          { id: "audit", label: "01", title: "Audit", desc: "Technical, performance, accessibility, security, and code health assessments." },
+          { id: "recover", label: "02", title: "Rescue & Recover", desc: "Taking over unfinished products, orphaned repositories, and undocumented systems." },
+          { id: "care", label: "03", title: "Care", desc: "Ongoing maintenance, reliability monitoring, hygiene, and codebase stewardship." },
+          { id: "experiment", label: "04", title: "Experiment", desc: "Applied research, creative technology, prototypes, and novel interaction concepts." },
+          { id: "archive", label: "05", title: "Archive", desc: "Selected work, open-source specimens, studio tooling, and computational methods." }
         ].map((item) => (
           <div
             key={item.id}
