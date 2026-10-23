@@ -11,6 +11,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { getCreativeAssetUrl, CREATIVE_ASSETS } from "@/lib/creative-assets";
+import { getCutoutImage } from "@/lib/cutout";
 
 interface InteractiveStickerProps {
   id: string;
@@ -26,6 +27,8 @@ interface InteractiveStickerProps {
   glitchOnHover?: boolean;
   blendMode?: "multiply" | "normal" | "screen";
   noBackground?: boolean;
+  cutout?: boolean;
+  tintInk?: boolean;
 }
 
 export function InteractiveSticker({
@@ -39,43 +42,54 @@ export function InteractiveSticker({
   label,
   showCaption = false,
   washiTape = false,
-  glitchOnHover = true,
+  glitchOnHover = false,
   blendMode = "multiply",
   noBackground = true,
+  cutout = true,
+  tintInk = false,
 }: InteractiveStickerProps) {
   const reduceMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [imgSrc, setImgSrc] = useState<string>("");
+  const [processedSrc, setProcessedSrc] = useState<string>("");
 
   const asset = CREATIVE_ASSETS.find((a) => a.id === id);
   const defaultRotation = initialRotate || asset?.defaultRotation || 0;
 
   useEffect(() => {
     const urls = getCreativeAssetUrl(id);
-    setImgSrc(urls.primary);
-  }, [id]);
+    const initialUrl = urls.primary;
+    setImgSrc(initialUrl);
+
+    if (cutout) {
+      getCutoutImage(initialUrl, {
+        threshold: 215,
+        feather: 45,
+        tintInk: tintInk,
+      }).then((cutoutUrl) => {
+        setProcessedSrc(cutoutUrl);
+      });
+    }
+  }, [id, cutout, tintInk]);
 
   // 3D Tilt Mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 18, stiffness: 220, mass: 0.6 };
+  const springConfig = { damping: 20, stiffness: 240, mass: 0.5 };
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [14, -14]);
-  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-14, 14]);
-  const sheenX = useTransform(smoothMouseX, [-0.5, 0.5], ["0%", "100%"]);
-  const sheenY = useTransform(smoothMouseY, [-0.5, 0.5], ["0%", "100%"]);
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [16, -16]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-16, 16]);
 
-  // Scroll velocity torque & parallax
+  // Scroll velocity torque & aerodynamic wind tilt
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 25, stiffness: 200 });
 
-  // Aerodynamic wind tilt from scroll velocity
   const velocityRotate = useTransform(smoothVelocity, [-1500, 1500], [-8, 8]);
   const velocityScale = useTransform(smoothVelocity, [-1500, 0, 1500], [0.97, 1, 0.97]);
 
@@ -115,11 +129,13 @@ export function InteractiveSticker({
     custom: widthClass || "w-64",
   }[size];
 
-  // Subtle synthesized audio feedback on pick up / release
+  // Tactile audio feedback on pick up / release
   const playTactileClick = (freq = 440, type: OscillatorType = "sine") => {
     try {
       if (typeof window === "undefined") return;
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
@@ -137,10 +153,12 @@ export function InteractiveSticker({
     }
   };
 
+  const activeSrc = processedSrc || imgSrc || `/artifacts/creative/${id}.png`;
+
   return (
     <div
       ref={cardRef}
-      className={`relative inline-block select-none ${className}`}
+      className={`relative inline-block select-none bg-transparent border-0 p-0 m-0 ${className}`}
       style={{ perspective: 1200 }}
       onPointerMove={handlePointerMove}
       onPointerEnter={() => setIsHovered(true)}
@@ -157,9 +175,9 @@ export function InteractiveSticker({
       {/* Main Draggable / Animated Motion Layer */}
       <motion.div
         drag={enableDrag && !reduceMotion}
-        dragConstraints={{ left: -140, right: 140, top: -140, bottom: 140 }}
-        dragElastic={0.18}
-        dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
+        dragConstraints={{ left: -160, right: 160, top: -160, bottom: 160 }}
+        dragElastic={0.2}
+        dragTransition={{ bounceStiffness: 300, bounceDamping: 22 }}
         onDragStart={() => {
           setIsDragging(true);
           playTactileClick(520, "triangle");
@@ -176,7 +194,7 @@ export function InteractiveSticker({
           scale: reduceMotion ? 1 : velocityScale,
         }}
         whileHover={{
-          scale: reduceMotion ? 1 : 1.05,
+          scale: reduceMotion ? 1 : 1.06,
           cursor: enableDrag ? "grab" : "pointer",
         }}
         whileDrag={{
@@ -186,60 +204,46 @@ export function InteractiveSticker({
         }}
         transition={{
           type: "spring",
-          stiffness: 260,
-          damping: 20,
+          stiffness: 280,
+          damping: 22,
         }}
-        className={`relative ${sizeClasses} cursor-grab active:cursor-grabbing will-change-transform group`}
+        className={`relative ${sizeClasses} cursor-grab active:cursor-grabbing will-change-transform group bg-transparent border-none p-0 shadow-none`}
       >
         {/* Aerodynamic torque wrapper */}
         <motion.div
           style={{ rotate: reduceMotion ? 0 : velocityRotate }}
-          className="relative w-full h-full"
+          className="relative w-full h-full bg-transparent border-none p-0"
         >
-          {/* Dynamic Paper Drop Shadow (Only shown when not noBackground) */}
-          {!noBackground && (
-            <div
-              className={`absolute inset-0 rounded-lg pointer-events-none transition-all duration-300 ${
-                isDragging
-                  ? "shadow-[0_24px_48px_rgba(23,21,15,0.32),0_12px_20px_rgba(23,21,15,0.2)] scale-105"
-                  : isHovered
-                  ? "shadow-[0_16px_32px_rgba(23,21,15,0.2),0_6px_12px_rgba(23,21,15,0.12)]"
-                  : "shadow-[0_8px_18px_rgba(23,21,15,0.12),0_2px_6px_rgba(23,21,15,0.08)]"
-              }`}
-            />
-          )}
-
-          {/* Holographic / Sheen Reflection Highlight (Only shown when not noBackground) */}
-          {!noBackground && (
-            <motion.div
-              className="absolute inset-0 rounded-lg pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-300 mix-blend-overlay z-20"
-              style={{
-                background: `radial-gradient(circle at ${sheenX} ${sheenY}, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%)`,
-              }}
-            />
-          )}
-
-          {/* Sticker Image Content with clean paper blend */}
-          <div className={`relative ${noBackground ? "" : "overflow-hidden rounded-lg p-1"}`}>
+          {/* Pure Graphic Artwork — ZERO Background, ZERO Box, ZERO Border */}
+          <div className="relative w-full h-full bg-transparent border-none p-0 overflow-visible flex items-center justify-center">
             <img
-              src={imgSrc || `/artifacts/creative/${id}.png`}
-              alt={label || asset?.name || "Creative Ephemera"}
+              src={activeSrc}
+              alt={label || asset?.name || "Creative Artwork"}
               onError={() => {
-                // Self-healing fallback to dynamic API route
-                setImgSrc(`/api/creative-asset?name=${id}`);
+                const fallbackUrl = `/api/creative-asset?name=${id}`;
+                setImgSrc(fallbackUrl);
+                if (cutout) {
+                  getCutoutImage(fallbackUrl, {
+                    threshold: 215,
+                    feather: 45,
+                    tintInk: tintInk,
+                  }).then((url) => setProcessedSrc(url));
+                }
               }}
               draggable={false}
-              className={`w-full h-auto object-contain select-none transition-transform duration-300 ${
+              className={`w-full h-auto object-contain select-none pointer-events-none transition-transform duration-300 bg-transparent border-none outline-none ${
                 blendMode === "multiply"
                   ? "mix-blend-multiply"
                   : blendMode === "screen"
                   ? "mix-blend-screen"
                   : ""
-              } ${
-                glitchOnHover && isHovered
-                  ? "filter contrast-125 drop-shadow-[0_4px_12px_rgba(23,21,15,0.15)]"
-                  : ""
               }`}
+              style={{
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                boxShadow: "none",
+              }}
             />
           </div>
 

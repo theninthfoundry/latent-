@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -10,6 +10,7 @@ import {
   useVelocity,
 } from "framer-motion";
 import { getCreativeAssetUrl } from "@/lib/creative-assets";
+import { getCutoutImage } from "@/lib/cutout";
 
 /**
  * 01 — Gothic Architectural Corner Frame
@@ -33,6 +34,13 @@ export function GothicCornerFrame({
   const [imgSrc, setImgSrc] = useState(
     getCreativeAssetUrl("gothic-corner-filigree").primary
   );
+
+  useEffect(() => {
+    getCutoutImage(getCreativeAssetUrl("gothic-corner-filigree").primary, {
+      threshold: 215,
+      feather: 45,
+    }).then((url) => setImgSrc(url));
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -157,11 +165,17 @@ export function RotatingCelestialHalo({
     getCreativeAssetUrl("radial-starburst-halo").primary
   );
 
+  useEffect(() => {
+    getCutoutImage(getCreativeAssetUrl("radial-starburst-halo").primary, {
+      threshold: 220,
+      feather: 40,
+    }).then((url) => setImgSrc(url));
+  }, []);
+
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 25, stiffness: 180 });
 
-  // Rotate smoothly based on scroll distance + continuous drift
   const rotateFromScroll = useTransform(scrollY, [0, 4000], [0, 360 * speedMultiplier]);
   const velocityPulse = useTransform(smoothVelocity, [-2000, 0, 2000], [1.08, 1, 1.08]);
 
@@ -213,11 +227,17 @@ export function LiquidMarginSpine({
     getCreativeAssetUrl("liquid-star-spine").primary
   );
 
+  useEffect(() => {
+    getCutoutImage(getCreativeAssetUrl("liquid-star-spine").primary, {
+      threshold: 215,
+      feather: 40,
+    }).then((url) => setImgSrc(url));
+  }, []);
+
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 28, stiffness: 220 });
 
-  // Subtle liquid tension stretch when scrolling fast
   const stretchY = useTransform(smoothVelocity, [-1500, 0, 1500], [1.14, 1, 1.14]);
   const flexX = useTransform(smoothVelocity, [-1500, 0, 1500], [0.94, 1, 0.94]);
 
@@ -261,6 +281,13 @@ export function F1TelemetrySpecimen({
   const [imgSrc, setImgSrc] = useState(
     getCreativeAssetUrl("f1-telemetry-car").primary
   );
+
+  useEffect(() => {
+    getCutoutImage(getCreativeAssetUrl("f1-telemetry-car").primary, {
+      threshold: 220,
+      feather: 45,
+    }).then((url) => setImgSrc(url));
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
