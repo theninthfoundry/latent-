@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GothicCornerFrame } from "./architectural-borders";
+import { InteractiveSticker } from "./interactive-sticker";
 
 interface Material {
   id: string;

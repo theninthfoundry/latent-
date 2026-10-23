@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BotanicalBloom } from "./botanical-bloom";
 import { CelestialSun } from "./celestial-sun";
 import { LatentFixModal } from "./latent-fix-modal";
+import { InteractiveSticker } from "./interactive-sticker";
 import { ArrowUpRight, Wrench, Sparkles, Shield, AlertOctagon, RotateCw, ArrowRight } from "lucide-react";
 
 export type MatterVerb =
