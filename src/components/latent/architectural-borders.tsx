@@ -231,7 +231,7 @@ export function LiquidMarginSpine({
           scaleY: reduceMotion ? 1 : stretchY,
           scaleX: reduceMotion ? 1 : flexX,
         }}
-        className={`w-12 sm:w-16 ${heightClass} will-change-transform opacity-30 hover:opacity-70 transition-opacity`}
+        className={`w-20 sm:w-28 md:w-32 ${heightClass} will-change-transform opacity-35 hover:opacity-75 transition-opacity`}
       >
         <img
           src={imgSrc}
@@ -321,10 +321,10 @@ export function F1TelemetrySpecimen({
           }}
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="relative z-10 w-44 sm:w-56 md:w-64 max-h-[360px] flex items-center justify-center cursor-grab active:cursor-grabbing will-change-transform"
+          className="relative z-10 w-60 sm:w-80 md:w-[420px] lg:w-[540px] max-h-[560px] flex items-center justify-center cursor-grab active:cursor-grabbing will-change-transform"
         >
           {/* Subtle Ground Effect Shadow */}
-          <div className="absolute inset-x-4 bottom-2 h-8 bg-ink/15 rounded-full blur-md pointer-events-none group-hover:bg-ink/25 transition-colors" />
+          <div className="absolute inset-x-4 bottom-2 h-10 bg-ink/15 rounded-full blur-md pointer-events-none group-hover:bg-ink/25 transition-colors" />
 
           <img
             src={imgSrc}

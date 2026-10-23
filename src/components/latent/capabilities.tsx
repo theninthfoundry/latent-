@@ -108,13 +108,15 @@ export function Capabilities() {
             </span>
             .
           </p>
-          <div className="shrink-0 -mt-4 lg:mt-0">
+          <div className="shrink-0 -mt-2 lg:mt-0 pointer-events-auto">
             <InteractiveSticker
               id="lightning-sparks"
-              size="sm"
+              size="custom"
+              widthClass="w-44 sm:w-60 md:w-76"
               initialRotate={6}
-              showCaption={true}
-              label="Kinetic Voltage Mark"
+              noBackground={true}
+              blendMode="multiply"
+              showCaption={false}
               parallaxSpeed={0.28}
             />
           </div>

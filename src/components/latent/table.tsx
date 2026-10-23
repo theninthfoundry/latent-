@@ -283,18 +283,19 @@ export function TheTable() {
             The Studio Table.
           </h2>
         </div>
-        <div className="flex items-center gap-6">
-          <p className="font-sans text-sm text-ink-muted max-w-[50ch] text-pretty font-light leading-[1.6]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <p className="font-sans text-sm text-ink-muted max-w-[46ch] text-pretty font-light leading-[1.6]">
             Ideas, materials, experiments, and visual research. Inspect the actual raw materials, prints, textiles, code lattices, and optical specimens we bring to the desk every morning.
           </p>
-          <div className="hidden sm:block shrink-0">
+          <div className="shrink-0 pointer-events-auto">
             <InteractiveSticker
               id="exclamation-halftone"
-              size="sm"
+              size="custom"
+              widthClass="w-36 sm:w-48 md:w-56"
               initialRotate={-6}
-              washiTape={true}
-              showCaption={true}
-              label="Studio Signal Specimen"
+              noBackground={true}
+              blendMode="multiply"
+              showCaption={false}
               parallaxSpeed={0.2}
             />
           </div>
@@ -364,7 +365,7 @@ export function TheTable() {
 
         {/* Right: Live Artifact Render with subtle tactile desk settling and Gothic Corner Framing */}
         <div className="lg:col-span-7">
-          <GothicCornerFrame size={100} opacity={0.24} inset="-10px">
+          <GothicCornerFrame size={160} opacity={0.28} inset="-16px">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeMaterial.id}

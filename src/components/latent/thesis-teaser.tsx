@@ -24,11 +24,11 @@ export function ThesisTeaser() {
 
       {/* Symmetrical Rotating Celestial Radial Starburst Halo */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
-        <RotatingCelestialHalo size={480} opacity={0.14} speedMultiplier={0.8} />
+        <RotatingCelestialHalo size={720} opacity={0.16} speedMultiplier={0.7} />
       </div>
 
       {/* Vertical Liquid Star Margin Spine */}
-      <LiquidMarginSpine side="right" heightClass="h-56 sm:h-72" />
+      <LiquidMarginSpine side="right" heightClass="h-72 sm:h-96 md:h-[480px]" />
 
       {/* Editorial Header Tag */}
       <Reveal>
@@ -56,9 +56,9 @@ export function ThesisTeaser() {
 
         {/* Trimmed Single Elaboration Sentence */}
         <Reveal delay={0.12}>
-          <div className="pt-8 border-t border-paper-border flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
-            <div className="space-y-2">
-              <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[62ch] text-pretty leading-[1.6]">
+          <div className="pt-8 border-t border-paper-border flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="space-y-3 max-w-[60ch]">
+              <p className="font-sans text-base sm:text-lg text-ink-light font-light text-pretty leading-[1.6]">
                 Most digital projects stop at utility or surface decoration. We design the
                 entire container: the <span className="font-serif italic text-atelier-indigo">visual language</span>, the underlying system, the
                 way it responds, and the cultural aura it projects into the world.
@@ -68,14 +68,16 @@ export function ThesisTeaser() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 shrink-0">
               <InteractiveSticker
                 id="behind-the-scenes"
-                size="sm"
+                size="custom"
+                widthClass="w-44 sm:w-56 md:w-68"
                 initialRotate={-2}
-                showCaption={true}
-                label="Process Documentation Stamp"
-                parallaxSpeed={0.12}
+                noBackground={true}
+                blendMode="multiply"
+                showCaption={false}
+                parallaxSpeed={0.18}
               />
               <div className="font-mono text-xs text-ink-muted shrink-0 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />

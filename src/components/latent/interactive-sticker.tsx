@@ -15,7 +15,7 @@ import { getCreativeAssetUrl, CREATIVE_ASSETS } from "@/lib/creative-assets";
 interface InteractiveStickerProps {
   id: string;
   className?: string;
-  size?: "sm" | "md" | "lg" | "xl" | "custom";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "custom";
   widthClass?: string;
   initialRotate?: number;
   enableDrag?: boolean;
@@ -24,6 +24,8 @@ interface InteractiveStickerProps {
   showCaption?: boolean;
   washiTape?: boolean;
   glitchOnHover?: boolean;
+  blendMode?: "multiply" | "normal" | "screen";
+  noBackground?: boolean;
 }
 
 export function InteractiveSticker({
@@ -38,6 +40,8 @@ export function InteractiveSticker({
   showCaption = false,
   washiTape = false,
   glitchOnHover = true,
+  blendMode = "multiply",
+  noBackground = true,
 }: InteractiveStickerProps) {
   const reduceMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -102,11 +106,13 @@ export function InteractiveSticker({
   };
 
   const sizeClasses = {
-    sm: "w-20 sm:w-24",
-    md: "w-28 sm:w-36 md:w-44",
-    lg: "w-40 sm:w-52 md:w-64",
-    xl: "w-56 sm:w-72 md:w-88",
-    custom: widthClass || "w-36",
+    sm: "w-32 sm:w-44",
+    md: "w-48 sm:w-60 md:w-72",
+    lg: "w-64 sm:w-80 md:w-96",
+    xl: "w-80 sm:w-96 md:w-[480px]",
+    "2xl": "w-96 sm:w-[440px] md:w-[560px]",
+    "3xl": "w-[400px] sm:w-[540px] md:w-[680px]",
+    custom: widthClass || "w-64",
   }[size];
 
   // Subtle synthesized audio feedback on pick up / release
@@ -143,7 +149,7 @@ export function InteractiveSticker({
       {/* Optional Washi Tape holding sticker */}
       {washiTape && (
         <div
-          className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 h-4 w-16 bg-[#F2EDE2]/90 backdrop-blur-[2px] border-l border-r border-dashed border-ink/20 shadow-sm pointer-events-none"
+          className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 h-4 w-20 bg-[#F2EDE2]/90 backdrop-blur-[2px] border-l border-r border-dashed border-ink/20 shadow-sm pointer-events-none"
           style={{ transform: `translateX(-50%) rotate(${defaultRotation > 0 ? -3 : 3}deg)` }}
         />
       )}
@@ -151,7 +157,7 @@ export function InteractiveSticker({
       {/* Main Draggable / Animated Motion Layer */}
       <motion.div
         drag={enableDrag && !reduceMotion}
-        dragConstraints={{ left: -120, right: 120, top: -120, bottom: 120 }}
+        dragConstraints={{ left: -140, right: 140, top: -140, bottom: 140 }}
         dragElastic={0.18}
         dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
         onDragStart={() => {
@@ -190,27 +196,31 @@ export function InteractiveSticker({
           style={{ rotate: reduceMotion ? 0 : velocityRotate }}
           className="relative w-full h-full"
         >
-          {/* Dynamic Paper Drop Shadow */}
-          <div
-            className={`absolute inset-0 rounded-lg pointer-events-none transition-all duration-300 ${
-              isDragging
-                ? "shadow-[0_24px_48px_rgba(23,21,15,0.32),0_12px_20px_rgba(23,21,15,0.2)] scale-105"
-                : isHovered
-                ? "shadow-[0_16px_32px_rgba(23,21,15,0.2),0_6px_12px_rgba(23,21,15,0.12)]"
-                : "shadow-[0_8px_18px_rgba(23,21,15,0.12),0_2px_6px_rgba(23,21,15,0.08)]"
-            }`}
-          />
+          {/* Dynamic Paper Drop Shadow (Only shown when not noBackground) */}
+          {!noBackground && (
+            <div
+              className={`absolute inset-0 rounded-lg pointer-events-none transition-all duration-300 ${
+                isDragging
+                  ? "shadow-[0_24px_48px_rgba(23,21,15,0.32),0_12px_20px_rgba(23,21,15,0.2)] scale-105"
+                  : isHovered
+                  ? "shadow-[0_16px_32px_rgba(23,21,15,0.2),0_6px_12px_rgba(23,21,15,0.12)]"
+                  : "shadow-[0_8px_18px_rgba(23,21,15,0.12),0_2px_6px_rgba(23,21,15,0.08)]"
+              }`}
+            />
+          )}
 
-          {/* Holographic / Sheen Reflection Highlight */}
-          <motion.div
-            className="absolute inset-0 rounded-lg pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-300 mix-blend-overlay z-20"
-            style={{
-              background: `radial-gradient(circle at ${sheenX} ${sheenY}, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%)`,
-            }}
-          />
+          {/* Holographic / Sheen Reflection Highlight (Only shown when not noBackground) */}
+          {!noBackground && (
+            <motion.div
+              className="absolute inset-0 rounded-lg pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-300 mix-blend-overlay z-20"
+              style={{
+                background: `radial-gradient(circle at ${sheenX} ${sheenY}, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%)`,
+              }}
+            />
+          )}
 
-          {/* Sticker Image Content */}
-          <div className="relative overflow-hidden rounded-lg p-1">
+          {/* Sticker Image Content with clean paper blend */}
+          <div className={`relative ${noBackground ? "" : "overflow-hidden rounded-lg p-1"}`}>
             <img
               src={imgSrc || `/artifacts/creative/${id}.png`}
               alt={label || asset?.name || "Creative Ephemera"}
@@ -220,7 +230,15 @@ export function InteractiveSticker({
               }}
               draggable={false}
               className={`w-full h-auto object-contain select-none transition-transform duration-300 ${
-                glitchOnHover && isHovered ? "filter contrast-110 drop-shadow-[0_2px_4px_rgba(20,44,72,0.2)]" : ""
+                blendMode === "multiply"
+                  ? "mix-blend-multiply"
+                  : blendMode === "screen"
+                  ? "mix-blend-screen"
+                  : ""
+              } ${
+                glitchOnHover && isHovered
+                  ? "filter contrast-125 drop-shadow-[0_4px_12px_rgba(23,21,15,0.15)]"
+                  : ""
               }`}
             />
           </div>

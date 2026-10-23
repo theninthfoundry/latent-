@@ -42,38 +42,54 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
         </motion.div>
 
         <div className="w-full relative z-20">
-          <h1 className="font-serif text-[clamp(3rem,10vw,9rem)] font-light tracking-[-0.035em] text-ink leading-[0.9] uppercase select-none">
-            <span className="block overflow-hidden py-0.5">
-              <motion.span
-                className="block will-change-transform"
-                initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
-                animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
-                transition={{ duration: 0.7, ease: cinematicEase, delay: 0.1 }}
-              >
-                We make
-              </motion.span>
-            </span>
-            <span className="block overflow-hidden py-0.5">
-              <motion.span
-                className="block will-change-transform"
-                initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
-                animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
-                transition={{ duration: 0.7, ease: cinematicEase, delay: 0.2 }}
-              >
-                new things feel
-              </motion.span>
-            </span>
-            <span className="block overflow-hidden py-0.5">
-              <motion.span
-                className="block italic font-normal tracking-[-0.02em] text-ink will-change-transform"
-                initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
-                animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
-                transition={{ duration: 0.75, ease: cinematicEase, delay: 0.3 }}
-              >
-                inevitable.
-              </motion.span>
-            </span>
-          </h1>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 relative">
+            <h1 className="font-serif text-[clamp(3rem,10vw,8.5rem)] font-light tracking-[-0.035em] text-ink leading-[0.9] uppercase select-none">
+              <span className="block overflow-hidden py-0.5">
+                <motion.span
+                  className="block will-change-transform"
+                  initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
+                  animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
+                  transition={{ duration: 0.7, ease: cinematicEase, delay: 0.1 }}
+                >
+                  We make
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden py-0.5">
+                <motion.span
+                  className="block will-change-transform"
+                  initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
+                  animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
+                  transition={{ duration: 0.7, ease: cinematicEase, delay: 0.2 }}
+                >
+                  new things feel
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden py-0.5">
+                <motion.span
+                  className="block italic font-normal tracking-[-0.02em] text-ink will-change-transform"
+                  initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%", opacity: 0 }}
+                  animate={isReady || shouldReduceMotion ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
+                  transition={{ duration: 0.75, ease: cinematicEase, delay: 0.3 }}
+                >
+                  inevitable.
+                </motion.span>
+              </span>
+            </h1>
+
+            {/* Monumental Ink Brutalist Star integrated directly into the typographic composition */}
+            <div className="shrink-0 flex items-center justify-center lg:pb-2 pointer-events-auto">
+              <InteractiveSticker
+                id="star-sketch"
+                size="custom"
+                widthClass="w-52 sm:w-68 md:w-80 lg:w-[360px]"
+                initialRotate={-8}
+                noBackground={true}
+                blendMode="multiply"
+                showCaption={false}
+                parallaxSpeed={0.25}
+              />
+            </div>
+          </div>
         </div>
 
         <motion.div
@@ -113,35 +129,24 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
           </div>
 
           {/* Interactive "THIS IS NOT AI" Human Conviction Badge */}
-          <div className="pt-2 flex items-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <InteractiveSticker
               id="not-ai-badge"
               size="custom"
-              widthClass="w-32 sm:w-40"
+              widthClass="w-44 sm:w-56 md:w-68"
               initialRotate={-3}
-              washiTape={true}
-              showCaption={true}
-              label="Human Conviction Specimen"
+              washiTape={false}
+              noBackground={true}
+              blendMode="multiply"
+              showCaption={false}
               parallaxSpeed={0.2}
             />
-            <div className="hidden sm:block font-mono text-[9px] text-ink-muted/80 leading-relaxed max-w-[24ch]">
-              Tactile zine badge &bull; drag anywhere on the studio floor
+            <div className="font-mono text-[10px] text-ink-muted leading-relaxed max-w-[28ch]">
+              Human Conviction Mark &bull; Tactile zine artifact stamped into the studio archive
             </div>
           </div>
         </motion.div>
       </motion.div>
-
-      {/* Floating Ink Brutalist Star (Upper Marginalia) */}
-      <div className="absolute right-12 lg:right-32 top-16 z-20 pointer-events-auto">
-        <InteractiveSticker
-          id="star-sketch"
-          size="sm"
-          initialRotate={12}
-          showCaption={true}
-          label="The Studio North Star"
-          parallaxSpeed={0.35}
-        />
-      </div>
 
       {/* Art-directed image with parallax */}
       <motion.div
