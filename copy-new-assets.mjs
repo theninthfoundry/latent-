@@ -13,7 +13,11 @@ const files = [
   { src: 'media_1792692004310.png', dest: 'exclamation-halftone.png' },
   { src: 'media_1792692007401.png', dest: 'not-ai-badge.png' },
   { src: 'media_1792692010659.png', dest: 'behind-the-scenes.png' },
-  { src: 'media_1792692021724.png', dest: 'lightning-sparks.png' }
+  { src: 'media_1792692021724.png', dest: 'lightning-sparks.png' },
+  { src: 'media_1792692254501.png', dest: 'f1-telemetry-car.png' },
+  { src: 'media_1792692258518.png', dest: 'liquid-star-spine.png' },
+  { src: 'media_1792692261063.png', dest: 'radial-starburst-halo.png' },
+  { src: 'media_1792692297304.jpg', dest: 'gothic-corner-filigree.jpg' }
 ];
 
 for (const f of files) {

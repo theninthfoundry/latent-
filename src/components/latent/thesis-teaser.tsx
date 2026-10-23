@@ -66,6 +66,8 @@ export function ThesisTeaser() {
               <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted pt-2 border-t border-paper-border/50">
                 Digital architecture treated with the permanence of stone and textile.
               </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
               <InteractiveSticker
                 id="behind-the-scenes"

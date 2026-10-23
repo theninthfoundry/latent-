@@ -1,23 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform } from "framer-motion";
-import { CREATIVE_ASSETS, CreativeSticker } from "@/lib/creative-assets";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CREATIVE_ASSETS } from "@/lib/creative-assets";
 import { InteractiveSticker } from "./interactive-sticker";
 
 export function CreativeEphemeraCanvas() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<string>("all");
   const [keyReset, setKeyReset] = useState(0);
-
-  // Scroll dynamics for global reactive distortions
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 30, stiffness: 200 });
-
-  // WebGL-like liquid ripple frequency modulation based on scroll speed
-  const baseFrequency = useTransform(smoothVelocity, [-2000, 0, 2000], [0.035, 0.005, 0.035]);
-  const scaleDisplacement = useTransform(smoothVelocity, [-2000, 0, 2000], [12, 0, 12]);
 
   return (
     <>

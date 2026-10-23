@@ -275,7 +275,9 @@ export function F1TelemetrySpecimen({
       ref={cardRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative rounded-2xl bg-paper-card border border-paper-border p-6 sm:p-8 flex flex-col items-center justify-between overflow-hidden shadow-sm group select-none ${className}`}
+      className={`relative rounded-2xl bg-paper-card border transition-all duration-300 ${
+        isHovered ? "border-ink/30 shadow-md" : "border-paper-border shadow-sm"
+      } p-6 sm:p-8 flex flex-col items-center justify-between overflow-hidden group select-none ${className}`}
     >
       {/* Symmetrical Atmospheric Grid Background */}
       <div className="absolute inset-0 bg-[radial-gradient(#17150F_0.8px,transparent_0.8px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
