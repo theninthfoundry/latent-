@@ -18,7 +18,7 @@ const SRC_DIR = "C:\\Users\\namir\\.gemini\\antigravity-ide\\brain\\23e67b16-98c
 const PUBLIC_CREATIVE_DIR = path.resolve("public/artifacts/creative");
 
 // Self-healing: ensure public/artifacts/creative is populated
-export function ensureCreativeAssetsPopulated() {
+function ensureCreativeAssetsPopulated() {
   try {
     if (!fs.existsSync(PUBLIC_CREATIVE_DIR)) {
       fs.mkdirSync(PUBLIC_CREATIVE_DIR, { recursive: true });
