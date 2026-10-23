@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ParallaxLayer } from "@/components/motion/scroll-reveal";
 import { GothicCornerFrame } from "./architectural-borders";
 import { InteractiveSticker } from "./interactive-sticker";
 
