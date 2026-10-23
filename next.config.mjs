@@ -3,22 +3,47 @@ import fs from 'fs';
 import path from 'path';
 
 try {
-  const srcDir = 'C:\\Users\\namir\\.gemini\\antigravity-ide\\brain\\03c1a863-6222-4951-9062-fd13d2cc6633\\.user_uploaded';
-  const destDir = path.resolve('public/artifacts/atelier');
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true });
+  const atelierSrcDir = 'C:\\Users\\namir\\.gemini\\antigravity-ide\\brain\\03c1a863-6222-4951-9062-fd13d2cc6633\\.user_uploaded';
+  const atelierDestDir = path.resolve('public/artifacts/atelier');
+  if (!fs.existsSync(atelierDestDir)) {
+    fs.mkdirSync(atelierDestDir, { recursive: true });
   }
-  const mapping = {
+  const atelierMapping = {
     'media_1790086245117.jpg': 'carpet-border.jpg',
     'media_1790086267512.png': 'botanical-flower.png',
     'media_1790086275081.jpg': 'celestial-sun.jpg',
     'media_1790086287759.png': 'pixel-jaali.png',
     'media_1790086374082.png': 'risograph-hand.png'
   };
-  for (const [srcFile, destFile] of Object.entries(mapping)) {
-    const srcPath = path.join(srcDir, srcFile);
-    const destPath = path.join(destDir, destFile);
+  for (const [srcFile, destFile] of Object.entries(atelierMapping)) {
+    const srcPath = path.join(atelierSrcDir, srcFile);
+    const destPath = path.join(atelierDestDir, destFile);
     if (fs.existsSync(srcPath) && !fs.existsSync(destPath)) {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+
+  // Creative stickers & graphics sync
+  const creativeSrcDir = 'C:\\Users\\namir\\.gemini\\antigravity-ide\\brain\\23e67b16-98c8-452e-974b-f4fb5b7cf986\\.user_uploaded';
+  const creativeDestDir = path.resolve('public/artifacts/creative');
+  if (!fs.existsSync(creativeDestDir)) {
+    fs.mkdirSync(creativeDestDir, { recursive: true });
+  }
+  const creativeMapping = {
+    'media_1792691998379.png': 'star-sketch.png',
+    'media_1792692004310.png': 'exclamation-halftone.png',
+    'media_1792692007401.png': 'not-ai-badge.png',
+    'media_1792692010659.png': 'behind-the-scenes.png',
+    'media_1792692021724.png': 'lightning-sparks.png',
+    'media_1792692254501.png': 'f1-telemetry-car.png',
+    'media_1792692258518.png': 'liquid-star-spine.png',
+    'media_1792692261063.png': 'radial-starburst-halo.png',
+    'media_1792692297304.jpg': 'gothic-corner-filigree.jpg'
+  };
+  for (const [srcFile, destFile] of Object.entries(creativeMapping)) {
+    const srcPath = path.join(creativeSrcDir, srcFile);
+    const destPath = path.join(creativeDestDir, destFile);
+    if (fs.existsSync(srcPath) && (!fs.existsSync(destPath) || fs.statSync(destPath).size === 0)) {
       fs.copyFileSync(srcPath, destPath);
     }
   }

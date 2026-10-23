@@ -122,3 +122,15 @@ export function WashiTape({ className = "" }: { className?: string }) {
     />
   );
 }
+
+export { InteractiveSticker } from "./interactive-sticker";
+export { CreativeEphemeraCanvas } from "./creative-ephemera-canvas";
+export {
+  GothicCornerFrame,
+  RotatingCelestialHalo,
+  LiquidMarginSpine,
+  F1TelemetrySpecimen,
+} from "./architectural-borders";
+export { CREATIVE_ASSETS, getCreativeAssetUrl } from "@/lib/creative-assets";
+
+

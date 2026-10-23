@@ -3,6 +3,8 @@
 import React from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { InteractiveSticker } from "./interactive-sticker";
+import { RotatingCelestialHalo, LiquidMarginSpine } from "./architectural-borders";
 
 export function ThesisTeaser() {
   return (
@@ -19,6 +21,14 @@ export function ThesisTeaser() {
           className="w-full h-full object-contain rotate-6 scale-110"
         />
       </ParallaxLayer>
+
+      {/* Symmetrical Rotating Celestial Radial Starburst Halo */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
+        <RotatingCelestialHalo size={480} opacity={0.14} speedMultiplier={0.8} />
+      </div>
+
+      {/* Vertical Liquid Star Margin Spine */}
+      <LiquidMarginSpine side="right" heightClass="h-56 sm:h-72" />
 
       {/* Editorial Header Tag */}
       <Reveal>
@@ -56,10 +66,19 @@ export function ThesisTeaser() {
               <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted pt-2 border-t border-paper-border/50">
                 Digital architecture treated with the permanence of stone and textile.
               </div>
-            </div>
-            <div className="font-mono text-xs text-ink-muted shrink-0 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />
-              <span>Ref. Labs Manifesto &bull; p. 04</span>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
+              <InteractiveSticker
+                id="behind-the-scenes"
+                size="sm"
+                initialRotate={-2}
+                showCaption={true}
+                label="Process Documentation Stamp"
+                parallaxSpeed={0.12}
+              />
+              <div className="font-mono text-xs text-ink-muted shrink-0 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-atelier-brass" />
+                <span>Ref. Labs Manifesto &bull; p. 04</span>
+              </div>
             </div>
           </div>
         </Reveal>

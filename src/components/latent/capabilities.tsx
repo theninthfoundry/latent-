@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BotanicalBloom } from "./botanical-bloom";
 import { CelestialSun } from "./celestial-sun";
 import { LatentFixModal } from "./latent-fix-modal";
+import { InteractiveSticker } from "./interactive-sticker";
 import { ArrowUpRight, Wrench, Sparkles, Shield, AlertOctagon, RotateCw, ArrowRight } from "lucide-react";
 
 export type MatterVerb =
@@ -97,15 +98,27 @@ export function Capabilities() {
           </span>
         </h2>
 
-        <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[62ch] text-pretty leading-[1.6]">
-          Latent does not only create things from zero. Digital systems are{" "}
-          <span className="font-serif italic text-ink font-normal">living matter</span>:
-          they are born, they break, they evolve, they get abandoned, and they are transformed into{" "}
-          <span className="font-mono text-xs bg-paper-subtle px-1.5 py-0.5 rounded border border-paper-border text-ink">
-            inevitable software
-          </span>
-          .
-        </p>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <p className="font-sans text-base sm:text-lg text-ink-light font-light max-w-[62ch] text-pretty leading-[1.6]">
+            Latent does not only create things from zero. Digital systems are{" "}
+            <span className="font-serif italic text-ink font-normal">living matter</span>:
+            they are born, they break, they evolve, they get abandoned, and they are transformed into{" "}
+            <span className="font-mono text-xs bg-paper-subtle px-1.5 py-0.5 rounded border border-paper-border text-ink">
+              inevitable software
+            </span>
+            .
+          </p>
+          <div className="shrink-0 -mt-4 lg:mt-0">
+            <InteractiveSticker
+              id="lightning-sparks"
+              size="sm"
+              initialRotate={6}
+              showCaption={true}
+              label="Kinetic Voltage Mark"
+              parallaxSpeed={0.28}
+            />
+          </div>
+        </div>
 
         {/* Back Door: LATENT / FIX (Handcrafted Seal) */}
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">

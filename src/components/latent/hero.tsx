@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { SplitCTAButton } from "./split-cta-button";
 import Image from "next/image";
 import { TiltLayer } from "@/components/motion/tilt-layer";
+import { InteractiveSticker } from "./interactive-sticker";
 
 const cinematicEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -110,8 +111,37 @@ export function Hero({ isReady = false }: { isReady?: boolean }) {
             <span className="text-paper-border">&bull;</span>
             <span>A studio for what comes next.</span>
           </div>
+
+          {/* Interactive "THIS IS NOT AI" Human Conviction Badge */}
+          <div className="pt-2 flex items-center gap-4">
+            <InteractiveSticker
+              id="not-ai-badge"
+              size="custom"
+              widthClass="w-32 sm:w-40"
+              initialRotate={-3}
+              washiTape={true}
+              showCaption={true}
+              label="Human Conviction Specimen"
+              parallaxSpeed={0.2}
+            />
+            <div className="hidden sm:block font-mono text-[9px] text-ink-muted/80 leading-relaxed max-w-[24ch]">
+              Tactile zine badge &bull; drag anywhere on the studio floor
+            </div>
+          </div>
         </motion.div>
       </motion.div>
+
+      {/* Floating Ink Brutalist Star (Upper Marginalia) */}
+      <div className="absolute right-12 lg:right-32 top-16 z-20 pointer-events-auto">
+        <InteractiveSticker
+          id="star-sketch"
+          size="sm"
+          initialRotate={12}
+          showCaption={true}
+          label="The Studio North Star"
+          parallaxSpeed={0.35}
+        />
+      </div>
 
       {/* Art-directed image with parallax */}
       <motion.div

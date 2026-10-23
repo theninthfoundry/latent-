@@ -11,6 +11,8 @@ import { DiagnosticEngine } from "@/components/latent/diagnostic-engine";
 import { Work } from "@/components/latent/work";
 import { FinalCTA } from "@/components/latent/cta";
 import { Footer } from "@/components/latent/footer";
+import { CreativeEphemeraCanvas } from "@/components/latent/creative-ephemera-canvas";
+import { F1TelemetrySpecimen } from "@/components/latent/architectural-borders";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,6 +48,7 @@ export default function Home() {
 
         {/* 05 — The Digital Diagnostic Engine (Telemetry Inspection & Report) */}
         <section className="px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto py-8 sm:py-12">
+          <F1TelemetrySpecimen className="mb-10 max-w-5xl mx-auto" />
           <DiagnosticEngine />
         </section>
 
@@ -57,6 +60,9 @@ export default function Home() {
 
         {/* 08 — Architectural Footer & Crafted Atelier Colophon */}
         <Footer />
+
+        {/* 09 — Interactive Creative Ephemera Canvas & WebGL Filters */}
+        <CreativeEphemeraCanvas />
       </main>
     </>
   );

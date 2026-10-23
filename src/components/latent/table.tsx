@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
+import { InteractiveSticker } from "./interactive-sticker";
+import { GothicCornerFrame } from "./architectural-borders";
 
 interface Material {
   id: string;
@@ -281,9 +283,22 @@ export function TheTable() {
             The Studio Table.
           </h2>
         </div>
-        <p className="font-sans text-sm text-ink-muted max-w-[62ch] text-pretty font-light leading-[1.6]">
-          Ideas, materials, experiments, and visual research. Inspect the actual raw materials, prints, textiles, code lattices, and optical specimens we bring to the desk every morning.
-        </p>
+        <div className="flex items-center gap-6">
+          <p className="font-sans text-sm text-ink-muted max-w-[50ch] text-pretty font-light leading-[1.6]">
+            Ideas, materials, experiments, and visual research. Inspect the actual raw materials, prints, textiles, code lattices, and optical specimens we bring to the desk every morning.
+          </p>
+          <div className="hidden sm:block shrink-0">
+            <InteractiveSticker
+              id="exclamation-halftone"
+              size="sm"
+              initialRotate={-6}
+              washiTape={true}
+              showCaption={true}
+              label="Studio Signal Specimen"
+              parallaxSpeed={0.2}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Materials Selector Bar */}
@@ -347,20 +362,22 @@ export function TheTable() {
           </div>
         </div>
 
-        {/* Right: Live Artifact Render with subtle tactile desk settling */}
+        {/* Right: Live Artifact Render with subtle tactile desk settling and Gothic Corner Framing */}
         <div className="lg:col-span-7">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeMaterial.id}
-              initial={{ opacity: 0, y: 8, scale: 0.99 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.99 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="transition-transform duration-300"
-            >
-              {activeMaterial.renderArtifact()}
-            </motion.div>
-          </AnimatePresence>
+          <GothicCornerFrame size={100} opacity={0.24} inset="-10px">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeMaterial.id}
+                initial={{ opacity: 0, y: 8, scale: 0.99 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.99 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="transition-transform duration-300"
+              >
+                {activeMaterial.renderArtifact()}
+              </motion.div>
+            </AnimatePresence>
+          </GothicCornerFrame>
         </div>
       </div>
     </section>
