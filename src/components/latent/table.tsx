@@ -364,14 +364,23 @@ export function TheTable() {
         </div>
 
         {/* Right: Live Artifact Render with subtle tactile desk settling and Gothic Corner Framing */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 relative">
+          {/* Technical drafting measurement scale on the left edge */}
+          <div className="hidden sm:flex flex-col justify-between absolute -left-7 top-6 bottom-6 font-mono text-[8px] text-ink-muted/60 select-none pointer-events-none border-l border-dashed border-paper-border/80 pl-1.5">
+            <span>00mm</span>
+            <span>80mm</span>
+            <span>160mm</span>
+            <span>240mm</span>
+            <span>320mm</span>
+          </div>
+
           <GothicCornerFrame size={160} opacity={0.28} inset="-16px">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeMaterial.id}
-                initial={{ opacity: 0, y: 8, scale: 0.99 }}
+                initial={{ opacity: 0, y: 12, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -8, scale: 0.99 }}
+                exit={{ opacity: 0, y: -12, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="transition-transform duration-300"
               >

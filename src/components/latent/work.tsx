@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ParallaxLayer } from "@/components/motion/scroll-reveal";
 import { LatentImage } from "./latent-image";
 
@@ -154,7 +155,11 @@ const CASES: ProjectCase[] = [
 ];
 
 export function Work() {
+  const [activeTabs, setActiveTabs] = useState<Record<string, "preview" | "artifacts">>({});
 
+  const toggleTab = (id: string, tab: "preview" | "artifacts") => {
+    setActiveTabs((prev) => ({ ...prev, [id]: tab }));
+  };
 
   return (
     <section
@@ -208,68 +213,173 @@ export function Work() {
 
       {/* Project Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 relative z-10 pt-4">
-        {CASES.map((c) => (
-          <div key={c.id} className="group relative flex flex-col space-y-5">
-            {/* Large Cover Frame */}
-            <div className="rounded-2xl overflow-hidden border-[0.5px] border-ink/20 bg-ink aspect-[4/3] sm:aspect-[16/10] relative shadow-sm cursor-pointer">
-              <LatentImage
-                src={c.finalUI}
-                alt={c.title}
-                fill
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03]"
-              />
-              
-              {/* Caption slide on hover */}
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-ink/95 via-ink/80 to-transparent text-paper translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-[0.16,1,0.3,1] flex items-end">
-                <p className="font-sans text-xs sm:text-sm font-light text-pretty leading-relaxed text-paper/90 max-w-[50ch]">
-                  {c.narrative}
-                </p>
-              </div>
-            </div>
+        {CASES.map((c) => {
+          const isArtifactView = activeTabs[c.id] === "artifacts";
 
-            {/* Metadata (Project Name, Premise, Contribution, Status, Tags) */}
-            <div className="space-y-3 px-1">
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted">
-                  {c.code} // {c.descriptor}
+          return (
+            <div key={c.id} className="group relative flex flex-col space-y-5">
+              {/* Dossier Toggle Switch */}
+              <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-ink-muted">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-clay animate-pulse" />
+                  <span>{c.code} // {c.descriptor}</span>
                 </span>
-                <span
-                  className="font-mono text-[9px] uppercase tracking-wider text-atelier-indigo font-medium"
-                  dangerouslySetInnerHTML={{ __html: c.status }}
-                />
+                <div className="flex items-center gap-1 bg-paper-card p-0.5 rounded-lg border border-paper-border">
+                  <button
+                    type="button"
+                    onClick={() => toggleTab(c.id, "preview")}
+                    className={`px-2.5 py-1 rounded transition-colors ${
+                      !isArtifactView
+                        ? "bg-ink text-paper font-medium"
+                        : "text-ink-muted hover:text-ink"
+                    }`}
+                  >
+                    System UI
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleTab(c.id, "artifacts")}
+                    className={`px-2.5 py-1 rounded transition-colors ${
+                      isArtifactView
+                        ? "bg-ink text-paper font-medium"
+                        : "text-ink-muted hover:text-ink"
+                    }`}
+                  >
+                    Desk Artifacts
+                  </button>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-serif text-3xl font-light text-ink tracking-tight">
-                  {c.title}
-                </h3>
-                <p className="font-sans text-sm text-ink-muted font-light mt-1">
-                  {c.tagline}
-                </p>
+              {/* Display Viewport */}
+              <div className="relative">
+                <AnimatePresence mode="wait">
+                  {!isArtifactView ? (
+                    <motion.div
+                      key="preview"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="rounded-2xl overflow-hidden border border-ink/20 bg-ink aspect-[4/3] sm:aspect-[16/10] relative shadow-sm group/frame"
+                    >
+                      <LatentImage
+                        src={c.finalUI}
+                        alt={c.title}
+                        fill
+                        className="w-full h-full object-cover object-center transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover/frame:scale-[1.03]"
+                      />
+
+                      {/* Film Still Registration Marks */}
+                      <div className="absolute top-3 left-3 font-mono text-[9px] text-paper/80 bg-ink/70 backdrop-blur-sm px-2 py-0.5 rounded pointer-events-none">
+                        FRAME // {c.id.toUpperCase()}_PROD
+                      </div>
+
+                      {/* Caption slide on hover */}
+                      <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-ink/95 via-ink/80 to-transparent text-paper translate-y-4 opacity-0 group-hover/frame:translate-y-0 group-hover/frame:opacity-100 transition-all duration-500 ease-[0.16,1,0.3,1] flex items-end">
+                        <p className="font-sans text-xs sm:text-sm font-light text-pretty leading-relaxed text-paper/90 max-w-[50ch]">
+                          {c.narrative}
+                        </p>
+                      </div>
+
+                      {/* Asymmetrical Physical Polaroid Study pinned to corner */}
+                      <motion.button
+                        type="button"
+                        onClick={() => toggleTab(c.id, "artifacts")}
+                        whileHover={{ scale: 1.06, rotate: 2 }}
+                        className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-28 sm:w-36 bg-[#FFFDF9] p-1.5 sm:p-2 rounded-lg border border-paper-border shadow-[0_12px_24px_rgba(23,21,15,0.24)] rotate-[-4deg] z-20 cursor-pointer text-left transition-all"
+                        title="Click to inspect studio working artifacts"
+                      >
+                        {/* Washi Tape Strip */}
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-3.5 bg-[#F2EDE2]/95 border-l border-r border-dashed border-ink/20 pointer-events-none" />
+                        <div className="relative aspect-square w-full overflow-hidden rounded bg-ink/10 mb-1.5">
+                          <img
+                            src={c.deskArtifacts.photo}
+                            alt=""
+                            className="w-full h-full object-cover grayscale contrast-125"
+                          />
+                        </div>
+                        <span className="font-mono text-[8px] text-ink-muted uppercase tracking-wider block truncate">
+                          ✎ Inspect Study
+                        </span>
+                      </motion.button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="artifacts"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="rounded-2xl border border-paper-border bg-[#FFFDF9] aspect-[4/3] sm:aspect-[16/10] p-5 sm:p-6 shadow-card flex flex-col justify-between overflow-y-auto space-y-4 relative"
+                    >
+                      {/* 2B Pencil Reflection Note */}
+                      <div className="relative p-3.5 sm:p-4 rounded-xl bg-paper/70 border border-paper-border/80">
+                        <div className="absolute -top-2.5 left-6 w-14 h-3 bg-[#E8E4DA]/90 border-l border-r border-dashed border-ink/20 pointer-events-none" />
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-ink-muted block mb-1">
+                          Studio Reflection // 2B Pencil on Cotton Paper
+                        </span>
+                        <p className="font-hand text-base sm:text-lg text-ink leading-relaxed">
+                          {c.deskArtifacts.sketchNote}
+                        </p>
+                      </div>
+
+                      {/* Telemetry Architecture Diagram */}
+                      <div className="p-3 bg-paper-card rounded-lg border border-paper-border/70 font-mono text-[10px]">
+                        <div className="text-[9px] text-ink-muted uppercase tracking-wider mb-1">
+                          {c.deskArtifacts.diagramTitle}
+                        </div>
+                        <div className="text-atelier-indigo font-medium overflow-x-auto whitespace-nowrap py-0.5">
+                          {c.deskArtifacts.diagram}
+                        </div>
+                      </div>
+
+                      {/* Substrate Kernel Code Snippet */}
+                      <div className="p-3 bg-ink text-paper rounded-lg font-mono text-[10px] overflow-x-auto">
+                        <div className="text-paper/60 text-[9px] mb-1 flex justify-between">
+                          <span>SUBSTRATE KERNEL</span>
+                          <span className="text-accent-clay">{c.deskArtifacts.codeLang}</span>
+                        </div>
+                        <pre className="text-paper/90 leading-relaxed font-mono">{c.deskArtifacts.codeSnippet}</pre>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-paper-card border border-paper-border space-y-1.5 text-xs font-sans">
-                <p className="text-ink-light">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink font-semibold">Premise: </span>
-                  {c.premise}
-                </p>
-                <p className="text-ink-muted">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-atelier-indigo font-semibold">Contribution: </span>
-                  {c.contribution}
-                </p>
-              </div>
-              
-              {/* Tech tags as mono pills */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {c.specs.map((spec) => (
-                  <span key={spec} className="font-mono text-[9px] uppercase tracking-wider text-ink/70 px-2.5 py-1 rounded-full bg-paper-subtle border-[0.5px] border-ink/15">
-                    {spec}
-                  </span>
-                ))}
+              {/* Metadata (Project Name, Premise, Contribution, Status, Tags) */}
+              <div className="space-y-3 px-1 pt-2">
+                <div>
+                  <h3 className="font-serif text-3xl font-light text-ink tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="font-sans text-sm text-ink-muted font-light mt-1">
+                    {c.tagline}
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-paper-card border border-paper-border space-y-1.5 text-xs font-sans">
+                  <p className="text-ink-light">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-ink font-semibold">Premise: </span>
+                    {c.premise}
+                  </p>
+                  <p className="text-ink-muted">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-atelier-indigo font-semibold">Contribution: </span>
+                    {c.contribution}
+                  </p>
+                </div>
+
+                {/* Tech tags as mono pills */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {c.specs.map((spec) => (
+                    <span key={spec} className="font-mono text-[9px] uppercase tracking-wider text-ink/70 px-2.5 py-1 rounded-full bg-paper-subtle border-[0.5px] border-ink/15">
+                      {spec}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

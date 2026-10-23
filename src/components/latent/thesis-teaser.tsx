@@ -30,6 +30,22 @@ export function ThesisTeaser() {
       {/* Vertical Liquid Star Margin Spine */}
       <LiquidMarginSpine side="right" heightClass="h-72 sm:h-96 md:h-[480px]" />
 
+      {/* Botanical Living Mark Watermark in bottom-left margin */}
+      <ParallaxLayer
+        offset={18}
+        direction="up"
+        className="absolute -bottom-10 -left-10 w-64 sm:w-80 aspect-square pointer-events-none select-none opacity-[0.06] mix-blend-multiply overflow-hidden z-0"
+      >
+        <img
+          src="/artifacts/atelier/botanical-flower.png"
+          onError={(e) => {
+            e.currentTarget.src = "/api/atelier-asset?name=botanical-flower";
+          }}
+          alt=""
+          className="w-full h-full object-contain -rotate-12 scale-110"
+        />
+      </ParallaxLayer>
+
       {/* Editorial Header Tag */}
       <Reveal>
         <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-ink-muted mb-12 sm:mb-16 relative z-10 border-b border-paper-border/60 pb-3">
